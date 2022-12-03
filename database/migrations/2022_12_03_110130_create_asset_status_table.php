@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        # total row must always same with the total row asset
+        Schema::create('asset_status', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('current_job');
-            $table->string('phone_number');
-            $table->text('address')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('assets_id')->constrained('assets')->unique();
+            $table->unsignedBigInteger('total_asset');
+            $table->unsignedBigInteger('borrowed');
+            $table->unsignedBigInteger('maintain');
+            $table->unsignedBigInteger('ready');
+
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('asset_status');
     }
 };

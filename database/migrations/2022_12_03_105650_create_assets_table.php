@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        # IF there is any coloumn change pls adjust to coloumn trp_log_submission do we need to include it there to make easier query
+
+        Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('current_job');
-            $table->string('phone_number');
-            $table->text('address')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('asset_name')->unique();
+            $table->text('description');
+            $table->text('image_url');
+
             $table->timestamps();
+            $table->softDeletesTz($column = 'deleted_at', $precision = 0);
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('assets');
     }
 };
