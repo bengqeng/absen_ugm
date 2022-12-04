@@ -2,8 +2,6 @@
 - PHP ^8.0.2
 - Mysql
 
-## Initiate apps
-you must have php version > 8.0.2
 # no docker
 1. duplicate .env.example -> .env
 2. fill the env to needed (like database)
