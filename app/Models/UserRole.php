@@ -10,6 +10,14 @@ class UserRole extends Model
     use HasFactory;
     protected $table = 'users_role';
 
+    public const ROLES = [
+        'super_admin'  => 'super_admin',
+        'admin' => 'admin',
+        'user'  => 'user'
+    ];
+
+    protected array $enumRoles = self::ROLES;
+
     /**
      * Get owner of role.
      */

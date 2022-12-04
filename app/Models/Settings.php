@@ -9,4 +9,10 @@ class Settings extends Model
 {
     use HasFactory;
     protected $table = 'settings';
+
+    public const FEATURES = [
+        'ip'  => 'ip'
+    ];
+
+    protected array $enumFeatures = self::FEATURES;
 }
