@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\UserRole;
 
 class UserSeeder extends Seeder
 {
@@ -22,9 +21,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('123456')
         ]);
 
-        UserRole::Create([
-            'user_id' => $superAdmin->id,
-            'role' => 'super_admin'
-        ]);
+        $superAdmin->assignRole('super_admin');
     }
 }
