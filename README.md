@@ -2,6 +2,11 @@
 - PHP ^8.0.2
 - Mysql
 - composer
+- node v18.11.0
+
+# windows
+Install node version can refer this doc
+https://github.com/coreybutler/nvm-windows
 
 # no docker
 1. duplicate env.example -> .env
