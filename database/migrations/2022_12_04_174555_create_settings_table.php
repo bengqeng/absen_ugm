@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        # IF there is any coloumn change pls adjust to coloumn trp_log_submission do we need to include it there to make easier query
-
-        Schema::create('assets', function (Blueprint $table) {
+        # Note
+        # Its for developer purpose
+        # need to create view to edit each key
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('asset_name')->unique();
-            $table->longText('description');
-            $table->text('image_url');
-
+            $table->string('key')->unique(true)->nullable(false);
+            $table->text('properties')->nullable(true);
+            $table->jsonb('options')->nullable(true);
             $table->timestamps();
-            $table->softDeletesTz($column = 'deleted_at', $precision = 0);
         });
     }
 
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists('settings');
     }
 };

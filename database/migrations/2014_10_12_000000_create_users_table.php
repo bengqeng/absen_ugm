@@ -20,8 +20,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('current_job')->nullable();
             $table->string('phone_number')->nullable();
-            $table->text('address')->nullable();
+            $table->longText('address')->nullable();
             $table->string('password');
+            $table->boolean('active')->default(true)->nullable(false);
             $table->rememberToken();
             $table->timestamps();
         });
