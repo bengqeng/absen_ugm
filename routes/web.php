@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\ShowController;
+use App\Http\Controllers\Auth\VerifyAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+# Root path will redirect to login if needed
+Route::redirect('/', '/login/page', 302);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('login')->group(function () {
+    Route::get('/page', [ShowController::class, 'index'])->name('auth.show');
+    Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
 });
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
