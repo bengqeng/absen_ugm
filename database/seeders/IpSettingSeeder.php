@@ -16,7 +16,7 @@ class IpSettingSeeder extends Seeder
     public function run()
     {
         Settings::Create([
-            'key' => 'ip'
+            'key' => Settings::FEATURES['ip']
         ]);
     }
 }
