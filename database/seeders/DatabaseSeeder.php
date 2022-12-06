@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(IpSettingSeeder::class);
 
-        # Note
-        # Please add inside here if seeder is only for development purpose
-        if (env("APP_ENV", "local") == 'local') {
+        // Note
+        // Please add inside here if seeder is only for development purpose
+        if (env('APP_ENV', 'local') == 'local') {
             $this->call(UserLevelSeeder::class);
             $this->call(UserAdminSeeder::class);
         }

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Settings;
+use Illuminate\Database\Seeder;
 
 class IpSettingSeeder extends Seeder
 {
@@ -16,7 +15,7 @@ class IpSettingSeeder extends Seeder
     public function run()
     {
         Settings::Create([
-            'key' => Settings::FEATURES['ip']
+            'key' => Settings::FEATURES['ip'],
         ]);
     }
 }

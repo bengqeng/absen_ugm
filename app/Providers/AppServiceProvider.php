@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             'success' => 'alert-success',
             'danger' => 'alert-danger',
             'warning' => 'alert-warning',
-            'info' => 'alert-info'
+            'info' => 'alert-info',
         ]);
     }
 }

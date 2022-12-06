@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        # total row must always same with the total row asset
+        // total row must always same with the total row asset
         Schema::create('asset_status', function (Blueprint $table) {
             $table->id();
             $table->foreignId('assets_id')->constrained('assets')->unique();

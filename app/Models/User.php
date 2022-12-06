@@ -3,20 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
+
     public const STATUSTYPE = [
-        'active'  => 'active',
-        'suspended' => 'suspended'
+        'active' => 'active',
+        'suspended' => 'suspended',
     ];
 
     /**
@@ -68,14 +69,15 @@ class User extends Authenticatable
         return $this->roles->pluck('name')->first();
     }
 
-    ## SCOPE QUERY
+    //# SCOPE QUERY
     public function scopeListByActorRole($query)
     {
-        if (!Auth::user()->hasRole(Role::ROLETYPE['super_admin'])) {
+        if (! Auth::user()->hasRole(Role::ROLETYPE['super_admin'])) {
             $query = $query->whereDoesntHave('roles', function (Builder $query) {
-                            $query->where('name', Role::ROLETYPE['super_admin']);
-                        });
+                $query->where('name', Role::ROLETYPE['super_admin']);
+            });
         }
+
         return $query->with('roles');
     }
 }

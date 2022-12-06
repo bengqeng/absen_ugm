@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        # IF there is any coloumn change pls adjust to coloumn trp_log_submission do we need to include it there to make easier query
+        // IF there is any coloumn change pls adjust to coloumn trp_log_submission do we need to include it there to make easier query
 
         Schema::create('assets', function (Blueprint $table) {
             $table->id();

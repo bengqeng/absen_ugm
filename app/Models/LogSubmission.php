@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LogSubmission extends Model
 {
     use HasFactory;
+
     protected $table = 'log_submission';
 
     /**

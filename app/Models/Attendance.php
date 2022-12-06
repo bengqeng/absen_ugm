@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Attendance extends Model
 {
     use HasFactory;
+
     protected $table = 'attendance';
 
     public const STATUS = [
-        'office'  => 'office',
-        'remote' => 'remote'
+        'office' => 'office',
+        'remote' => 'remote',
     ];
 
     protected array $enumStatus = self::STATUS;

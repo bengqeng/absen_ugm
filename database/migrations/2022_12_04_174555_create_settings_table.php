@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        # Note
-        # Its for developer purpose
-        # need to create view to edit each key
+        // Note
+        // Its for developer purpose
+        // need to create view to edit each key
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique(true)->nullable(false);

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class UserlevelSeeder extends Seeder
 {
@@ -19,7 +18,7 @@ class UserlevelSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@mail.com',
             'password' => bcrypt('12345678'),
-            'status_type' => User::STATUSTYPE['active']
+            'status_type' => User::STATUSTYPE['active'],
         ]);
 
         $user->assignRole('staff');

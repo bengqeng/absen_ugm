@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Role;
+use Illuminate\Database\Seeder;
 
 class UserRoleSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        foreach(array_keys(Role::ROLETYPE) as $roleKey){
+        foreach (array_keys(Role::ROLETYPE) as $roleKey) {
             $role = Role::ROLETYPE[$roleKey];
             if (Role::where('name', $role)->get()->count() < 1) {
                 Role::create(

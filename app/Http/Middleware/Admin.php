@@ -17,9 +17,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        # can be accessed for Admin and super admin
-        if (!Auth::user()->hasRole(['admin', 'super_admin'])){
-            # Custom here error view or create new redirect
+        // can be accessed for Admin and super admin
+        if (! Auth::user()->hasRole(['admin', 'super_admin'])) {
+            // Custom here error view or create new redirect
             abort(401);
         }
 

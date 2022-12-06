@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssetSubmission extends Model
 {
     use HasFactory;
+
     protected $table = 'asset_submission';
 
     /**

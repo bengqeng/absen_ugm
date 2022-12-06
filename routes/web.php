@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ use App\Http\Controllers\Auth\VerifyAuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-# Root path will redirect to login if needed
+// Root path will redirect to login if needed
 Route::redirect('/', '/login/page', 302);
 
 Route::prefix('login')->group(function () {
@@ -22,19 +22,19 @@ Route::prefix('login')->group(function () {
     Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
 });
 
-# Logged in user
+// Logged in user
 Route::group(['middleware' => ['auth']], function () {
-    #Admin and Super Admin Level
+    //Admin and Super Admin Level
     Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('users', [App\Http\Controllers\User\ShowController::class, 'index'])->name('user_list.show');
     });
 });
 
-# TESTING ROUTE
-# Can be accessed admin / super admin only
+// TESTING ROUTE
+// Can be accessed admin / super admin only
 Route::group(['middleware' => ['auth', 'admin']], function () {
-    Route::get('tes', function(){
+    Route::get('tes', function () {
         echo 'Executed';
     });
 });
-# End of TESTING ROUTE
+// End of TESTING ROUTE
