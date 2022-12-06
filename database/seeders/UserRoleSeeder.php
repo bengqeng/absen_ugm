@@ -14,22 +14,13 @@ class UserRoleSeeder extends Seeder
      */
     public function run()
     {
-        if (Role::where('name', 'admin')->get()->count() < 1) {
-            Role::create(
-                ['name' => 'admin']
-            );
-        }
-
-        if (Role::where('name', 'super_admin')->get()->count() < 1) {
-            Role::create(
-                ['name' => 'super_admin']
-            );
-        }
-
-        if (Role::where('name', 'staff')->get()->count() < 1) {
-            Role::create(
-                ['name' => 'staff']
-            );
+        foreach(array_keys(Role::ROLETYPE) as $roleKey){
+            $role = Role::ROLETYPE[$roleKey];
+            if (Role::where('name', $role)->get()->count() < 1) {
+                Role::create(
+                    ['name' => $role]
+                );
+            }
         }
     }
 }

@@ -22,6 +22,14 @@ Route::prefix('login')->group(function () {
     Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
 });
 
+# Logged in user
+Route::group(['middleware' => ['auth']], function () {
+    #Admin and Super Admin Level
+    Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
+        Route::get('users', [App\Http\Controllers\User\ShowController::class, 'index'])->name('user_list.show');
+    });
+});
+
 # TESTING ROUTE
 # Can be accessed admin / super admin only
 Route::group(['middleware' => ['auth', 'admin']], function () {
