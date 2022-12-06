@@ -21,3 +21,12 @@ Route::prefix('login')->group(function () {
     Route::get('/page', [ShowController::class, 'index'])->name('auth.show');
     Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
 });
+
+# TESTING ROUTE
+# Can be accessed admin / super admin only
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('tes', function(){
+        echo 'Executed';
+    });
+});
+# End of TESTING ROUTE

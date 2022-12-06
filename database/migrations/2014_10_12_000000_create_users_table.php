@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->longText('address')->nullable();
             $table->string('password');
-            $table->boolean('active')->default(true)->nullable(false);
+            $table->string('status_type')->nullable(false);
             $table->rememberToken();
             $table->timestamps();
         });

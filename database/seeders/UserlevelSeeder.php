@@ -18,7 +18,8 @@ class UserlevelSeeder extends Seeder
         $user = User::Create([
             'name' => 'user',
             'email' => 'user@mail.com',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('12345678'),
+            'status_type' => User::STATUSTYPE['active']
         ]);
 
         $user->assignRole('staff');

@@ -14,8 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet" />
-    <script src="/js/app.js"></script>
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
+    <script src="{{ mix('/js/app.js') }}"></script>
 
 </head>
 <body>

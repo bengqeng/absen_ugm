@@ -12,6 +12,12 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    public const STATUSTYPE = [
+        'active'  => 'active',
+        'suspended' => 'suspended'
+    ];
+
+    protected array $enumStatustype = self::STATUSTYPE;
 
     /**
      * The attributes that are mass assignable.
