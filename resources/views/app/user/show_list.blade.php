@@ -21,7 +21,7 @@
                     <td>{{ $user->role_names }}</td>
                     <td>{{ $user->status_type }}</td>
                     <td>
-                        <button disabled>asdaasda</button>
+                        <a href="{{ route('user_detail.show', ['id' => $user->id]) }}" class="btn btn-primary">Detail</a>
                     </td>
                 </tr>
             @endforeach

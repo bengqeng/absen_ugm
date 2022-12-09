@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\VerifyPostRequest;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use App\Services\Auth\Service;
 
 class VerifyAuthController extends Controller
 {
@@ -17,16 +18,17 @@ class VerifyAuthController extends Controller
      */
     public function verify(VerifyPostRequest $request)
     {
-        if (Auth::attempt(Arr::add($request->validated(), 'status_type', USER::STATUSTYPE['active']))) {
-            $request->session()->regenerate();
-            flash('Hurray', 'danger');
+        $user = (new Service())->verifyLogin($request->validated());
 
-            // NEED TO UPDATE THIS RETURN to redirect
-            return view('welcome');
+        # Login failed
+        if (empty($user)) {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        flash('Berhasil Login', 'success');
+        // NEED TO UPDATE THIS RETURN to redirect
+        return view('welcome');
     }
 }

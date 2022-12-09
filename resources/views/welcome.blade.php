@@ -120,20 +120,21 @@
             </div>
         </div>
         <script>
+            // Jquery test
             $( document ).ready(function() {
                 console.log( "ready!" );
             });
 
             $( window ).on( "load", function() {
-        console.log( "window loaded" );
-    });
+                console.log( "window loaded" );
+            });
 
-    Swal.fire({
-  title: 'Error!',
-  text: 'Do you want to continue',
-  icon: 'error',
-  confirmButtonText: 'Cool'
-});
+            Swal.fire({
+                title: 'Error!',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            });
         </script>
     </body>
 </html>

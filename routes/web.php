@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login/page', 302);
 
 Route::prefix('login')->group(function () {
-    Route::get('/page', [ShowController::class, 'index'])->name('auth.show');
+    Route::get('/', [ShowController::class, 'index'])->name('auth.show');
     Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
 });
 
@@ -27,8 +27,10 @@ Route::group(['middleware' => ['auth']], function () {
     //Admin and Super Admin Level
     Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('users', [App\Http\Controllers\User\ShowController::class, 'index'])->name('user_list.show');
+        Route::get('user/{id}/detail', [App\Http\Controllers\User\DetailController::class, 'index'])->name('user_detail.show');
     });
 });
+// End Of Logged in user
 
 // TESTING ROUTE
 // Can be accessed admin / super admin only
