@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class UserStaff
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        // can be accessed for Admin and super admin
-        if (!Auth::user()->hasRole(['admin', 'super_admin'])) {
-            // Custom here error view or create new redirect
+        if (!Auth::user()->hasRole(['staff'])) {
             abort(401);
         }
 
