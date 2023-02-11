@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\VerifyPostRequest;
-use App\Models\User;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use App\Services\Auth\Service;
 
 class VerifyAuthController extends Controller
@@ -19,8 +16,8 @@ class VerifyAuthController extends Controller
     public function verify(VerifyPostRequest $request)
     {
         $user = (new Service())->verifyLogin($request->validated());
-
-        # Login failed
+        dd($user->role_names);
+        // Login failed
         if (empty($user)) {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match our records.',

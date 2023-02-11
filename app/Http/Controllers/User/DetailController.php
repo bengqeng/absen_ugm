@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class DetailController extends Controller
 {
