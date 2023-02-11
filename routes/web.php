@@ -24,7 +24,6 @@ Route::prefix('login')->group(function () {
 
 // Logged in user
 Route::group(['middleware' => ['auth']], function () {
-
     Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
         Route::get('users', [App\Http\Controllers\User\ShowController::class, 'index'])->name('user_list.show');
         Route::get('user/{id}/detail', [App\Http\Controllers\User\DetailController::class, 'index'])->name('user_detail.show');

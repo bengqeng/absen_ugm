@@ -17,7 +17,7 @@ class UserStaff
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::user()->hasRole(['staff'])) {
+        if (! Auth::user()->hasRole(['staff'])) {
             abort(401);
         }
 
