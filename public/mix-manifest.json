@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/user/js/app.js": "/user/js/app.js",
+    "/user/css/app.css": "/user/css/app.css",
     "/css/app.css": "/css/app.css",
     "/images/logo_tropmed.png": "/images/logo_tropmed.png"
 }

@@ -16,7 +16,7 @@ class VerifyAuthController extends Controller
     public function verify(VerifyPostRequest $request)
     {
         $user = (new Service())->verifyLogin($request->validated());
-        dd($user->role_names);
+
         // Login failed
         if (empty($user)) {
             return back()->withErrors([
@@ -25,7 +25,10 @@ class VerifyAuthController extends Controller
         }
 
         flash('Berhasil Login', 'success');
-        // NEED TO UPDATE THIS RETURN to redirect
-        return view('welcome');
+        if (auth()->user()->hasRole(['admin', 'super_admin'])) {
+            return view('welcome');
+        } else {
+            return redirect()->route('staff.dashboard.index');
+        }
     }
 }
