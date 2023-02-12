@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\VerifyPostRequest;
 use App\Services\Auth\Service;
+use Illuminate\Support\Facades\Auth;
 
 class VerifyAuthController extends Controller
 {
@@ -30,5 +31,12 @@ class VerifyAuthController extends Controller
         } else {
             return redirect()->route('staff.dashboard.index');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('auth.show');
     }
 }

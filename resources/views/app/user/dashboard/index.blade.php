@@ -6,8 +6,9 @@
         <div class="row">
             <div class="col my-4">
                 <div class="d-grid gap-2 d-flex justify-content-center">
-                    <button class="btn btn-lg btn-outline-success px-4" type="button">Check In</button>
-                    <button class="btn btn-lg btn-success btn-tropmed px-4" type="button">Check Out</button>
+                    <a class="btn btn-lg btn-outline-success px-4" href="{{ route('staff.checkin.index') }}">Check In</a>
+                    <a class="btn btn-lg btn-success btn-tropmed px-4" href="{{ route('staff.checkout.index') }}">Check
+                        Out</a>
                 </div>
             </div>
         </div>
