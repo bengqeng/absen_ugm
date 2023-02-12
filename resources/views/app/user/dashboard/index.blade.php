@@ -37,8 +37,8 @@
                         @forelse ($attendances as $attendance)
                             <tr>
                                 <td>{{ $attendance->created_at }}</td>
-                                <td>{{ $attendance->check_in }}</td>
-                                <td>{{ $attendance->check_out }}</td>
+                                <td>{{ isset($attendance->check_in) ? $attendance->check_in : '-' }}</td>
+                                <td>{{ isset($attendance->check_out) ? $attendance->check_out : '-' }}</td>
                             </tr>
                         @empty
                             <tr>
