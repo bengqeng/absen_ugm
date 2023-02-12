@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Peminjaman | Tropmed</title>
+</head>
+
+<body class="bg-light">
+    <header class="py-2 mb-2 sticky-top bg-light shadow-sm border-bottom">
+        <div class="container-fluid align-items-center" style="grid-template-columns: 1fr 2fr;">
+            <div class="col-12 text-center"><span class="fw-semibold">Tropmed</span> <small class="text-mu
+                                ">version 0.1</small></div>
+        </div>
+    </header>
+    <!-- navbar -->
+    <section>
+        <nav
+            class="navbar fixed-bottom py-3 d-flex navbar-light bg-white text-center justify-content-around shadow mt-3">
+            <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="dashboard.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
+                </svg>
+            </a>
+            <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="riwayat_presensi.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+            </a>
+            <a class="navbar-brand btn btn-tropmed d-flex align-items-center active m-0 p-2" href="data.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-pc-display" viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z" />
+                </svg>
+            </a>
+            <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="profile.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                </svg>
+            </a>
+        </nav>
+    </section>
+
+    <!-- content -->
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col my-4">
+                    <div class="d-grid gap-2 d-flex justify-content-center">
+                        <a href="peminjam_aset.html" class="btn btn-succes btn-tropmed py-3 px-4" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-handbag" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2zm3 4V3a3 3 0 1 0-6 0v2H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 1 0 1 0V6h4z" />
+                            </svg><br>
+                            Peminjaman
+                        </a>
+                        <a class="btn btn-danger py-3 px-4" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+                                <path fill-rule="evenodd"
+                                    d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                            </svg><br>
+                            Pengembalian
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="fs-6">
+                        Status Pengajuan Peminjaman
+                    </h2>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <div class="card border-0 shadow-sm p-4">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="fs-3 m-0">Sony A7c</h3>
+                                <div class="description-title mb-2">
+                                    <span>Kamera </span>-<span class="text-success"> Aset Medkom</span>
+                                </div>
+                                <div class="loan-date">
+                                    <span>Pinjam : 18 Febuary 2023</span>
+                                    <span>Kembali : 20 Febuary 2023</span>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex flex-column text-end">
+                                <h3 class="fs-5 m-0 text-success">Approved</h3>
+                                <button class="btn btn-sm btn-outline-secondary mt-auto">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <div class="card border-0 shadow-sm p-4">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="fs-3 m-0">Sony A7c</h3>
+                                <div class="description-title mb-2">
+                                    <span>Kamera </span>-<span class="text-success"> Aset Medkom</span>
+                                </div>
+                                <div class="loan-date">
+                                    <span>Pinjam : 18 Febuary 2023</span>
+                                    <span>Kembali : 20 Febuary 2023</span>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex flex-column text-end">
+                                <h3 class="fs-5 m-0 text-danger">Rejected</h3>
+                                <button class="btn btn-sm btn-outline-secondary mt-auto">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <div class="card border-0 shadow-sm p-4">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="fs-3 m-0">Sony A7c</h3>
+                                <div class="description-title mb-2">
+                                    <span>Kamera </span>-<span class="text-success"> Aset Medkom</span>
+                                </div>
+                                <div class="loan-date">
+                                    <span>Pinjam : 18 Febuary 2023</span>
+                                    <span>Kembali : 20 Febuary 2023</span>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex flex-column text-end">
+                                <h3 class="fs-5 m-0 text-warning">Pending</h3>
+                                <button class="btn btn-sm btn-outline-secondary mt-auto">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3">
+                    <div class="card border-0 shadow-sm p-4">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="fs-3 m-0">Sony A7c</h3>
+                                <div class="description-title mb-2">
+                                    <span>Kamera </span>-<span class="text-success"> Aset Medkom</span>
+                                </div>
+                                <div class="loan-date">
+                                    <span>Pinjam : 18 Febuary 2023</span>
+                                    <span>Kembali : 20 Febuary 2023</span>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex flex-column text-end">
+                                <h3 class="fs-5 m-0 text-success">Approved</h3>
+                                <button class="btn btn-sm btn-outline-secondary mt-auto">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="fs-6">
+                        Riwayat Peminjaman Alat
+                    </h2>
+                </div>
+                <div class="col-12">
+                    <table class="table bg-white shadow-sm rounded">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="fw-semibold col-4">Tanggal</th>
+                                <th class="fw-semibold col-4">Alat</th>
+                                <th class="fw-semibold col-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Kamera</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Laptop</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Speaker</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Buku Tactic</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                            <tr>
+                                <td>24/01/2023</td>
+                                <td>Console game</td>
+                                <td>Selesai</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <section>
+        <div class="container">
+            <footer class="justify-content-center align-items-center py-3 my-4 border-top">
+                <div class="text-center">
+                    <p class="mb-3 mb-md-0 text-muted">© 2023 Tropmed Company, Inc</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <!-- divider footer -->
+    <div class="b-example-divider"></div>
+    <!-- end divider footer -->
+
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+        integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
