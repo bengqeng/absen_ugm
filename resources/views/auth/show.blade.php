@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,38 +17,66 @@
     <!-- Scripts -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" />
     <script src="/js/app.js"></script>
-
+    <style type="text/css">
+        /* Required for proper centering */
+        html,
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+    <section>
+        <div class="container-fluid d-flex justify-content-center align-items-center"
+            style="height:100vh; overflow:hidden;">
+            <!-- Inner row, half the width and height, centered, blue border -->
+            <div class="row d-flex align-items-center w-100" style="overflow:hidden; max-width: 1080px;">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <div class=" col-md-6 d-none d-md-block">
+                    <div class="">
+                        <img src="https://picsum.photos/500/500" style="object-fit:cover"
+                            class="card-img fit-cover  rounded-0" alt="...">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 p-sm-2 p-md-5">
+                    <div class="image-header mb-4">
+                        <img src="{{asset('images/logo_tropmed.png')}}" class="mx-auto d-block" alt="...">
+                    </div>
                     <form method="POST" action="{{ route('auth.verify') }}">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" name="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <div class="form-floating mb-3">
+                            <input name="email" type="email" class="form-control" id="floatingInput"
+                                placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" name="password" required class="form-control" id="exampleInputPassword1">
+                        <div class="form-floating">
+                            <input name="password" type="password" class="form-control" id="floatingPassword"
+                                placeholder="Password">
+                            <label for="floatingPassword">Password</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-success btn-tropmed my-3 px-4">Login</button>
+                        </div>
+                    </form>
+                    <span class="text-dark">
+                        <p class="card-text"><small class="text-muted">Don't have an account yet? <a href="#">Contact
+                                    the admin.</a></small>
+                        </p>
+                    </span>
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </section>
 </body>
+
 </html>
