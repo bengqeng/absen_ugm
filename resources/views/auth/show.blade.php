@@ -45,7 +45,7 @@
                 <div class=" col-md-6 d-none d-md-block">
                     <div class="">
                         <img src="https://picsum.photos/500/500" style="object-fit:cover"
-                            class="card-img fit-cover  rounded-0" alt="...">
+                            class="card-img fit-cover  rounded" alt="...">
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12 p-sm-2 p-md-5">
