@@ -45,10 +45,12 @@ Route::group(['prefix' => 'staff', 'middleware' => ['auth']], function () {
         'index' => 'staff.profile.index',
     ]);
     Route::resource('/check-in', App\Http\Controllers\User\CheckinController::class)->names([
-        'index' => 'staff.checkin.index',
+        'create' => 'staff.checkin.create',
+        'store' => 'staff.checkin.store',
     ]);
     Route::resource('/check-out', App\Http\Controllers\User\CheckOutController::class)->names([
-        'index' => 'staff.checkout.index',
+        'create' => 'staff.checkout.create',
+        'store' => 'staff.checkout.store',
     ]);
 });
 // End Of Logged in user staff

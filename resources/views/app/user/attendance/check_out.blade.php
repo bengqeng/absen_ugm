@@ -9,16 +9,16 @@
                 </h1>
             </div>
             <div class="col-12">
-                <form action="">
+                <form action="{{ route('staff.checkout.store') }}" method="POST">
+                    @csrf
                     <label class="fw-semibold mb-2" for="">Silahkan masukan deskripsi,
                         jika anda sedang WFH atau tugas dinas</label>
                     <div class="mx-2">
                         <div class="form-floating mb-2 shadow">
-                            <textarea class="form-control" name="description_check_in_wfh" placeholder="Deskripsi:" id="floatingTextarea2"
-                                style="height: 300px"></textarea>
+                            <textarea class="form-control" name="note_out" placeholder="Deskripsi:" id="floatingTextarea2" style="height: 300px"></textarea>
                             <label for="floatingTextarea2">Deskripsi:</label>
                         </div>
-                        <button class="btn btn-success btn-tropmed float-end">Submit</button>
+                        <button class="btn btn-success btn-tropmed float-end" type="submit">Submit</button>
                     </div>
                 </form>
             </div>

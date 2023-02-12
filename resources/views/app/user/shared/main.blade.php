@@ -16,6 +16,7 @@
     @include('app.user.shared.header')
     <!-- content -->
     <section>
+        @include('app.user.shared.flash_message')
         @yield('content')
     </section>
 
@@ -52,7 +53,8 @@
                         </span>
                     </div>
                     <div class="modal-footer justify-content-center border-0 mb-4">
-                        <button type="button" class="btn btn-lg btn-success btn-tropmed px-5">Check In</button>
+                        <a type="button" class="btn btn-lg btn-success btn-tropmed px-5"
+                            href="{{ route('staff.checkin.create') }}">Check In</a>
                     </div>
                 </div>
             </div>

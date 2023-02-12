@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Services\User\AbsentService;
 use Illuminate\Http\Request;
 
 class CheckinController extends Controller
@@ -15,7 +16,7 @@ class CheckinController extends Controller
      */
     public function index()
     {
-        return view('app.user.attendance.check_in');
+        //
     }
 
     /**
@@ -25,7 +26,7 @@ class CheckinController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.user.attendance.check_in');
     }
 
     /**
@@ -36,7 +37,19 @@ class CheckinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'note_in' => 'max:255',
+        ]);
+
+        $call = new AbsentService(auth()->user());
+        $response = $call->checkIn(now(), $validated);
+        if ($response[0] == false) {
+            flash()->error($response[1]);
+        } else {
+            flash()->success('Berhasil Menyimpan Data Check In');
+        }
+
+        return redirect()->route('staff.dashboard.index');
     }
 
     /**

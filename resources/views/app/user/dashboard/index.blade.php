@@ -6,8 +6,10 @@
         <div class="row">
             <div class="col my-4">
                 <div class="d-grid gap-2 d-flex justify-content-center">
-                    <a class="btn btn-lg btn-outline-success px-4" href="{{ route('staff.checkin.index') }}">Check In</a>
-                    <a class="btn btn-lg btn-success btn-tropmed px-4" href="{{ route('staff.checkout.index') }}">Check
+                    <a class="btn btn-lg btn-outline-success px-4"
+                        @if (!$isAlreadyAbsentCheckIn) href="{{ route('staff.checkin.create') }}" @else style="pointer-events: none;" @endif>Check
+                        In</a>
+                    <a class="btn btn-lg btn-success btn-tropmed px-4" href="{{ route('staff.checkout.create') }}">Check
                         Out</a>
                 </div>
             </div>
@@ -32,31 +34,18 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr>
-                            <td>24/01/2023</td>
-                            <td>WFO</td>
-                            <td>Selesai</td>
-                        </tr>
-                        <tr>
-                            <td>24/01/2023</td>
-                            <td>WFO</td>
-                            <td>Selesai</td>
-                        </tr>
-                        <tr>
-                            <td>24/01/2023</td>
-                            <td>WFO</td>
-                            <td>Selesai</td>
-                        </tr>
-                        <tr>
-                            <td>24/01/2023</td>
-                            <td>WFO</td>
-                            <td>Selesai</td>
-                        </tr>
-                        <tr>
-                            <td>24/01/2023</td>
-                            <td>WFO</td>
-                            <td>Selesai</td>
-                        </tr>
+                        @forelse ($attendances as $attendance)
+                            <tr>
+                                <td>{{ $attendance->created_at }}</td>
+                                <td>{{ $attendance->check_in }}</td>
+                                <td>{{ $attendance->check_out }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3">No Data Found</td>
+                            </tr>
+                        @endforelse
+
                     </tbody>
                 </table>
             </div>
@@ -114,7 +103,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#myModal').modal('show');
+            if (!@json($isAlreadyAbsentCheckIn)) {
+                $('#myModal').modal('show');
+            }
         });
     </script>
 @endsection
