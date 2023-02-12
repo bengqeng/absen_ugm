@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <script src="/js/app.js"></script>
     <style type="text/css">
         /* Required for proper centering */
@@ -34,13 +34,13 @@
             <!-- Inner row, half the width and height, centered, blue border -->
             <div class="row d-flex align-items-center w-100" style="overflow:hidden; max-width: 1080px;">
                 @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <div class=" col-md-6 d-none d-md-block">
                     <div class="">
@@ -50,9 +50,10 @@
                 </div>
                 <div class="col-md-6 col-sm-12 p-sm-2 p-md-5">
                     <div class="image-header mb-4">
-                        <img src="{{asset('images/logo_tropmed.png')}}" class="mx-auto d-block" alt="...">
+                        <img src="{{ asset('images/logo_tropmed.png') }}" class="mx-auto d-block" alt="...">
                     </div>
                     <form method="POST" action="{{ route('auth.verify') }}">
+                        @csrf
                         <div class="form-floating mb-3">
                             <input name="email" type="email" class="form-control" id="floatingInput"
                                 placeholder="name@example.com">
@@ -69,7 +70,8 @@
                         </div>
                     </form>
                     <span class="text-dark">
-                        <p class="card-text"><small class="text-muted">Don't have an account yet? <a href="#">Contact
+                        <p class="card-text"><small class="text-muted">Don't have an account yet? <a
+                                    href="#">Contact
                                     the admin.</a></small>
                         </p>
                     </span>
