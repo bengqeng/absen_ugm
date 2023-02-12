@@ -16,9 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $isAlreadyAbsent = Attendance::where('user_id', auth()->user()->id)->whereDate('created_at', now())->first();
+
         return view('app.user.dashboard.index', [
             'attendances' => Attendance::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
-            'isAlreadyAbsentCheckIn' => $isAlreadyAbsent !== null
+            'isAlreadyAbsentCheckIn' => $isAlreadyAbsent !== null,
         ]);
     }
 
