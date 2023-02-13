@@ -17,7 +17,7 @@
             <form action="{{ route('staff.attendance.index') }}" method="get">
                 @csrf
                 <div class="form-floating mb-2">
-                    <select class="form-select" required id="floatingSelect" name="month" aria-label="Floating label select example">
+                    <select class="form-select" required="true" id="floatingSelectmonth" name="month" aria-label="Floating label select example">
                         <option value="">-- Silahkan Pilih Bulan --</option>
                         @forelse($months as $month)
                         <option {{ Request::input('month') == $month->format('m') ? 'selected' : '' }} value="{{ $month->format('m') }}">{{ $month->format('F') }}</option>
@@ -25,18 +25,18 @@
                         <option>No Data Found</option>
                         @endforelse
                     </select>
-                    <label for="floatingSelect">Pilih Bulan</label>
+                    <label for="floatingSelectmonth">Pilih Bulan</label>
                 </div>
                 <div class="form-floating mb-2">
-                    <select class="form-select" required="" id="floatingSelect" name="year" aria-label="Floating label select example">
-                        <option>-- Silahkan Pilih Tahun --</option>
+                    <select class="form-select" required='true' id="floatingSelectyear" name="year" aria-label="Floating label select example">
+                        <option value="">-- Silahkan Pilih Tahun --</option>
                         @forelse ($years as $year)
                         <option {{ Request::input('year') == $year->format('Y') ? 'selected' : '' }} value="{{ $year->format('Y') }}">{{ $year->format('Y') }}</option>
                         @empty
                         <option value="">No Data Found</option>
                         @endforelse
                     </select>
-                    <label for="floatingSelect">Pilih Tahun</label>
+                    <label for="floatingSelectyear">Pilih Tahun</label>
                 </div>
                 <button class="btn btn-success btn-tropmed float-end px-5" type="submit">Filter</button>
             </form>

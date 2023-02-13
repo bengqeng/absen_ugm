@@ -46,7 +46,10 @@ class AbsentService
         $this->record = $this->getAttendaceCurrentDate($checkOut, 'check_in');
         if ($this->record == null) {
             $this->message = 'Gagal! Anda Belum melakukan check-in';
-        } else {
+            return $this->response();
+        }
+
+        if (in_array($this->record->check_out, [null, ''])) {
             $data = array_merge($attribute, [
                 'check_out' => $checkOut,
                 'status_out' => $this->getStatus(),
@@ -57,6 +60,8 @@ class AbsentService
             } else {
                 $this->message = 'Gagal Menyimpan Record';
             }
+        } else {
+            $this->message = 'Gagal! Anda Sudah melakukan check-out';
         }
 
         return $this->response();

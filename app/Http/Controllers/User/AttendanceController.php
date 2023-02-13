@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Exceptions\Handler;
 
 class AttendanceController extends Controller
 {
@@ -19,7 +20,11 @@ class AttendanceController extends Controller
         $attendances = [];
         $days = [];
         if ($request->input('month') !== null && $request->input('year') !== null) {
-            $today = Carbon::createFromFormat('Y-m', "{$request->input('year')}-{$request->input('month')}");
+            $today = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
+            if ($today === null){
+                return redirect()->route('staff.attendance.index');
+            }
+
             $days = $this->getListDateMonth($today);
             $attendances = Attendance::when($request->input('month'), function ($query, $month) {
                 $query->whereMonth('created_at', $month);
@@ -29,7 +34,7 @@ class AttendanceController extends Controller
             })
             ->get()
             ->groupBy(function ($date) {
-                return Carbon::parse($date->created_at)->format('d'); // grouping by years
+                return Carbon::parse($date->created_at)->format('d');
             })
             ->toArray();
             $attendances = $this->formatIndex($days, $attendances);

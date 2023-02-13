@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Traits;
+use Illuminate\Support\Carbon;
+use App\Exceptions\Handler;
 
 trait DateTrait
 {
@@ -46,5 +48,17 @@ trait DateTrait
         }
 
         return $dates;
+    }
+
+    public function createDateByYearMonth($data)
+    {
+        $format = rescue(function () use ($data) {
+                return Carbon::createFromFormat('Y-m', $data);
+            }, function($exception) {
+                flash()->error('Data yang di input tidak sesuai!!!');
+                return null;
+            }, true);
+
+        return $format;
     }
 }
