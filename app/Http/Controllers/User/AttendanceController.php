@@ -13,9 +13,24 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('app.user.attendance.index');
+        $attendances = [];
+        if($request->input('month') !== null && $request->input('year') !== null){
+            $attendances = Attendance::when($request->input('month'), function($query, $month){
+                $query->whereMonth('created_at', $month);
+            })
+            ->when($request->input('year'), function($query, $year){
+                $query->whereYear('created_at', $year);
+            })
+            ->get();
+        }
+
+        return view('app.user.attendance.index',[
+            'attendances' => $attendances,
+            'years' => $this->getYearViceVersa(now(), 3),
+            'months' => $this->getMonthInYear(now())
+        ])->withInput($request->input());
     }
 
     /**

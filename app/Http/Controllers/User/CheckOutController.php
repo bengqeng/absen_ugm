@@ -46,7 +46,7 @@ class CheckOutController extends Controller
         if ($response[0] == false) {
             flash()->error($response[1]);
         } else {
-            flash()->success('Berhasil Menyimpan Data Check In');
+            flash()->success('Berhasil Menyimpan Data Check Out');
         }
 
         return redirect()->route('staff.dashboard.index');
