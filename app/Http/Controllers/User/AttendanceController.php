@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AttendanceController extends Controller
 {
@@ -16,20 +17,28 @@ class AttendanceController extends Controller
     public function index(Request $request)
     {
         $attendances = [];
-        if($request->input('month') !== null && $request->input('year') !== null){
-            $attendances = Attendance::when($request->input('month'), function($query, $month){
+        $days = [];
+        if ($request->input('month') !== null && $request->input('year') !== null) {
+            $today = Carbon::createFromFormat('Y-m', "{$request->input('year')}-{$request->input('month')}");
+            $days = $this->getListDateMonth($today);
+            $attendances = Attendance::when($request->input('month'), function ($query, $month) {
                 $query->whereMonth('created_at', $month);
             })
-            ->when($request->input('year'), function($query, $year){
+            ->when($request->input('year'), function ($query, $year) {
                 $query->whereYear('created_at', $year);
             })
-            ->get();
+            ->get()
+            ->groupBy(function ($date) {
+                return Carbon::parse($date->created_at)->format('d'); // grouping by years
+            })
+            ->toArray();
+            $attendances = $this->formatIndex($days, $attendances);
         }
 
-        return view('app.user.attendance.index',[
+        return view('app.user.attendance.index', [
             'attendances' => $attendances,
             'years' => $this->getYearViceVersa(now(), 3),
-            'months' => $this->getMonthInYear(now())
+            'months' => $this->getMonthInYear(now()),
         ])->withInput($request->input());
     }
 
@@ -97,5 +106,19 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
+    }
+
+    private function formatIndex($days, $attendances)
+    {
+        $data = [];
+        foreach ($days as $key => $value) {
+            $record = null;
+            if (array_key_exists($value->format('d'), $attendances)) {
+                $record = $attendances[$value->format('d')][0];
+            }
+            array_push($data, ['date' => $value, 'attendance' => $record]);
+        }
+
+        return $data;
     }
 }
