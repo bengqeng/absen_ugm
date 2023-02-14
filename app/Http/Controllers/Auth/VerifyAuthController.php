@@ -27,7 +27,7 @@ class VerifyAuthController extends Controller
 
         flash('Berhasil Login', 'success');
         if (auth()->user()->hasRole(['admin', 'super_admin'])) {
-            return view('welcome');
+            return redirect()->route('admin.dashboard.index');
         } else {
             return redirect()->route('staff.dashboard.index');
         }

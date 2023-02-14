@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 // Root path will redirect to login if needed
 Route::redirect('/', '/login', 302);
-
 Route::prefix('login')->group(function () {
     Route::get('/', [ShowController::class, 'index'])->name('auth.show');
     Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
@@ -24,16 +23,13 @@ Route::prefix('login')->group(function () {
 });
 
 // Logged in user admin/super admin
-Route::group(['middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
-        Route::get('users', [App\Http\Controllers\User\ShowController::class, 'index'])->name('user_list.show');
-        Route::get('user/{id}/detail', [App\Http\Controllers\User\DetailController::class, 'index'])->name('user_detail.show');
-    });
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin' ], function () {
+    Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
 });
 // End Of Logged in user admin/super admin
 
 // Logged in user staff
-Route::group(['prefix' => 'staff', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'staff']], function () {
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('staff.dashboard.index');
     Route::resource('/attendance', App\Http\Controllers\User\AttendanceController::class)->names([
         'index' => 'staff.attendance.index',

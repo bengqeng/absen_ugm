@@ -1,12 +1,12 @@
-.navbar-brand.btn-tropmed.active{
+.navbar-brand.btn-tropmed.active {
     background-color: #359582;
     color: white;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.navbar-brand.btn-tropmed{
-    background-color: #fff ;
+.navbar-brand.btn-tropmed {
+    background-color: #fff;
     color: #359582;
 }
 
@@ -14,6 +14,7 @@
 .rounded-bottom-left-1 {
     border-bottom-left-radius: 1rem;
 }
+
 .rounded-bottom-right-1 {
     border-bottom-right-radius: 1rem;
 }
@@ -23,26 +24,32 @@
 }
 
 /* bg tropmed theme */
-.bg-tropmed{
+.bg-tropmed {
     background-color: #359582;
 }
 
 /* btn tropmed */
-.btn-tropmed{
+.btn-tropmed {
     background-color: #359582;
     color: #fff;
 }
 
-.btn-tropmed:hover{
+/* text-tropmed */
+.text-tropmed {
+    color: #359582;
+}
+
+.btn-tropmed:hover {
     background-color: #297667;
     color: #fff;
 }
 
 /* background profile */
-.bg-profile{
+.bg-profile {
     background: linear-gradient(0deg, #359582 0%, rgba(53, 149, 130, 0.81) 100%);
 
 }
+
 /* divider */
 .b-example-divider {
     height: 3rem;
