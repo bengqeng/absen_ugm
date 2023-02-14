@@ -7,6 +7,7 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Exceptions\Handler;
+use App\Services\User\AttendanceService;
 
 class AttendanceController extends Controller
 {
@@ -20,24 +21,14 @@ class AttendanceController extends Controller
         $attendances = [];
         $days = [];
         if ($request->input('month') !== null && $request->input('year') !== null) {
-            $today = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
-            if ($today === null){
+            $yearMonth = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
+            if ($yearMonth === null){
+                flash()->error('Data yang di input tidak sesuai!!!');
                 return redirect()->route('staff.attendance.index');
             }
 
-            $days = $this->getListDateMonth($today);
-            $attendances = Attendance::when($request->input('month'), function ($query, $month) {
-                $query->whereMonth('created_at', $month);
-            })
-            ->when($request->input('year'), function ($query, $year) {
-                $query->whereYear('created_at', $year);
-            })
-            ->get()
-            ->groupBy(function ($date) {
-                return Carbon::parse($date->created_at)->format('d');
-            })
-            ->toArray();
-            $attendances = $this->formatIndex($days, $attendances);
+            $response = new AttendanceService();
+            $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth);
         }
 
         return view('app.user.attendance.index', [
@@ -111,19 +102,5 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
-    }
-
-    private function formatIndex($days, $attendances)
-    {
-        $data = [];
-        foreach ($days as $key => $value) {
-            $record = null;
-            if (array_key_exists($value->format('d'), $attendances)) {
-                $record = $attendances[$value->format('d')][0];
-            }
-            array_push($data, ['date' => $value, 'attendance' => $record]);
-        }
-
-        return $data;
     }
 }

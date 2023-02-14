@@ -56,7 +56,7 @@
                 </thead>
                 <tbody class="text-center">
                     @forelse($attendances as $attendance)
-                    <tr {{ $attendance['date']->isWeekend() ? "style=background:#FF5651": '' }}>
+                    <tr {{ $attendance['isWeekend'] ? "style=background:#FF5651": '' }}>
                         <td>{{ $attendance['date']->format('Y/m/d') }}</td>
                         @if (isset($attendance['attendance']))
                             <td>{{ $attendance['attendance']['check_in'] }}</td>

@@ -81,7 +81,7 @@ class AbsentService
         return Attendance::where('user_id', $this->user->id)
             ->whereDate('created_at', $date)
             ->when($type == 'check_in', function ($query) {
-                $query->Where('check_in', '')->orWhereNotNull('check_in');
+                $query->Where('check_in', '<>', '')->WhereNotNull('check_in');
             })
             ->when($type == 'check_out', function ($query) {
                 $query->Where('check_out', '')->orWhereNotNull('check_out');

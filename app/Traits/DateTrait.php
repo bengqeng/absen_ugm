@@ -55,7 +55,6 @@ trait DateTrait
         $format = rescue(function () use ($data) {
                 return Carbon::createFromFormat('Y-m', $data);
             }, function($exception) {
-                flash()->error('Data yang di input tidak sesuai!!!');
                 return null;
             }, true);
 
