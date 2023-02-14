@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Login | Tropmed</title>
+    <style type="text/css">
+        /* Required for proper centering */
+        html,
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid d-flex justify-content-center align-items-center"
+            style="height:100vh; overflow:hidden;">
+            <!-- Inner row, half the width and height, centered, blue border -->
+            <div class="row d-flex align-items-center w-100" style="overflow:hidden; max-width: 1080px;">
+                <div class=" col-md-6 d-none d-md-block">
+                    <div class="">
+                        <img src="https://picsum.photos/500/500" style="object-fit:cover"
+                            class="card-img fit-cover  rounded-0" alt="...">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 p-sm-2 p-md-5">
+                    <div class="image-header mb-4">
+                        <img src="/images/logo_tropmed.png" class="mx-auto d-block" alt="...">
+                    </div>
+                    <form action="">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="dashboard.html" class="btn btn-success btn-tropmed my-3 px-4">Login</a>
+                        </div>
+                    </form>
+                    <span class="text-dark">
+                        <p class="card-text"><small class="text-muted">Don't have an account yet? <a href="#">Contact
+                                    the admin.</a></small>
+                        </p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
