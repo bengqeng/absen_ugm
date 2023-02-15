@@ -9,7 +9,6 @@
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('admin/js/app.js') }}"></script>
-    <link rel="stylesheet" href="style.css">
     <title>Dashboard | Tropmed</title>
 </head>
 
@@ -27,17 +26,7 @@
     <!-- footer -->
     @include('app.admin.shared.footer')
 
-    <!-- divider footer -->
-    <div class="b-example-divider"></div>
-    <!-- end divider footer -->
-
     @include('app.admin.shared.modal')
-
-    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
-        integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>

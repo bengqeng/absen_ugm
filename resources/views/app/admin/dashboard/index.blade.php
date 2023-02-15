@@ -10,7 +10,7 @@
                     <div class="card-title mb-0 text-center" style="font-size: 0.8rem;">
                         Jumlah Staf
                     </div>
-                    <div class="text-center fw-bold" style="font-size: 2.5rem;">50</div>
+                    <div class="text-center fw-bold" style="font-size: 2.5rem;">{{ $totalStaff }}</div>
                 </div>
             </div>
         </div>
@@ -18,9 +18,9 @@
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="card-title mb-0 text-center" style="font-size: 0.8rem;">
-                        Jumlah Staf
+                        Jumlah Asset
                     </div>
-                    <div class="text-center fw-bold" style="font-size: 2.5rem;">120</div>
+                    <div class="text-center fw-bold" style="font-size: 2.5rem;">{{ $totalAsset }}</div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Assets;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +16,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('app.admin.dashboard.index');
+        return view('app.admin.dashboard.index', [
+            'totalStaff' => User::all()->count(),
+            'totalAsset' => Assets::all()->count(),
+        ]);
     }
 
     /**

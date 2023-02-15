@@ -4,10 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use App\Exceptions\Handler;
 use App\Services\User\AttendanceService;
+use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
@@ -22,8 +20,9 @@ class AttendanceController extends Controller
         $days = [];
         if ($request->input('month') !== null && $request->input('year') !== null) {
             $yearMonth = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
-            if ($yearMonth === null){
+            if ($yearMonth === null) {
                 flash()->error('Data yang di input tidak sesuai!!!');
+
                 return redirect()->route('staff.attendance.index');
             }
 

@@ -23,8 +23,27 @@ Route::prefix('login')->group(function () {
 });
 
 // Logged in user admin/super admin
-Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin' ], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
+    Route::get('attendance', [App\Http\Controllers\Admin\UserAttendanceController::class, 'index'])->name('admin.attendance.index');
+    Route::resource('asset', App\Http\Controllers\Admin\AssetController::class)->names([
+        'index' => 'admin.asset.index',
+        'create' => 'admin.asset.create',
+        'store' => 'admin.asset.store',
+    ]);
+    Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile.index');
+    Route::resource('user', \App\Http\Controllers\Admin\UserController::class)->names([
+        'index' => 'admin.user.index',
+        'create' => 'admin.user.create',
+        'store' => 'admin.user.store',
+        'edit' => 'admin.user.edit',
+    ]);
+    Route::resource('project', \App\Http\Controllers\Admin\ProjectController::class)->names([
+        'index' => 'admin.project.index',
+        'create' => 'admin.project.create',
+        'store' => 'admin.project.store',
+        'edit' => 'admin.project.edit',
+    ]);
 });
 // End Of Logged in user admin/super admin
 

@@ -3,38 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Services\User\AttendanceService;
 use Illuminate\Http\Request;
 
-class UserAttendanceController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $attendances = [];
-        $days = [];
-        if ($request->input('month') !== null && $request->input('year') !== null && $request->input('user_id') !== null) {
-            $yearMonth = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
-            if ($yearMonth === null) {
-                flash()->error('Data yang di input tidak sesuai!!!');
-
-                return redirect()->route('admin.attendance.index');
-            }
-
-            $response = new AttendanceService();
-            $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth);
-        }
-
-        return view('app.admin.attendance.index', [
-            'users' => User::ListByActorRole()->get(),
-            'months' => $this->getMonthInYear(now()),
-            'years' => $this->getYearViceVersa(now(), 3),
-        ]);
+        return view('app.admin.project.index');
     }
 
     /**
@@ -44,7 +24,7 @@ class UserAttendanceController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.admin.project.create');
     }
 
     /**
@@ -77,7 +57,7 @@ class UserAttendanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('app.admin.project.edit');
     }
 
     /**

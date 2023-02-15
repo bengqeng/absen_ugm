@@ -46,6 +46,7 @@ class AbsentService
         $this->record = $this->getAttendaceCurrentDate($checkOut, 'check_in');
         if ($this->record == null) {
             $this->message = 'Gagal! Anda Belum melakukan check-in';
+
             return $this->response();
         }
 

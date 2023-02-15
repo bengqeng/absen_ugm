@@ -3,10 +3,8 @@
 namespace App\Services\User;
 
 use App\Models\Attendance;
-use Illuminate\Support\Facades\App;
 use App\Services\AbstractServices as AbstractService;
 use Illuminate\Support\Carbon;
-use App\Exceptions\Handler;
 
 class AttendanceService extends AbstractService
 {
@@ -28,6 +26,7 @@ class AttendanceService extends AbstractService
         ->toArray();
 
         $attendances = $this->formatAttendance($days, $attendances);
+
         return $attendances;
     }
 
