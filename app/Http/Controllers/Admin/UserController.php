@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         return view('app.admin.user.index', [
-            'users' => User::with('roles')->get()
+            'users' => User::with('roles')->get(),
         ]);
     }
 
@@ -65,7 +65,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('app.admin.user.edit', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 

@@ -16,7 +16,7 @@ class IsNumber implements InvokableRule
      */
     public function __invoke($attribute, $value, $fail)
     {
-        if (!is_numeric($value)) {
+        if (! is_numeric($value)) {
             $fail('The :attribute must be number.');
         }
     }

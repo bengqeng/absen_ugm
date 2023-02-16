@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectStoreRequest;
 use App\Http\Requests\Admin\UpdateProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -18,7 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('app.admin.project.index', [
-            'projects' => Project::all()
+            'projects' => Project::all(),
         ]);
     }
 
@@ -30,7 +29,7 @@ class ProjectController extends Controller
     public function create()
     {
         return view('app.admin.project.create', [
-            'years' => $this->getYearViceVersa(now(), 3)
+            'years' => $this->getYearViceVersa(now(), 3),
         ]);
     }
 
@@ -47,6 +46,7 @@ class ProjectController extends Controller
         } else {
             flash()->error('Gagal membuat project');
         }
+
         return redirect()->route('admin.project.index');
     }
 
@@ -71,7 +71,7 @@ class ProjectController extends Controller
     {
         return view('app.admin.project.edit', [
             'project' => $project,
-            'years' => $this->getYearViceVersa(now(), 3)
+            'years' => $this->getYearViceVersa(now(), 3),
         ]);
     }
 

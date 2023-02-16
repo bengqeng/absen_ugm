@@ -25,7 +25,7 @@ class UpdateProjectRequest extends FormRequest
     {
         $rule = [
             'name' => ['required'],
-            'year' => []
+            'year' => [],
         ];
 
         if ($this->name != $this->project->name) {

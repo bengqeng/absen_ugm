@@ -25,7 +25,7 @@ class ProjectStoreRequest extends FormRequest
     {
         return [
             'name' => ['unique:projects', 'required'],
-            'year' => []
+            'year' => [],
         ];
     }
 }
