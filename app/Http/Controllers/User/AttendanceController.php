@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
-use App\Services\User\AttendanceService;
+use App\Services\AttendanceService;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -27,7 +27,7 @@ class AttendanceController extends Controller
             }
 
             $response = new AttendanceService();
-            $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth);
+            $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth, auth()->user()->id);
         }
 
         return view('app.user.attendance.index', [

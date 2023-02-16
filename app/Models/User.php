@@ -72,7 +72,7 @@ class User extends Authenticatable
     //# SCOPE QUERY
     public function scopeListByActorRole($query)
     {
-        if (! Auth::user()->hasRole(Role::ROLETYPE['super_admin'])) {
+        if (!Auth::user()->hasRole(Role::ROLETYPE['super_admin'])) {
             $query = $query->whereDoesntHave('roles', function (Builder $query) {
                 $query->where('name', Role::ROLETYPE['super_admin']);
             });
