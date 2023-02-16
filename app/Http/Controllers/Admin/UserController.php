@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -24,7 +25,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('app.admin.user.create');
+        return view('app.admin.user.create', [
+            'roles' => Role::listRoleByActor()->get()
+        ]);
     }
 
     /**

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('current_job')->nullable();
             $table->string('phone_number')->nullable();
             $table->longText('address')->nullable();
-            $table->string('password');
-            $table->string('status_type')->nullable(false);
+            $table->string('password')->nullable(false);
+            $table->string('status_type')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
