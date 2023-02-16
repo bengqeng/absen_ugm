@@ -20,6 +20,7 @@
 
     <!-- content -->
     <section>
+        @include('app.admin.shared.flash_message')
         @yield('content')
     </section>
 

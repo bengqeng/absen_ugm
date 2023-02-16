@@ -9,6 +9,7 @@
             </h1>
         </div>
         <div class="col-12">
+            @include('layouts.form_validation')
             <form action="{{ route('admin.user.store') }}" method="POST">
                 @csrf
                 <div class="mx-2">
@@ -29,6 +30,7 @@
                             <option value="">No Data Found</option>
                             @endforelse
                         </select>
+                        <label for="floatingRole">Role User</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" required class="form-control" name="password" placeholder="Password">

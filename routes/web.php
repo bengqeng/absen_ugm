@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         'create' => 'admin.project.create',
         'store' => 'admin.project.store',
         'edit' => 'admin.project.edit',
+        'update' => 'admin.project.update',
     ]);
 });
 // End Of Logged in user admin/super admin

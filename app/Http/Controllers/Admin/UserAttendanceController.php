@@ -22,6 +22,7 @@ class UserAttendanceController extends Controller
             $yearMonth = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
             if ($yearMonth === null) {
                 flash()->error('Data yang di input tidak sesuai!!!');
+
                 return redirect()->route('admin.attendance.index');
             }
 
@@ -33,7 +34,7 @@ class UserAttendanceController extends Controller
             'users' => User::ListByActorRole()->get(),
             'months' => $this->getMonthInYear(now()),
             'years' => $this->getYearViceVersa(now(), 3),
-            'attendances' => $attendances
+            'attendances' => $attendances,
         ]);
     }
 

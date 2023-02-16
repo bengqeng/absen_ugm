@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CreateUserRequest;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('app.admin.user.index');
+        return view('app.admin.user.index', [
+            'users' => User::with('roles')->get()
+        ]);
     }
 
     /**
@@ -26,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         return view('app.admin.user.create', [
-            'roles' => Role::listRoleByActor()->get()
+            'roles' => Role::listRoleByActor()->get(),
         ]);
     }
 
@@ -36,9 +40,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        dd($request->validated());
     }
 
     /**
@@ -58,9 +62,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('app.admin.user.edit');
+        return view('app.admin.user.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
