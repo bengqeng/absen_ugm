@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         'create' => 'admin.user.create',
         'store' => 'admin.user.store',
         'edit' => 'admin.user.edit',
+        'update' => 'admin.user.update'
     ]);
     Route::resource('project', \App\Http\Controllers\Admin\ProjectController::class)->names([
         'index' => 'admin.project.index',

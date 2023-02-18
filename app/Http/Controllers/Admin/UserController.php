@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\CreateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -42,7 +43,17 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        dd($request->validated());
+        $attr = Arr::except($request->validated(), 'password');
+        $attr['password'] = bcrypt($request->validated('password'));
+        $user = User::create($attr);
+        if ($user) {
+            $user->assignRole(Role::find($request->validated('role')));
+            flash()->success('Berhasil membuat user baru');
+        } else {
+            flash()->error('Gagal membuat user baru');
+        }
+
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -66,6 +77,7 @@ class UserController extends Controller
     {
         return view('app.admin.user.edit', [
             'user' => $user,
+            'roles' => Role::listRoleByActor()->get(),
         ]);
     }
 
