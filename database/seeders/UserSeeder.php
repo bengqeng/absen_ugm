@@ -19,6 +19,8 @@ class UserSeeder extends Seeder
             'email' => 'superadmin@mail.com',
             'password' => bcrypt('12345678'),
             'status_type' => User::STATUSTYPE['active'],
+            'project_id' => null,
+            'gender' => 'M',
         ]);
 
         $superAdmin->assignRole('super_admin');

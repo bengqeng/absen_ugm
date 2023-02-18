@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,6 +25,13 @@ class Attendance extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['hours_checkin', 'hours_checkout'];
+
+    /**
      * Get owner of attendance.
      */
     public function user()
@@ -39,5 +47,15 @@ class Attendance extends Model
         }
 
         return $list;
+    }
+
+    public function getHoursCheckinAttribute()
+    {
+        return Carbon::parse($this->check_in)->format('H:i');
+    }
+
+    public function getHoursCheckoutAttribute()
+    {
+        return Carbon::parse($this->check_out)->format('H:i');
     }
 }

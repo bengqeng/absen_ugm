@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Rules\ValidGender;
+use App\Rules\ValidProjectId;
 use App\Rules\ValidRole;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,8 +28,11 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
-            'email' => ['required', 'unique:users', 'email:rfc,dns'],
+            'email' => ['required', 'unique:users', 'email'],
+            'phone_number' => [],
             'role' => ['required', new ValidRole],
+            'gender' => ['required', new ValidGender],
+            'project_id' => ['required', new ValidProjectId],
             'password' => ['required', 'min:8', 'confirmed'],
         ];
     }

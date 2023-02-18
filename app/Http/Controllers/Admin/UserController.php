@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Models\Project;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class UserController extends Controller
@@ -31,6 +32,8 @@ class UserController extends Controller
     public function create()
     {
         return view('app.admin.user.create', [
+            'projects' => Project::all(),
+            'genders' => User::STATUSGENDER,
             'roles' => Role::listRoleByActor()->get(),
         ]);
     }
@@ -45,6 +48,7 @@ class UserController extends Controller
     {
         $attr = Arr::except($request->validated(), 'password');
         $attr['password'] = bcrypt($request->validated('password'));
+
         $user = User::create($attr);
         if ($user) {
             $user->assignRole(Role::find($request->validated('role')));
@@ -77,6 +81,8 @@ class UserController extends Controller
     {
         return view('app.admin.user.edit', [
             'user' => $user,
+            'projects' => Project::all(),
+            'genders' => User::STATUSGENDER,
             'roles' => Role::listRoleByActor()->get(),
         ]);
     }
@@ -88,9 +94,30 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $attr = Arr::except($request->validated(), 'password');
+        if ($request->validated('password')) {
+            $attr['password'] = bcrypt($request->validated('password'));
+        }
+
+
+        if ($user->update(Arr::except($attr, ['role']))) {
+            if (!in_array($request->validated('role'), $user->roles()->pluck('id')->toArray())) {
+                $oldRole = $user->getRoleNames()->first();
+                if ($oldRole !== null) {
+                    $user->removeRole($oldRole);
+                }
+
+                $newRole = Role::find($request->validated('role'));
+                $user->assignRole($newRole->name);
+            }
+            flash()->success('Sukses update user!');
+        } else {
+            flash()->error('Gagal update user!');
+        }
+
+        return redirect()->route('admin.user.index');
     }
 
     /**

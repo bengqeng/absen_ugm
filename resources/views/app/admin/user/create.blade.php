@@ -22,6 +22,10 @@
                         <label for="floatingItemType">Email</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <input type="text" required class="form-control" name="phone_number" placeholder="Phone Number">
+                        <label for="floatingItemName">Nomor Telepon</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <select name="role" required class="form-select" placeholder="Role user">
                             <option value="">-- Silahkan Pilih Role User</option>
                             @forelse ($roles as $role)
@@ -31,6 +35,28 @@
                             @endforelse
                         </select>
                         <label for="floatingRole">Role User</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select name="gender" required class="form-select" placeholder="Gender user">
+                            <option value="">-- Silahkan Pilih Gender User</option>
+                            @forelse (array_keys($genders) as $gender)
+                            <option value="{{ $gender }}">{{ $genders[$gender] }}</option>
+                            @empty
+                            <option value="">No Data Found</option>
+                            @endforelse
+                        </select>
+                        <label for="floatingRole">Jenis Kelamin</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select name="project_id" required class="form-select" placeholder="Project user">
+                            <option value="">-- Silahkan Pilih Project User</option>
+                            @forelse ($projects as $project)
+                            <option value="{{ $project->id }}">{{ $project->name }}</option>
+                            @empty
+                            <option value="">No Data Found</option>
+                            @endforelse
+                        </select>
+                        <label for="floatingRole">Project</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" required class="form-control" name="password" placeholder="Password">

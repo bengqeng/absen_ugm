@@ -19,6 +19,8 @@ class UserlevelSeeder extends Seeder
             'email' => 'user@mail.com',
             'password' => bcrypt('12345678'),
             'status_type' => User::STATUSTYPE['active'],
+            'project_id' => null,
+            'gender' => 'F',
         ]);
 
         $user->assignRole('staff');
