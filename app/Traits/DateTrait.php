@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Traits;
+
 use Illuminate\Support\Carbon;
-use App\Exceptions\Handler;
 
 trait DateTrait
 {
@@ -53,10 +53,10 @@ trait DateTrait
     public function createDateByYearMonth($data)
     {
         $format = rescue(function () use ($data) {
-                return Carbon::createFromFormat('Y-m', $data);
-            }, function($exception) {
-                return null;
-            }, true);
+            return Carbon::createFromFormat('Y-m', $data);
+        }, function ($exception) {
+            return null;
+        }, true);
 
         return $format;
     }

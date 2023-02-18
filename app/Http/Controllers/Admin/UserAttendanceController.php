@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserAttendanceIndexRequest;
+use App\Models\User;
+use App\Services\AttendanceService;
 use Illuminate\Http\Request;
 
 class UserAttendanceController extends Controller
@@ -12,9 +15,27 @@ class UserAttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserAttendanceIndexRequest $request)
     {
-        //
+        $attendances = [];
+        if ($request->validated('month') !== null && $request->validated('year') !== null && $request->validated('user_id') !== null) {
+            $yearMonth = $this->createDateByYearMonth("{$request->input('year')}-{$request->input('month')}");
+            if ($yearMonth === null) {
+                flash()->error('Data yang di input tidak sesuai!!!');
+
+                return redirect()->route('admin.attendance.index');
+            }
+
+            $response = new AttendanceService();
+            $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth, $request->input('user_id'));
+        }
+
+        return view('app.admin.attendance.index', [
+            'users' => User::ListByActorRole()->get(),
+            'months' => $this->getMonthInYear(now()),
+            'years' => $this->getYearViceVersa(now(), 3),
+            'attendances' => $attendances,
+        ]);
     }
 
     /**

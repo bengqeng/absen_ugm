@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services;
 
 use App\Models\Attendance;
-use Illuminate\Support\Facades\App;
 use App\Services\AbstractServices as AbstractService;
 use Illuminate\Support\Carbon;
-use App\Exceptions\Handler;
 
 class AttendanceService extends AbstractService
 {
-    public function getListAttendance($month, $year, $selectedDate)
+    public function getListAttendance($month, $year, $selectedDate, $user_id)
     {
         $attendances = [];
         $days = $this->getListDateMonth($selectedDate);
@@ -18,16 +16,18 @@ class AttendanceService extends AbstractService
         $attendances = Attendance::when($month, function ($query, $month) {
             $query->whereMonth('created_at', $month);
         })
-        ->when($year, function ($query, $year) {
-            $query->whereYear('created_at', $year);
-        })
-        ->get()
-        ->groupBy(function ($date) {
-            return Carbon::parse($date->created_at)->format('d');
-        })
-        ->toArray();
+            ->when($year, function ($query, $year) {
+                $query->whereYear('created_at', $year);
+            })
+            ->where('user_id', $user_id)
+            ->get()
+            ->groupBy(function ($date) {
+                return Carbon::parse($date->created_at)->format('d');
+            })
+            ->toArray();
 
         $attendances = $this->formatAttendance($days, $attendances);
+
         return $attendances;
     }
 

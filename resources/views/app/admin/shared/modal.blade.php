@@ -1,3 +1,7 @@
+<!-- divider footer -->
+<div class="b-example-divider"></div>
+<!-- end divider footer -->
+
 <!-- modal -->
 <section>
     <div class="modal" id="detailPengajuanModal" tabindex="-1">

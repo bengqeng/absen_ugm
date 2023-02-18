@@ -1,4 +1,4 @@
-@extends('app.user.shared.main')
+@extends('app.admin.shared.main')
 
 @section('content')
 <!-- table absensi -->
@@ -6,16 +6,29 @@
     <div class="row">
         <div class="col-12 mb-3">
             <h1 class="fs-4">
-                Riwayat Presensi
+                Data Presensi
             </h1>
         </div>
         <div class="col-12 mb-4">
             <h2 class="fs-6">
                 Filter Presensi
             </h2>
-
-            <form action="{{ route('staff.attendance.index') }}" method="get">
+            <form action="{{ route('admin.attendance.index') }}" method="get">
                 @csrf
+                <div class="form-floating mb-2">
+                    <select class="form-select" required="true" name="user_id" id="floatingSelect"
+                        aria-label="Floating label select example">
+                        <option value="">-- Silahkan Pilih User --</option>
+
+                        @forelse($users as $user)
+                        <option {{ Request::input('user_id')==$user->id ? 'selected' : '' }} value="{{ $user->id }}">{{
+                            $user->name }}</option>
+                        @empty
+                        <option value="">No Data Found</option>
+                        @endforelse
+                    </select>
+                    <label for="floatingSelect">Pilih Staf</label>
+                </div>
                 <div class="form-floating mb-2">
                     <select class="form-select" required="true" id="floatingSelectmonth" name="month"
                         aria-label="Floating label select example">
@@ -27,7 +40,7 @@
                         <option>No Data Found</option>
                         @endforelse
                     </select>
-                    <label for="floatingSelectmonth">Pilih Bulan</label>
+                    <label for="floatingSelect">Pilih Bulan</label>
                 </div>
                 <div class="form-floating mb-2">
                     <select class="form-select" required='true' id="floatingSelectyear" name="year"
@@ -40,21 +53,33 @@
                         <option value="">No Data Found</option>
                         @endforelse
                     </select>
-                    <label for="floatingSelectyear">Pilih Tahun</label>
+                    <label for="floatingSelect">Pilih Tahun</label>
                 </div>
                 <button class="btn btn-success btn-tropmed float-end px-5" type="submit">Filter</button>
             </form>
         </div>
+
         <div class="col-12">
-            <h2 class="fs-6">
-                Presensi
-            </h2>
+            <div class="d-grid gap-2 d-flex justify-content-between mb-3">
+                <h2 class="fs-6 align-item-center">
+                    Presensi: <span class="text-tropmed fw-bold">Reza Velayani</span>
+                </h2>
+                <button class="btn btn-success btn-tropmed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-printer" viewBox="0 0 16 16">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                        <path
+                            d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                    </svg>
+                </button>
+            </div>
+
             <table class="table bg-white shadow-sm rounded">
                 <thead>
                     <tr class="text-center">
                         <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Check In</th>
-                        <th class="fw-semibold col-4">Check Out</th>
+                        <th class="fw-semibold col-4">Tipe</th>
+                        <th class="fw-semibold col-4">Status</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>
                 </thead>
@@ -63,9 +88,9 @@
                     <tr {{ $attendance['isWeekend'] ? "style=background:#FF5651" : '' }}>
                         <td>{{ $attendance['date']->format('Y/m/d') }}</td>
                         @if (isset($attendance['attendance']))
-                        <td>{{ $attendance['attendance']['hours_checkin'] }}</td>
-                        <td>{{ isset($attendance['attendance']['hours_checkout']) ?
-                            $attendance['attendance']['hours_checkout'] : '-' }}</td>
+                        <td>{{ $attendance['attendance']['check_in'] }}</td>
+                        <td>{{ isset($attendance['attendance']['check_out']) ? $attendance['attendance']['check_out'] :
+                            '-' }}</td>
                         <td>
                             <button class="btn text-success p-1 m-0" data-bs-toggle="modal"
                                 data-bs-target="#deatilPresensiModal">

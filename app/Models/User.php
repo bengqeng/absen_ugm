@@ -20,6 +20,11 @@ class User extends Authenticatable
         'suspended' => 'suspended',
     ];
 
+    public const STATUSGENDER = [
+        'M' => 'Laki-Laki',
+        'F' => 'Perempuan',
+    ];
+
     /**
      * The accessors to append to the model's array form.
      *
@@ -28,6 +33,8 @@ class User extends Authenticatable
     protected $appends = ['role_names'];
 
     protected array $enumStatustype = self::STATUSTYPE;
+
+    protected array $enumStatusgender = self::STATUSGENDER;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +45,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status_type',
+        'project_id',
+        'phone_number',
     ];
 
     /**

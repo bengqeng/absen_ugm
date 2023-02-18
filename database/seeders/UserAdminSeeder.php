@@ -19,6 +19,8 @@ class UserAdminSeeder extends Seeder
             'email' => 'admin@mail.com',
             'password' => bcrypt('12345678'),
             'status_type' => User::STATUSTYPE['active'],
+            'project_id' => null,
+            'gender' => 'M',
         ]);
 
         $Admin->assignRole('admin');

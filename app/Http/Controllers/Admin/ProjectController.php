@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Assets;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\ProjectStoreRequest;
+use App\Http\Requests\Admin\UpdateProjectRequest;
+use App\Models\Project;
 
-class DashboardController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('app.admin.dashboard.index', [
-            'totalStaff' => User::all()->count(),
-            'totalAsset' => Assets::all()->count(),
+        return view('app.admin.project.index', [
+            'projects' => Project::all(),
         ]);
     }
 
@@ -29,7 +28,9 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.admin.project.create', [
+            'years' => $this->getYearViceVersa(now(), 3),
+        ]);
     }
 
     /**
@@ -38,9 +39,15 @@ class DashboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProjectStoreRequest $request)
     {
-        //
+        if (Project::create($request->validated())) {
+            flash()->success('Berhasil membuat project');
+        } else {
+            flash()->error('Gagal membuat project');
+        }
+
+        return redirect()->route('admin.project.index');
     }
 
     /**
@@ -60,9 +67,12 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        return view('app.admin.project.edit', [
+            'project' => $project,
+            'years' => $this->getYearViceVersa(now(), 3),
+        ]);
     }
 
     /**
@@ -72,9 +82,15 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        if ($project->update($request->validated())) {
+            flash()->success('Berhasil update data');
+        } else {
+            flash()->error('Gagal update data');
+        }
+
+        return redirect()->back();
     }
 
     /**
