@@ -22,7 +22,7 @@ class Role extends \Spatie\Permission\Models\Role
 
     public function scopeListRoleByActor($query)
     {
-        if (!Auth::user()->hasRole(Role::ROLETYPE['super_admin'])) {
+        if (! Auth::user()->hasRole(Role::ROLETYPE['super_admin'])) {
             $query = $query->whereNot(function ($query) {
                 $query->where('name', Role::ROLETYPE['super_admin']);
             });

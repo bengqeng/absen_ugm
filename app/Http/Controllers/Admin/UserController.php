@@ -101,9 +101,8 @@ class UserController extends Controller
             $attr['password'] = bcrypt($request->validated('password'));
         }
 
-
         if ($user->update(Arr::except($attr, ['role']))) {
-            if (!in_array($request->validated('role'), $user->roles()->pluck('id')->toArray())) {
+            if (! in_array($request->validated('role'), $user->roles()->pluck('id')->toArray())) {
                 $oldRole = $user->getRoleNames()->first();
                 if ($oldRole !== null) {
                     $user->removeRole($oldRole);
