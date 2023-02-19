@@ -18,7 +18,8 @@ return new class extends Migration
         // need to create view to edit each key
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('key')->unique(true)->nullable(false);
+            $table->string('key')->nullable(false);
+            $table->string('name')->nullable(false);
             $table->text('properties')->nullable(true);
             $table->jsonb('options')->nullable(true);
             $table->timestamps();

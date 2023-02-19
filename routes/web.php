@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Settings\IpController;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,15 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         'edit' => 'admin.project.edit',
         'update' => 'admin.project.update',
     ]);
+    Route::group(['prefix' => 'settings'], function () {
+        Route::resource('ip', IpController::class)->names([
+            'index' => 'admin.settings.ip.index',
+            'create' => 'admin.settings.ip.create',
+            'store' => 'admin.settings.ip.store',
+            'edit' => 'admin.settings.ip.edit',
+            'update' => 'admin.settings.ip.update',
+        ]);
+    });
 });
 // End Of Logged in user admin/super admin
 

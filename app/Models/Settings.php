@@ -16,4 +16,6 @@ class Settings extends Model
     ];
 
     protected array $enumFeatures = self::FEATURES;
+
+    protected $fillable = ['key', 'options', 'properties', 'name'];
 }

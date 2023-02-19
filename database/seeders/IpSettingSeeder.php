@@ -16,6 +16,8 @@ class IpSettingSeeder extends Seeder
     {
         Settings::Create([
             'key' => Settings::FEATURES['ip'],
+            'name' => 'example',
+            'properties' => '127.0.0.1',
         ]);
     }
 }
