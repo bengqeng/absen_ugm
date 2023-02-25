@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssetCategory extends Model
 {
     use HasFactory;
+
     protected $table = 'asset_category';
 
     public function assets()

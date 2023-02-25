@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssetStatus extends Model
 {
     use HasFactory;
+
     protected $table = 'asset_status';
 
     protected $fillable = ['assets_id', 'total_asset', 'maintenance', 'ready'];

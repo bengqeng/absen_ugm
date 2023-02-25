@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Rules\IsNumber;
 use App\Rules\PositiveNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -31,7 +30,7 @@ class AssetStoreRequest extends FormRequest
             'asset_category_id' => ['max:255', 'required', 'exists:asset_category,id'],
             'total_asset' => ['required_with:maintenance', 'gte:maintenance', 'numeric', 'integer', new PositiveNumber],
             'maintenance' => ['required_with:total_asset', 'numeric',  'integer', new PositiveNumber],
-            'description' => ['max:255']
+            'description' => ['max:255'],
         ];
     }
 }

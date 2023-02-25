@@ -25,12 +25,13 @@ class NotDecimal implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (!is_numeric($value)) {
+        if (! is_numeric($value)) {
             return false;
         }
 
-        if (is_float)
+        if (is_float) {
             return true;
+        }
     }
 
     /**

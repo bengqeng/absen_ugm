@@ -5,12 +5,13 @@ namespace App\Services\Admin;
 use App\Models\Assets;
 use App\Models\AssetStatus;
 use App\Services\AbstractServices;
-use Illuminate\Support\Arr;
 
 class StoreAssetService extends AbstractServices
 {
     private $success = false;
+
     private $record = null;
+
     public function __construct(
         private string $name,
         private string $type,

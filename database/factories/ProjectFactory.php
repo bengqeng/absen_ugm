@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => fake()->uuid,
-            'year' => fake()->year()
+            'year' => fake()->year(),
         ];
     }
 }

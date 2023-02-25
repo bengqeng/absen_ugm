@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use Database\Factories\ProjectFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 

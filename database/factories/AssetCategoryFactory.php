@@ -17,7 +17,7 @@ class AssetCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->uuid()
+            'name' => fake()->uuid(),
         ];
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AssetStoreRequest;
 use App\Models\AssetCategory;
-use App\Models\AssetType;
 use App\Services\Admin\StoreAssetService;
 use Illuminate\Http\Request;
 
