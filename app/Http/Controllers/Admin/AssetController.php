@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AssetStoreRequest;
 use App\Models\AssetCategory;
+use App\Models\Assets;
 use App\Services\Admin\StoreAssetService;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,28 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $qName = $request->input('name');
+        $qType = $request->input('type');
+        $qAssetCategory = $request->input('asset_category_id');
+
+        $assets = Assets::with('asset_category')
+            ->when($qName, function ($query, $qName) {
+                return $query->where('name', 'like', "%{$qName}%");
+            })
+            ->when($qType, function ($query, $qType) {
+                return $query->where('type', 'like', "%{$qType}%");
+            })
+            ->when($qAssetCategory, function ($query, $qAssetCategory) {
+                return $query->where('asset_category_id', $qAssetCategory);
+            })
+            ->get();
+
+        return view('app.admin.asset.index', [
+            'assetCategories' => AssetCategory::all(),
+            'assets' => $assets
+        ]);
     }
 
     /**

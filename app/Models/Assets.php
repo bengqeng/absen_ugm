@@ -18,7 +18,7 @@ class Assets extends Model
         return $this->hasOne(AssetStatus::class);
     }
 
-    public function category()
+    public function asset_category()
     {
         return $this->belongsTo(AssetCategory::class);
     }
