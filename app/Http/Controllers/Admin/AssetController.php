@@ -46,7 +46,7 @@ class AssetController extends Controller
         if ($response[0] == true) {
             flash()->success('Berhasil menambahkan asset baru');
         } else {
-            flash()->error('Berhasil menambahkan asset baru');
+            flash()->error('Gagal menambahkan asset baru');
         }
 
         return redirect()->route('admin.asset_submission.index');
