@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('asset_type', function (Blueprint $table) {
-            $table->id();
-            $table->string('type')->unique();
-            $table->timestamps();
+        Schema::table('assets', function (Blueprint $table) {
+            $table->foreignId('asset_category_id')->constrained('asset_category')->nullable(false);
         });
     }
 
@@ -27,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asset_type');
+        Schema::table('assets', function (Blueprint $table) {
+            $table->dropForeign(['asset_category_id']);
+            $table->dropColumn('asset_category_id');
+        });
     }
 };

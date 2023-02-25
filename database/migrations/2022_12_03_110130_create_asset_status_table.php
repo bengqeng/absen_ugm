@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('assets_id')->constrained('assets')->unique();
             $table->unsignedBigInteger('total_asset');
-            $table->unsignedBigInteger('borrowed');
-            $table->unsignedBigInteger('maintain');
+            $table->unsignedBigInteger('borrowed')->nullable(false)->default(0);
+            $table->unsignedBigInteger('maintenance');
             $table->unsignedBigInteger('ready');
 
             $table->timestamps();

@@ -12,4 +12,9 @@ class Project extends Model
     protected $table = 'projects';
 
     protected $fillable = ['name', 'year'];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

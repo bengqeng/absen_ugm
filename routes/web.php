@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AssetSubmissionController;
 use App\Http\Controllers\Admin\Settings\IpController;
+use App\Http\Controllers\Admin\UserAssetSubmissionController;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +56,24 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
             'store' => 'admin.settings.ip.store',
             'edit' => 'admin.settings.ip.edit',
             'update' => 'admin.settings.ip.update',
+        ]);
+    });
+    Route::resource('asset_submission', AssetSubmissionController::class)->names([
+        'index' => 'admin.asset_submission.index',
+        'create' => 'admin.asset_submission.create',
+        'store' => 'admin.asset_submission.store',
+        'edit' => 'admin.asset_submission.edit',
+        'update' => 'admin.asset_submission.update',
+        'destroy' => 'admin.asset_submission.destroy',
+    ]);
+    Route::scopeBindings()->group(function () {
+        Route::resource('user.asset_submission', UserAssetSubmissionController::class)->names([
+            'index' => 'admin.user.asset_submission.index',
+            'create' => 'admin.user.asset_submission.create',
+            'store' => 'admin.user.asset_submission.store',
+            'edit' => 'admin.user.asset_submission.edit',
+            'update' => 'admin.user.asset_submission.update',
+            'destroy' => 'admin.user.asset_submission.destroy',
         ]);
     });
 });

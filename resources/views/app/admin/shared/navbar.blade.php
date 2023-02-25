@@ -1,13 +1,15 @@
 <section>
     <nav class="navbar fixed-bottom py-3 d-flex navbar-light bg-white text-center justify-content-around shadow mt-3">
-        <a class="navbar-brand btn btn-tropmed d-flex align-items-center active m-0 p-2" href="{{ route('admin.dashboard.index') }}">
+        <a class="navbar-brand btn btn-tropmed d-flex align-items-center active m-0 p-2"
+            href="{{ route('admin.dashboard.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house"
                 viewBox="0 0 16 16">
                 <path
                     d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
             </svg>
         </a>
-        <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="{{ route('admin.attendance.index') }}">
+        <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2"
+            href="{{ route('admin.attendance.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt"
                 viewBox="0 0 16 16">
                 <path
@@ -15,14 +17,16 @@
                 <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
             </svg>
         </a>
-        <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="{{ route('admin.asset.index') }}">
+        <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2"
+            href="{{ route('admin.asset_submission.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pc-display"
                 viewBox="0 0 16 16">
                 <path
                     d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z" />
             </svg>
         </a>
-        <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="{{ route('admin.profile.index') }}">
+        <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2"
+            href="{{ route('admin.profile.index') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
                 viewBox="0 0 16 16">
                 <path

@@ -17,9 +17,10 @@ return new class extends Migration
 
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('asset_name')->unique();
+            $table->string('name')->unique();
+            $table->string('type')->unique();
             $table->longText('description');
-            $table->text('image_url');
+            $table->text('image_url')->default(null)->nullable(true);
 
             $table->timestamps();
             $table->softDeletesTz($column = 'deleted_at', $precision = 0);

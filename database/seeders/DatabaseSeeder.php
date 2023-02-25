@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Database\Factories\ProjectFactory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,10 +22,12 @@ class DatabaseSeeder extends Seeder
 
         // Note
         // Please add inside here if seeder is only for development purpose
-        if (env('APP_ENV', 'local') == 'local') {
+        if (App::environment('local', 'staging')) {
             $this->call(IpSettingSeeder::class);
             $this->call(UserLevelSeeder::class);
             $this->call(UserAdminSeeder::class);
+            $this->call(ProjectSeeder::class);
+            $this->call(AssetCategorySeeder::class);
         }
     }
 }
