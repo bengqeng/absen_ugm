@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Aset Peminjaman | Tropmed</title>
+    <title>Kategori | Tropmed</title>
 </head>
 
 <body class="bg-light">
@@ -43,14 +44,14 @@
                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 </svg>
             </a>
-            <a class="navbar-brand btn btn-tropmed d-flex align-items-center active m-0 p-2" href="data.html">
+            <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="data.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-pc-display" viewBox="0 0 16 16">
                     <path
                         d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V1Zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0Zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0ZM9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5ZM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5ZM1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2H1.5Z" />
                 </svg>
             </a>
-            <a class="navbar-brand btn btn-tropmed d-flex align-items-center m-0 p-2" href="profile.html">
+            <a class="navbar-brand btn btn-tropmed d-flex align-items-center active m-0 p-2" href="profile.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
                     viewBox="0 0 16 16">
                     <path
@@ -66,46 +67,21 @@
             <div class="row">
                 <div class="col-12 mb-3 text-center">
                     <h1 class="fs-4">
-                        Form Edit Aset
+                        Tambah Kategori Baru
                     </h1>
                 </div>
                 <div class="col-12">
+                    <!-- Nanti ta pasangin input mask -->
                     <form action="">
                         <div class="mx-2">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingItemName" placeholder="Nama Barang">
-                                <label for="floatingItemName">Nama Aset</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control disabled" id="floatingItemType"
-                                    placeholder="Jenis Aset">
-                                <label for="floatingItemType">Jenis Aset (cth. Kamera, Laptop, dll)</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <select name="" class="form-select" id="floatingProject" placeholder="Project">
-                                    <option value="1" selected>Kategori 1</option>
-                                    <option value="2">Kategori 2</option>
-                                    <option value="3">Kategori 3</option>
-                                </select>
-                                <label for="floatingProject">Kategori Aset</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="number" class="form-control" id="floatingNumberAsset" value="">
-                                <label for="floatingNumberAsset">Jumlah Total Aset</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="number" class="form-control bg-warning" id="floatingNumberAssetBroken"
-                                    value="">
-                                <label for="floatingNumberAssetBroken">Jumlah Total Aset Rusak</label>
-                            </div>
-                            <div class="form-floating mb-2 shadow">
-                                <textarea class="form-control" name="description_check_in_wfh" placeholder="Deskripsi:"
-                                    id="floatingTextarea2" style="height: 200px"></textarea>
-                                <label for="floatingTextarea2">Deskripsi:</label>
+                                <input type="text" class="form-control" id="floatingCategoryName"
+                                    placeholder="Nama Kategori">
+                                <label for="floatingCategoryName">Nama Kategori</label>
                             </div>
                             <div class="d-grid gap-2 d-flex justify-content-end mt-3">
                                 <button class="btn btn-outline-success px-4" type="button">Batal</button>
-                                <button class="btn btn-success btn-tropmed px-4" type="button">Tambahkan</button>
+                                <button class="btn btn-success btn-tropmed px-4" type="button">Simpan</button>
                             </div>
                         </div>
                     </form>
@@ -129,8 +105,11 @@
     <!-- <div class="b-example-divider"></div> -->
     <!-- end divider footer -->
 
-    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+        integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
