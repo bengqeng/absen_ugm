@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('status')->nullable(false);
             $table->unsignedBigInteger('total_borrowed')->nullable(false);
             $table->foreignId('approval_id')->constrained('users')->nullable(true);
+            $table->foreignId('return_approval_id')->constrained('users')->nullable(true);
             $table->dateTime('date_borrow', $precision = 0)->nullable(true);
             $table->dateTime('date_return', $precision = 0)->nullable(true);
             $table->longText('description_borrow')->nullable(true);

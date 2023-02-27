@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('type')->unique();
+            $table->string('type');
             $table->longText('description');
             $table->text('image_url')->default(null)->nullable(true);
 

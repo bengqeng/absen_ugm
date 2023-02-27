@@ -24,7 +24,7 @@ class UpdateAssetCategoryRequest extends FormRequest
     public function rules()
     {
         $rule = [
-            'name' => ['required', 'max:25']
+            'name' => ['required', 'max:25'],
         ];
 
         if ($this->name != $this->asset_category->name) {

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAssetCategoryRequest;
 use App\Http\Requests\Admin\UpdateAssetCategoryRequest;
 use App\Models\AssetCategory;
-use Illuminate\Http\Request;
 
 class AssetCategoryController extends Controller
 {
@@ -18,7 +17,7 @@ class AssetCategoryController extends Controller
     public function index()
     {
         return view('app.admin.asset_category.index', [
-            'categories' => AssetCategory::all()
+            'categories' => AssetCategory::all(),
         ]);
     }
 
@@ -69,7 +68,7 @@ class AssetCategoryController extends Controller
     public function edit(AssetCategory $assetCategory)
     {
         return view('app.admin.asset_category.edit', [
-            'assetCategory' => $assetCategory
+            'assetCategory' => $assetCategory,
         ]);
     }
 

@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\Settings\IpController;
 use App\Http\Controllers\Admin\UserAssetSubmissionController;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
-use App\Models\AssetCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +34,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         'index' => 'admin.asset.index',
         'create' => 'admin.asset.create',
         'store' => 'admin.asset.store',
+        'edit' => 'admin.asset.edit',
+        'update' => 'admin.asset.update',
     ]);
     Route::get('profile', [\App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile.index');
     Route::resource('user', \App\Http\Controllers\Admin\UserController::class)->names([

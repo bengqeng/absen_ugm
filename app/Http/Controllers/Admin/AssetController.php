@@ -36,7 +36,7 @@ class AssetController extends Controller
 
         return view('app.admin.asset.index', [
             'assetCategories' => AssetCategory::all(),
-            'assets' => $assets
+            'assets' => $assets,
         ]);
     }
 
@@ -69,7 +69,7 @@ class AssetController extends Controller
             flash()->error('Gagal menambahkan asset baru');
         }
 
-        return redirect()->route('admin.asset_submission.index');
+        return redirect()->route('admin.asset.index');
     }
 
     /**
@@ -89,9 +89,12 @@ class AssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Assets $asset)
     {
-        //
+        return view('app.admin.asset.edit', [
+            'asset' => $asset,
+            'assetCategories' => AssetCategory::all(),
+        ]);
     }
 
     /**

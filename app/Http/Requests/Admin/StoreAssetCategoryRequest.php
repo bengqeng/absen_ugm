@@ -24,7 +24,7 @@ class StoreAssetCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:asset_category,name', 'max:25']
+            'name' => ['required', 'unique:asset_category,name', 'max:25'],
         ];
     }
 }
