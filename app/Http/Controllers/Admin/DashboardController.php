@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Assets;
+use App\Models\Attendance;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,6 +21,8 @@ class DashboardController extends Controller
         return view('app.admin.dashboard.index', [
             'totalStaff' => User::all()->count(),
             'totalAsset' => Assets::all()->count(),
+            'totalProject' => Project::all()->count(),
+            'logAttendances' => Attendance::with('user')->latest()->take(5)->get(),
         ]);
     }
 

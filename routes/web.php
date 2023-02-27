@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AssetCategoryController;
 use App\Http\Controllers\Admin\AssetSubmissionController;
 use App\Http\Controllers\Admin\Settings\IpController;
 use App\Http\Controllers\Admin\UserAssetSubmissionController;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
+use App\Models\AssetCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -65,6 +67,14 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         'edit' => 'admin.asset_submission.edit',
         'update' => 'admin.asset_submission.update',
         'destroy' => 'admin.asset_submission.destroy',
+    ]);
+    Route::resource('asset_category', AssetCategoryController::class)->names([
+        'index' => 'admin.asset_category.index',
+        'create' => 'admin.asset_category.create',
+        'store' => 'admin.asset_category.store',
+        'edit' => 'admin.asset_category.edit',
+        'update' => 'admin.asset_category.update',
+        'destroy' => 'admin.asset_category.destroy',
     ]);
     Route::scopeBindings()->group(function () {
         Route::resource('user.asset_submission', UserAssetSubmissionController::class)->names([

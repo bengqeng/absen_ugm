@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Asset;
+use App\Models\Assets;
 use Illuminate\Http\Request;
 
 class AssetSubmissionController extends Controller
@@ -45,7 +45,7 @@ class AssetSubmissionController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function show(Asset $asset)
+    public function show(Assets $asset)
     {
         //
     }
@@ -56,7 +56,7 @@ class AssetSubmissionController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asset $asset)
+    public function edit(Assets $asset)
     {
         //
     }
@@ -68,7 +68,7 @@ class AssetSubmissionController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asset $asset)
+    public function update(Request $request, Assets $asset)
     {
         //
     }
@@ -79,7 +79,7 @@ class AssetSubmissionController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asset $asset)
+    public function destroy(Assets $asset)
     {
         //
     }
