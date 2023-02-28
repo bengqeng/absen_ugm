@@ -1,93 +1,53 @@
 @extends('app.admin.shared.main')
 
 @section('content')
-<!-- counting data -->
-<div class="container mb-3">
-    <div class="row">
-        <div class="col-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="card-title mb-0 text-center" style="font-size: 0.8rem;">
-                        Staf
-                    </div>
-                    <div class="text-center fw-bold" style="font-size: 2.5rem;">{{ $totalStaff }}</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="card-title mb-0 text-center" style="font-size: 0.8rem;">
-                        Asset
-                    </div>
-                    <div class="text-center fw-bold" style="font-size: 2.5rem;">{{ $totalAsset }}</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="card-title mb-0 text-center" style="font-size: 0.8rem;">
-                        Staf
-                    </div>
-                    <div class="text-center fw-bold" style="font-size: 2.5rem;">{{ $totalProject }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- table absensi -->
-<div class="container">
+<div class="container mt-3">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-3">
+            <h1 class="fs-4">
+                Data Pengajuan Pengembalian
+            </h1>
+        </div>
+        <div class="col-12 mb-4">
             <h2 class="fs-6 fw-semibold">
-                Absensi Terakhir
+                Filter Pengembalian
             </h2>
+            <form action="" method="GET">
+                @csrf
+                <select name="asset_category_id" class="form-select mb-3" id="floatingCategory" placeholder="Kategori">
+                    <option value="">Nama Staf</option>
+                    <option value="">Nama Aset</option>
+                    <option value="">Tanggal Pengembalian</option>
+                </select>
+                <input type="text" name="name" class="form-control mb-3" id="floatingItemType" placeholder=""
+                    value="{{ Request::get('name') }}">
+                <div class="d-grid gap-2 d-flex justify-content-end">
+                    <button class="btn btn-sm btn-success btn-tropmed float-end px-5" type="submit">
+                        Filter
+                    </button>
+                </div>
+            </form>
         </div>
         <div class="col-12">
-            <table class="table bg-white shadow-sm rounded">
-                <thead>
-                    <tr class="text-center">
-                        <th class="fw-semibold col-3">Tanggal</th>
-                        <th class="fw-semibold col-3">Nama</th>
-                        <th class="fw-semibold col-3">Check In</th>
-                        <th class="fw-semibold col-3">Check Out</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    @forelse ($logAttendances as $attendance)
-                    <tr>
-                        <td>{{ $attendance->created_at }}</td>
-                        <td>{{ $attendance->user->name }}</td>
-                        <td>{{ $attendance->check_in }}</td>
-                        <td>{{ $attendance->check_out }}</td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="4">No Data Found</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- table riwayat peminjaman alat -->
-<div class="container mt-2">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="fs-6 fw-semibold">
-                Pengajuan Pengembalian
-            </h2>
-        </div>
-        <div class="col-12">
-            <table class="table bg-white shadow-sm rounded">
+            <div class="d-grid gap-2 d-flex justify-content-between mb-3">
+                <h2 class="fs-6 fw-semibold align-self-center mb-0">
+                    List Peminjam
+                </h2>
+                <button class="btn btn-success btn-tropmed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-printer" viewBox="0 0 16 16">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                        <path
+                            d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                    </svg>
+                </button>
+            </div>
+            <table class="table table-hover bg-white shadow-sm rounded">
                 <thead>
                     <tr class="text-center">
                         <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Nama</th>
+                        <th class="fw-semibold col-4">Staf</th>
                         <th class="fw-semibold col-4">Aset</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>

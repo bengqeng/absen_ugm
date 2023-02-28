@@ -1,7 +1,7 @@
 <section>
     <nav
         class="navbar fixed-bottom rounded-top-1 py-3 d-flex navbar-light bg-white text-center justify-content-around shadow-lg mt-3">
-        <div class="navbar-brand m-0 p-2">
+        <div class="navbar-brand m-0 p-2 {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
             <a class="btn btn-tropmed align-items-center pt-0 p-1" href="{{ route('admin.dashboard.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-house"
                     viewBox="0 0 16 16">
@@ -11,7 +11,7 @@
             </a><br>
             <span class="fw-bold text-dark" style="font-size: 0.6em;">Beranda</span>
         </div>
-        <div class="navbar-brand m-0 p-2">
+        <div class="navbar-brand m-0 p-2 {{ (request()->is('admin/attendance')) ? 'active' : '' }}">
             <a class="btn btn-tropmed align-items-center pt-0 p-1" href="{{ route('admin.attendance.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-geo-alt"
                     viewBox="0 0 16 16">
@@ -22,7 +22,7 @@
             </a><br>
             <span class="fw-bold text-dark" style="font-size: 0.6em;">Presensi</span>
         </div>
-        <div class="navbar-brand m-0 p-2">
+        <div class="navbar-brand m-0 p-2 {{ (request()->is('admin/asset_submission')) ? 'active' : '' }}">
             <a class="btn btn-tropmed align-items-center pt-0 p-1" href="{{ route('admin.asset_submission.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                     class="bi bi-pc-display" viewBox="0 0 16 16">
@@ -32,7 +32,7 @@
             </a><br>
             <span class="fw-bold text-dark" style="font-size: 0.6em;">Aset</span>
         </div>
-        <div class="navbar-brand m-0 p-2 active">
+        <div class="navbar-brand m-0 p-2 {{ (request()->is('admin/profile')) ? 'active' : '' }}">
             <a class="btn btn-tropmed align-items-center pt-0 p-1" href="{{ route('admin.profile.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                     class="bi bi-ui-checks-grid" viewBox="0 0 16 16">

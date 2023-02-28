@@ -4,10 +4,13 @@
 <!-- table absensi -->
 <div class="container mt-3">
     <div class="row">
-        <div class="col-12 mb-3">
+        <div class="col-12 mb-3 d-flex justify-content-between">
             <h1 class="fs-4">
                 Data Aset
             </h1>
+            <a class="btn btn-sm btn-primary float-end" type="submit" href="{{ route('admin.asset.create') }}">Tambah
+                Aset +
+            </a>
         </div>
         <div class="col-12 mb-4">
             <h2 class="fs-6">
@@ -42,8 +45,6 @@
                     <label for="floatingCategory">Kategori Aset</label>
                 </div>
                 <div class="d-grid gap-2 d-flex justify-content-end">
-                    <a class="btn btn-primary float-end px-5" type="submit"
-                        href="{{ route('admin.asset.create') }}">Input Asset Baru</a>
                     <button class="btn btn-success btn-tropmed float-end px-5" type="submit">Filter</button>
                 </div>
             </form>
