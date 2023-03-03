@@ -10,7 +10,8 @@
         </div>
         <div class="col-12">
             @include('layouts.form_validation')
-            <form action="{{ route('admin.asset.store') }}" method="POST">
+            <form action="{{ route('admin.asset.update', $asset->id) }}" method="POST">
+                @method('PUT')
                 @csrf
                 <div class="mx-2">
                     <div class="form-floating mb-3">
@@ -46,6 +47,11 @@
                             class="form-control bg-warning" id="floatingmaintenance"
                             value="{{ $asset->status->maintenance }}">
                         <label for="floatingmaintenance">Jumlah Total Aset Rusak (maintenance)</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" disabled class="form-control" id="floatingtotalAsset"
+                            value="{{ $asset->status->borrowed }}">
+                        <label for="floatingtotalAsset">Asset Terpinjam</label>
                     </div>
                     <div class="form-floating mb-2 shadow">
                         <textarea class="form-control" name="description" placeholder="Deskripsi:"

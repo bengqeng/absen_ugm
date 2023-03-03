@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('type');
-            $table->longText('description');
+            $table->longText('description')->nullable(true);
             $table->text('image_url')->default(null)->nullable(true);
 
             $table->timestamps();

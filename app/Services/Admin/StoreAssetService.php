@@ -14,11 +14,11 @@ class StoreAssetService extends AbstractServices
 
     public function __construct(
         private string $name,
-        private string $type,
+        private ?string $type,
         private string $asset_category_id,
         private int $total_asset,
         private int $maintenance,
-        private string $description,
+        private ?string $description,
     ) {
     }
 

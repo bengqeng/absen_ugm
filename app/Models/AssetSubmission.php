@@ -11,6 +11,10 @@ class AssetSubmission extends Model
 
     protected $table = 'asset_submission';
 
+    public const STATUS = ['pending', 'approved', 'borrowed', 'done'];
+
+    protected array $enumSTATUS = self::STATUS;
+
     /**
      * Get owner of asset_submission.
      */

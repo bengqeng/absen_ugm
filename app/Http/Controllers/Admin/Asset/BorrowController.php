@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Asset;
 
 use App\Http\Controllers\Controller;
-use App\Models\Asset;
+use App\Models\Assets;
 use Illuminate\Http\Request;
 
-class UserAssetSubmissionController extends Controller
+class BorrowController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class UserAssetSubmissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Asset  $asset
+     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function show(Asset $asset)
+    public function show(Assets $assets)
     {
         //
     }
@@ -53,10 +53,10 @@ class UserAssetSubmissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Asset  $asset
+     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asset $asset)
+    public function edit(Assets $assets)
     {
         //
     }
@@ -65,10 +65,10 @@ class UserAssetSubmissionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Asset  $asset
+     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asset $asset)
+    public function update(Request $request, Assets $assets)
     {
         //
     }
@@ -76,10 +76,10 @@ class UserAssetSubmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Asset  $asset
+     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asset $asset)
+    public function destroy(Assets $assets)
     {
         //
     }

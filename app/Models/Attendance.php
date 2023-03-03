@@ -14,14 +14,14 @@ class Attendance extends Model
 
     // Dont Change No metter metter
     public const STATUS = [
-        'office' => 'WFO',
-        'remote' => 'WFH',
+        'office' => 'office',
+        'remote' => 'out office',
     ];
 
     protected array $enumStatus = self::STATUS;
 
     protected $fillable = [
-        'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out',
+        'user_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out',
     ];
 
     /**

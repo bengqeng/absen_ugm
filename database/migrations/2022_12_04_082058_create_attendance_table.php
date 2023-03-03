@@ -21,7 +21,9 @@ return new class extends Migration
 
             $table->id();
             $table->foreignId('user_id')->constrained('users')->nullable(false);
+            $table->ipAddress('check_in_ip')->nullable('true');
             $table->dateTime('check_in', $precision = 0)->nullable(false);
+            $table->ipAddress('check_out_ip')->nullable('true');
             $table->dateTime('check_out', $precision = 0)->nullable();
             $table->enum('status_in', $enumStatus)->nullable(false);
             $table->enum('status_out', $enumStatus)->nullable(true);

@@ -3,6 +3,8 @@
 namespace App\Services\User;
 
 use App\Models\Attendance;
+use App\Models\Settings;
+use App\Services\IpService;
 use Illuminate\Support\Facades\App;
 
 class AbsentService
@@ -26,6 +28,7 @@ class AbsentService
             $this->message = 'Gagal! Anda sudah melakukan check-in';
         } else {
             $data = array_merge($attribute, [
+                'check_in_ip' => (new IpService())->getUserIp(),
                 'user_id' => $this->user->id,
                 'check_in' => $checkIn,
                 'status_in' => $this->getStatus(),
@@ -52,8 +55,9 @@ class AbsentService
 
         if (in_array($this->record->check_out, [null, ''])) {
             $data = array_merge($attribute, [
-                'check_out' => $checkOut,
+                'check_out_ip' => $checkOut,
                 'status_out' => $this->getStatus(),
+                'check_out_ip' => (new IpService())->getUserIp(),
             ]);
 
             if ($this->record->update($data)) {
@@ -70,11 +74,7 @@ class AbsentService
 
     private function getStatus()
     {
-        if (App::environment('local', 'staging')) {
-            return 'WFH';
-        } else {
-            // WE NEED TO COMPARE WFH / WFH HERE
-        }
+        return (new IpService())->getUserStatusIp();
     }
 
     private function getAttendaceCurrentDate($date, $type = 'check_in')

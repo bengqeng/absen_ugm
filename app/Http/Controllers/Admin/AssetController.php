@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AssetStoreRequest;
+use App\Http\Requests\Admin\UpdateAssetRequest;
 use App\Models\AssetCategory;
 use App\Models\Assets;
 use App\Services\Admin\StoreAssetService;
+use App\Services\Admin\UpdateAssetService;
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
@@ -104,9 +106,18 @@ class AssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAssetRequest $request, Assets $asset)
     {
-        //
+        $update = new UpdateAssetService(...$request->validated());
+        $response = $update->call($asset);
+
+        if ($response[0] == true) {
+            flash()->success('Asset berhasil di ubah');
+        } else {
+            flash()->error($response[1]);
+        }
+
+        return redirect()->route('admin.asset.edit', $asset->id);
     }
 
     /**
