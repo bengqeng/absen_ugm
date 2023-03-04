@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use App\Models\AssetSubmission;
 use Illuminate\Http\Request;
 
 class AssetSubmissionController extends Controller
@@ -15,7 +16,10 @@ class AssetSubmissionController extends Controller
      */
     public function index()
     {
-        return view('app.user.asset_submission.index');
+        return view('app.user.asset_submission.index', [
+            'onProgressSubmissions' => AssetSubmission::with('owner')->with('asset')->OnProgress()->where('user_id', auth()->user()->id)->latest()->take(5)->get(),
+            'finishedSubmissions' => AssetSubmission::with('asset')->Finished()->latest()->take(10),
+        ]);
     }
 
     /**

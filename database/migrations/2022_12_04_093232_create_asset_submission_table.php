@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('asset_id')->constrained('assets')->nullable(false);
             $table->enum('status', AssetSubmission::STATUS)->nullable(true);
             $table->unsignedBigInteger('total_borrowed')->nullable(false);
-            $table->foreignId('approval_id')->constrained('users')->nullable(true);
-            $table->foreignId('return_approval_id')->constrained('users')->nullable(true);
+            $table->foreignId('approval_id')->nullable(true)->constrained('users');
+            $table->foreignId('return_approval_id')->nullable(true)->constrained('users');
             $table->dateTime('date_borrow', $precision = 0)->nullable(true);
             $table->dateTime('date_return', $precision = 0)->nullable(true);
             $table->longText('description_borrow')->nullable(true);

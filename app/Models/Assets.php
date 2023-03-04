@@ -22,4 +22,9 @@ class Assets extends Model
     {
         return $this->belongsTo(AssetCategory::class);
     }
+
+    public function canBorrowed()
+    {
+        return $this->status->ready > 0;
+    }
 }

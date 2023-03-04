@@ -21,7 +21,7 @@ class Attendance extends Model
     protected array $enumStatus = self::STATUS;
 
     protected $fillable = [
-        'user_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out',
+        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out',
     ];
 
     /**
@@ -56,6 +56,10 @@ class Attendance extends Model
 
     public function getHoursCheckoutAttribute()
     {
-        return Carbon::parse($this->check_out)->format('H:i');
+        if ($this->check_out != null) {
+            return Carbon::parse($this->check_out)->format('H:i');
+        } else {
+            return '-';
+        }
     }
 }

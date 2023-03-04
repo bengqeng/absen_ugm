@@ -3,9 +3,7 @@
 namespace App\Services\User;
 
 use App\Models\Attendance;
-use App\Models\Settings;
 use App\Services\IpService;
-use Illuminate\Support\Facades\App;
 
 class AbsentService
 {
@@ -55,7 +53,7 @@ class AbsentService
 
         if (in_array($this->record->check_out, [null, ''])) {
             $data = array_merge($attribute, [
-                'check_out_ip' => $checkOut,
+                'check_out' => $checkOut,
                 'status_out' => $this->getStatus(),
                 'check_out_ip' => (new IpService())->getUserIp(),
             ]);

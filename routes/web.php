@@ -96,9 +96,19 @@ Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'staff']], function 
     Route::resource('/attendance', App\Http\Controllers\User\AttendanceController::class)->names([
         'index' => 'staff.attendance.index',
     ]);
-    Route::resource('/asset_submission', App\Http\Controllers\User\AssetSubmissionController::class)->names([
-        'index' => 'staff.asset_submission.index',
-    ]);
+    Route::scopeBindings()->group(function () {
+        Route::resource('user.asset_submission', App\Http\Controllers\User\AssetSubmissionController::class)->names([
+            'index' => 'staff.asset_submission.index',
+            'show' => 'staff.asset_submission.show',
+        ]);
+    });
+    Route::scopeBindings()->group(function () {
+        Route::resource('user.assets', App\Http\Controllers\User\BorrowAssetController::class)->names([
+            'index' => 'staff.borrow_asset.index',
+            'create' => 'staff.borrow_asset.create',
+            'store' => 'staff.borrow_asset.store',
+        ]);
+    });
     Route::resource('/profile', App\Http\Controllers\User\ProfileController::class)->names([
         'index' => 'staff.profile.index',
     ]);
