@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\VerifyPostRequest;
 use App\Services\Auth\Service;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VerifyAuthController extends Controller
@@ -33,10 +34,14 @@ class VerifyAuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
 
-        return redirect()->route('auth.show');
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

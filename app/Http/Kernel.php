@@ -69,5 +69,8 @@ class Kernel extends HttpKernel
 
         // User Staff
         'staff' => \App\Http\Middleware\UserStaff::class,
+
+        // Check if Already Login
+        'checkLogin' => \App\Http\Middleware\AlreadyLogin::class,
     ];
 }

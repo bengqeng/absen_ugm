@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 // Root path will redirect to login if needed
 Route::redirect('/', '/login', 302);
-Route::prefix('login')->group(function () {
+Route::group(['prefix' => 'login', 'middleware' => ['checkLogin']], function () {
     Route::get('/', [ShowController::class, 'index'])->name('auth.show');
-    Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
-    Route::get('/log-out', [VerifyAuthController::class, 'logout'])->name('auth.logout');
 });
+Route::post('/verify', [VerifyAuthController::class, 'verify'])->name('auth.verify');
+Route::get('/log-out', [VerifyAuthController::class, 'logout'])->name('auth.logout');
 
 // Logged in user admin/super admin
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
