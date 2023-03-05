@@ -79,90 +79,42 @@
     <div class="row">
         <div class="col-12">
             <h2 class="fs-6 fw-semibold">
-                Pengajuan Pengembalian
+                Riwayat Peminjaman Asset
             </h2>
         </div>
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
                     <tr class="text-center">
-                        <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Nama</th>
-                        <th class="fw-semibold col-4">Aset</th>
-                        <th class="fw-semibold col-4">Aksi</th>
+                        <th class="fw-semibold col-3">Tanggal</th>
+                        <th class="fw-semibold col-3">Nama</th>
+                        <th class="fw-semibold col-3">Aset</th>
+                        <th class="fw-semibold col-2">Status</th>
+                        <th class="fw-semibold col-1">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    @forelse ($assetSubmission as $as)
                     <tr>
-                        <td>24/01/2023</td>
-                        <td>Reza Vel..</td>
-                        <td>Kamera</td>
+                        <td>{{ $as->date_borrow }}</td>
+                        <td>{{ $as->owner->name }}</td>
+                        <td>{{ $as->asset->name }}</td>
+                        <td>{{ $as->status }}</td>
                         <td>
-                            <button class="btn btn-primary">
+                            <a href="{{ route('admin.asset_submission.show', $as->id) }}" class="btn btn-primary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                                 </svg>
-                            </button>
+                            </a>
                         </td>
                     </tr>
+                    @empty
                     <tr>
-                        <td>24/01/2023</td>
-                        <td>Reza Vel..</td>
-                        <td>Kamera</td>
-                        <td>
-                            <button class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                                </svg>
-                            </button>
-                        </td>
+                        <td colspan="4">No Data Found</td>
                     </tr>
-                    <tr>
-                        <td>24/01/2023</td>
-                        <td>Reza Vel..</td>
-                        <td>Kamera</td>
-                        <td>
-                            <button class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>24/01/2023</td>
-                        <td>Reza Vel..</td>
-                        <td>Kamera</td>
-                        <td>
-                            <button class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>24/01/2023</td>
-                        <td>Reza Vel..</td>
-                        <td>Kamera</td>
-                        <td>
-                            <button class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-                                </svg>
-                            </button>
-                        </td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

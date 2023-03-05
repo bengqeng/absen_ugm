@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssetSubmission;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,7 @@ class DashboardController extends Controller
         return view('app.user.dashboard.index', [
             'attendances' => Attendance::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
             'isAlreadyAbsentCheckIn' => $isAlreadyAbsent !== null,
+            'assetSubmission' => AssetSubmission::with('asset')->where('user_id', auth()->user()->id)->latest()->take(5)->get()
         ]);
     }
 

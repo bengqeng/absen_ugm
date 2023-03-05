@@ -61,6 +61,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
             'update' => 'admin.settings.ip.update',
         ]);
     });
+    Route::get('/asset_submission/{asset_submission}/approve', [AssetSubmissionController::class, 'approve'])->name('admin.asset_submission.approve');
+    Route::get('/asset_submission/{asset_submission}/reject', [AssetSubmissionController::class, 'reject'])->name('admin.asset_submission.reject');
+    Route::get('/asset_submission/{asset_submission}/take_picture/{action}', [AssetSubmissionController::class, 'takePictureOnUserTakeAsset'])->name('admin.asset_submission.show_take_picture');
+    Route::post('/asset_submission/{asset_submission}/save_take_picture', [AssetSubmissionController::class, 'savetakePictureOnUserTakeAsset'])->name('admin.asset_submission.save_take_picture');
+
     Route::resource('asset_submission', AssetSubmissionController::class)->names([
         'index' => 'admin.asset_submission.index',
         'create' => 'admin.asset_submission.create',
@@ -68,6 +73,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         'edit' => 'admin.asset_submission.edit',
         'update' => 'admin.asset_submission.update',
         'destroy' => 'admin.asset_submission.destroy',
+        'show' => 'admin.asset_submission.show',
     ]);
     Route::resource('asset_category', AssetCategoryController::class)->names([
         'index' => 'admin.asset_category.index',

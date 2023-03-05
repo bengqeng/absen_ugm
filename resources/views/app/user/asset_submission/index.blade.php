@@ -28,6 +28,7 @@
         </div>
     </div>
 </div>
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -55,13 +56,16 @@
                             class="fs-5 m-0 text-{{ $onProgress->status == 'pending' ? 'warning' : ($onProgress->status == 'approved' ? 'primary' : 'secondary') }}">
                             {{ $onProgress->status }}
                         </h3>
-                        <button class="btn btn-sm btn-outline-secondary mt-auto">Detail</button>
+                        <a href="{{ route('staff.asset_submission.show', ['user' => auth()->user()->id, 'asset_submission' => $onProgress->id]) }}"
+                            class="btn btn-sm btn-outline-secondary mt-auto">Detail</a>
                     </div>
                 </div>
             </div>
         </div>
         @empty
-
+        <div class="col-sm-6 mb-3">
+            -
+        </div>
         @endforelse
     </div>
 </div>
@@ -79,7 +83,8 @@
                     <tr class="text-center">
                         <th class="fw-semibold col-4">Tanggal</th>
                         <th class="fw-semibold col-4">Alat</th>
-                        <th class="fw-semibold col-4">Status</th>
+                        <th class="fw-semibold col-2">Status</th>
+                        <th class="fw-semibold col-1">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -88,6 +93,8 @@
                         <td>{{ $finishedSubmission->date_borrow }}</td>
                         <td>{{ $finishedSubmission->asset->name }}</td>
                         <td>{{ $finishedSubmission->status }}</td>
+                        <td> <a href="{{ route('staff.asset_submission.show', ['user' => auth()->user()->id, 'asset_submission' => $finishedSubmission->id]) }}"
+                                class="btn btn-sm btn-outline-secondary mt-auto">Detail</a></td>
                     </tr>
                     @empty
                     <tr>

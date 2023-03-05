@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Assets;
+use App\Models\AssetSubmission;
 use App\Models\Attendance;
 use App\Models\Project;
 use App\Models\User;
@@ -23,6 +24,7 @@ class DashboardController extends Controller
             'totalAsset' => Assets::all()->count(),
             'totalProject' => Project::all()->count(),
             'logAttendances' => Attendance::with('user')->latest()->take(5)->get(),
+            'assetSubmission' => AssetSubmission::with('asset')->with('owner')->latest()->take(5)->get()
         ]);
     }
 

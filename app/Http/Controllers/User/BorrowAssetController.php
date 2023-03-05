@@ -59,7 +59,6 @@ class BorrowAssetController extends Controller
         $store = (new StoreBorrowAssetService(...Arr::add($request->validated(), 'user', $user)))->call();
         if ($store[0]) {
             flash()->success('Berhasil melakukan peminjaman');
-
             return redirect()->route('staff.asset_submission.index', ['user' => auth()->user()->id]);
         } else {
             flash()->error($store[1]);
