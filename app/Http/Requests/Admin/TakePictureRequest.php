@@ -25,7 +25,7 @@ class TakePictureRequest extends FormRequest
     {
         return [
             'action' => ['required'],
-            'photo' => ['required']
+            'photo' => ['required'],
         ];
     }
 }

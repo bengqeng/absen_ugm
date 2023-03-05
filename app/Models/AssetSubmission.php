@@ -18,7 +18,7 @@ class AssetSubmission extends Model
     protected array $enumSTATUS = self::STATUS;
 
     protected $fillable = [
-        'user_id', 'asset_id', 'status', 'total_borrowed', 'approval_id', 'return_approval_id', 'date_borrow', 'date_return', 'description_borrow', 'photo_taking_asset', 'photo_returning_asset'
+        'user_id', 'asset_id', 'status', 'total_borrowed', 'approval_id', 'return_approval_id', 'date_borrow', 'date_return', 'description_borrow', 'photo_taking_asset', 'photo_returning_asset',
     ];
 
     /**
@@ -48,6 +48,7 @@ class AssetSubmission extends Model
     public function scopeFinished($query)
     {
         dd(self::STATUS, Arr::except(self::STATUS, ['pending', 'approved', 'borrowed']), 'asd');
+
         return $query->where('status', Arr::except($this::STATUS, ['pending', 'approved', 'borrowed']));
     }
 

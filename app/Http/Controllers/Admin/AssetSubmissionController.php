@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ApproveAssetSubmissionRequest;
 use App\Http\Requests\Admin\TakePictureRequest;
 use App\Models\Assets;
 use App\Models\AssetSubmission;
-use App\Rules\Admin\ValidApprovalAssetSubmission;
 use App\Services\Admin\AssetSubmissionService;
 use Illuminate\Http\Request;
 
@@ -55,7 +53,7 @@ class AssetSubmissionController extends Controller
         $assetSubmission = AssetSubmission::with('owner')->with('asset')->findOrFail($asset_submission);
 
         return view('app.admin.asset_submission.detail', [
-            'assetSubmission' => $assetSubmission
+            'assetSubmission' => $assetSubmission,
         ]);
     }
 
@@ -123,7 +121,7 @@ class AssetSubmissionController extends Controller
     {
         return view('app.admin.asset_submission.take_picture', [
             'status' => $action,
-            'assetSubmission' => $asset_submission
+            'assetSubmission' => $asset_submission,
         ]);
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Services\Admin;
 
-use App\Models\Assets;
 use App\Models\AssetSubmission;
 use App\Services\AbstractServices;
 
@@ -21,6 +20,7 @@ class AssetSubmissionService extends AbstractServices
     {
         if ($this->assetSubmission->status != 'pending') {
             $this->message = 'Status peminjaman bukan lagi pending!';
+
             return response();
         }
 
@@ -39,6 +39,7 @@ class AssetSubmissionService extends AbstractServices
     {
         if ($this->assetSubmission->status != 'pending') {
             $this->message = 'Status peminjaman bukan lagi pending!';
+
             return response();
         }
 

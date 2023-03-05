@@ -46,7 +46,7 @@ class StoreBorrowAssetService
 
     private function validateAssetReady()
     {
-        if (!$this->assetRecord->canBorrowed()) {
+        if (! $this->assetRecord->canBorrowed()) {
             $this->message = 'Tidak ada asset yang free untuk dipinjamkan';
 
             return false;
@@ -83,6 +83,7 @@ class StoreBorrowAssetService
         if ($new->save()) {
             $this->record = $new;
             $this->status = true;
+
             return true;
         } else {
             $this->message = 'Gagal membuat peminjaman';

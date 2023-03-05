@@ -53,7 +53,7 @@ class AssetSubmissionController extends Controller
     public function show(User $user, AssetSubmission $asset_submission)
     {
         return view('app.user.asset_submission.detail', [
-            'assetSubmission' => $asset_submission
+            'assetSubmission' => $asset_submission,
         ]);
     }
 

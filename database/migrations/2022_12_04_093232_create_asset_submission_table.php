@@ -31,8 +31,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement("ALTER TABLE asset_submission ADD photo_taking_asset MEDIUMBLOB");
-        DB::statement("ALTER TABLE asset_submission ADD photo_returning_asset MEDIUMBLOB");
+        DB::statement('ALTER TABLE asset_submission ADD photo_taking_asset MEDIUMBLOB');
+        DB::statement('ALTER TABLE asset_submission ADD photo_returning_asset MEDIUMBLOB');
     }
 
     /**
