@@ -64,9 +64,11 @@ class AttendanceController extends Controller
      * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Http\Response
      */
-    public function show(Attendance $attendance)
+    public function show($id)
     {
-        //
+        $response = new AttendanceService();
+        $attendances = $response->getDetailAttendance($id);
+        return $attendances;
     }
 
     /**

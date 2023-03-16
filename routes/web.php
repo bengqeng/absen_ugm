@@ -29,7 +29,6 @@ Route::get('/log-out', [VerifyAuthController::class, 'logout'])->name('auth.logo
 // Logged in user admin/super admin
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
-    // Route::get('attendance', [App\Http\Controllers\Admin\UserAttendanceController::class, 'index'])->name('admin.attendance.index');
     Route::resource('attendance', App\Http\Controllers\Admin\UserAttendanceController::class)->names([
         'index' => 'admin.attendance.index',
         'show' => 'admin.attendance.show',
@@ -106,6 +105,7 @@ Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'staff']], function 
     Route::get('dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('staff.dashboard.index');
     Route::resource('/attendance', App\Http\Controllers\User\AttendanceController::class)->names([
         'index' => 'staff.attendance.index',
+        'show' => 'staff.attendance.show',
     ]);
     Route::scopeBindings()->group(function () {
         Route::resource('user.asset_submission', App\Http\Controllers\User\AssetSubmissionController::class)->names([

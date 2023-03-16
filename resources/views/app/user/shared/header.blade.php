@@ -4,7 +4,7 @@
     <div class="container-fluid bg-profile rounded-bottom-1">
         <div class="row">
             <div class="col p-4">
-                <button type="button" class="btn text-light position-relative p-0 float-end">
+                {{-- <button type="button" class="btn text-light position-relative p-0 float-end">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-bell" viewBox="0 0 16 16">
                         <path
@@ -14,7 +14,7 @@
                         class="position-absolute top-0 start-60 translate-middle p-1 bg-danger border border-light rounded-circle">
                         <span class="visually-hidden">New alerts</span>
                     </span>
-                </button>
+                </button> --}}
             </div>
         </div>
         <div class="image-header my-3">
@@ -23,10 +23,10 @@
         <div class="row">
             <div class="col text-center mb-4">
                 <span class="text-white fw-semibold">
-                    Reza Velayani
+                    {{auth()->user()->name}}
                 </span><br>
                 <span class="text-white">
-                    Staff Media Komunikasi
+                    Staf
                 </span>
             </div>
         </div>

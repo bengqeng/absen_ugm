@@ -29,16 +29,16 @@
                 <thead>
                     <tr class="text-center">
                         <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Tipe</th>
-                        <th class="fw-semibold col-4">Status</th>
+                        <th class="fw-semibold col-4">Check In</th>
+                        <th class="fw-semibold col-4">Check Out</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     @forelse ($attendances as $attendance)
                     <tr>
                         <td>{{ $attendance->created_at }}</td>
-                        <td>{{ isset($attendance->check_in) ? $attendance->check_in : '-' }}</td>
-                        <td>{{ isset($attendance->check_out) ? $attendance->check_out : '-' }}</td>
+                        <td>{{ isset($attendance->check_in) ? $attendance->hours_checkin : '-' }}</td>
+                        <td>{{ isset($attendance->check_out) ? $attendance->hours_checkout : '-' }}</td>
                     </tr>
                     @empty
                     <tr>

@@ -34,13 +34,13 @@
             <!-- Inner row, half the width and height, centered, blue border -->
             <div class="row d-flex align-items-center w-100" style="overflow:hidden; max-width: 1080px;">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
                 <div class=" col-md-6 d-none d-md-block">
                     <div class="">
@@ -70,9 +70,8 @@
                         </div>
                     </form>
                     <span class="text-dark">
-                        <p class="card-text"><small class="text-muted">Don't have an account yet? <a
-                                    href="#">Contact
-                                    the admin.</a></small>
+                        <p class="card-text"><small class="text-muted">Lupa password? <a href="#">Hubungi Staf
+                                    Admin.</a></small>
                         </p>
                     </span>
                 </div>

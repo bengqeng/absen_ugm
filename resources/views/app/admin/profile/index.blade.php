@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col text-center mb-4">
             <span class="text-white fw-semibold">
-                Reza Velayani
+                {{auth()->user()->name}}
             </span><br>
             <span class="text-white">
                 Administrator

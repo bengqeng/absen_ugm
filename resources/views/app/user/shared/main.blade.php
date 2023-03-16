@@ -27,6 +27,7 @@
     <div class="b-example-divider"></div>
     <!-- end divider footer -->
 
+    @include('app.user.shared.modal')
     <!-- modal check in -->
     <section>
         <div class="modal" id="myModal" tabindex="-1">
