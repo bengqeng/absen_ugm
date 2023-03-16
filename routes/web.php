@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     ]);
     Route::get('index_borrow', [AssetActionController::class, 'index_borrow'])->name('admin.asset_action.index_borrow');
     Route::get('index_return', [AssetActionController::class, 'index_return'])->name('admin.asset_action.index_return');
+    Route::get('index_history', [AssetActionController::class, 'index_history'])->name('admin.asset_action.index_history');
     Route::resource('asset_action', AssetActionController::class)->names([
         'index' => 'admin.asset_action.index',
         'create' => 'admin.asset_action.create',

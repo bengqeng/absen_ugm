@@ -43,7 +43,7 @@ class AssetActionController extends Controller
         }
 
         // Retrieve the filtered results
-        $results = $query->with('owner')->latest()->take(10)->get();
+        $results = $query->with('owner')->where('status', ['pending'])->latest()->take(10)->get();
 
         // $borrowingAssets = AssetSubmission::with('asset')->with('owner')->where('status', 'pending')->latest()->take(10)->get();
         return view('app.admin.asset_action.index_borrow', [
@@ -71,13 +71,43 @@ class AssetActionController extends Controller
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
+            $query->whereDate('date_return', $searchQuery);
+        }
+
+        // Retrieve the filtered results
+        $results = $query->with('owner')->where('status', ['borrowed'])->latest()->take(10)->get();
+        return view('app.admin.asset_action.index_return', [
+            'returningAssets' => $results
+        ]);
+    }
+
+    public function index_history(Request $request)
+    {
+        $searchCategory = $request->input('search_category');
+        $searchQuery = $request->input('search');
+
+        // Create a base query for the AssetSubmission model
+        $query = AssetSubmission::query();
+        // Apply the condition based on the selected option
+        if ($searchCategory === 'user_name') {
+            // Search by the user's name
+            $query->whereHas('owner', function ($q) use ($searchQuery) {
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
+            });
+        } elseif ($searchCategory === 'asset_name') {
+            // Search by the asset's name
+            $query->whereHas('asset', function ($q) use ($searchQuery) {
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
+            });
+        } elseif ($searchCategory === 'date') {
+            // Search by the date
             $query->whereDate('date_borrow', $searchQuery);
         }
 
         // Retrieve the filtered results
-        $results = $query->with('owner')->latest()->take(10)->get();
-        return view('app.admin.asset_action.index_return', [
-            'returningAssets' => $results
+        $results = $query->with('owner')->where('status', ['done', 'rejected'])->latest()->take(10)->get();
+        return view('app.admin.asset_action.index_history', [
+            'historyAssets' => $results
         ]);
     }
 

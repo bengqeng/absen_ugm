@@ -62,7 +62,7 @@
         <div class="col-12">
             <div class="d-grid gap-2 d-flex justify-content-between mb-3">
                 <h2 class="fs-6 align-item-center">
-                    Presensi: <span class="text-tropmed fw-bold">Reza Velayani</span>
+                    {{-- Presensi: <span class="text-tropmed fw-bold">Reza Velayani</span> --}}
                 </h2>
                 <button class="btn btn-success btn-tropmed">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

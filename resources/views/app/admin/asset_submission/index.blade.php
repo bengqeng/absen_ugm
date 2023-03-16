@@ -154,7 +154,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    @forelse ($returningAssets as $asset)
+                    @forelse ($historyAssets as $asset)
                     <tr>
                         <td>{{ $asset->date_borrow }}</td>
                         <td>{{ $asset->owner->name }}</td>
@@ -181,7 +181,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed"
-                                href="{{route('admin.asset_action.index_return')}}">Lihat
+                                href="{{route('admin.asset_action.index_history')}}">Lihat
                                 Semua</a></th>
                     </tr>
                 </tfoot>
