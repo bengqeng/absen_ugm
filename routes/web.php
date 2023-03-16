@@ -29,7 +29,11 @@ Route::get('/log-out', [VerifyAuthController::class, 'logout'])->name('auth.logo
 // Logged in user admin/super admin
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard.index');
-    Route::get('attendance', [App\Http\Controllers\Admin\UserAttendanceController::class, 'index'])->name('admin.attendance.index');
+    // Route::get('attendance', [App\Http\Controllers\Admin\UserAttendanceController::class, 'index'])->name('admin.attendance.index');
+    Route::resource('attendance', App\Http\Controllers\Admin\UserAttendanceController::class)->names([
+        'index' => 'admin.attendance.index',
+        'show' => 'admin.attendance.show',
+    ]);
     Route::resource('asset', App\Http\Controllers\Admin\AssetController::class)->names([
         'index' => 'admin.asset.index',
         'create' => 'admin.asset.create',

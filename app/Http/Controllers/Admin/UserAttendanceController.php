@@ -67,7 +67,9 @@ class UserAttendanceController extends Controller
      */
     public function show($id)
     {
-        //
+        $response = new AttendanceService();
+        $attendances = $response->getDetailAttendance($id);
+        return $attendances;
     }
 
     /**
