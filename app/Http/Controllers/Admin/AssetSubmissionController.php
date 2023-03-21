@@ -18,9 +18,9 @@ class AssetSubmissionController extends Controller
      */
     public function index()
     {
-        $borrowingAssets = AssetSubmission::with('asset')->with('owner')->where('status', 'pending')->latest()->take(5)->get();
-        $returningAssets = AssetSubmission::with('asset')->with('owner')->where('status', 'borrowed')->latest()->take(5)->get();
-        $historyAssets = AssetSubmission::with('asset')->with('owner')->where('status', 'done')->latest()->take(5)->get();
+        $borrowingAssets = AssetSubmission::with('asset')->with('owner')->StatusOnly(['pending', 'approved'])->latest()->take(5)->get();
+        $returningAssets = AssetSubmission::with('asset')->with('owner')->StatusOnly(['borrowed'])->latest()->take(5)->get();
+        $historyAssets = AssetSubmission::with('asset')->with('owner')->StatusOnly(['done', 'rejected'])->latest()->take(5)->get();
         // dd($borrowingAssets);
         return view('app.admin.asset_submission.index', [
             'borrowingAssets' => $borrowingAssets,

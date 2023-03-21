@@ -29,6 +29,7 @@ class UserAttendanceController extends Controller
             $response = new AttendanceService();
             $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth, $request->input('user_id'));
         }
+
         return view('app.admin.attendance.index', [
             'users' => User::ListByActorRole()->get(),
             'months' => $this->getMonthInYear(now()),
@@ -68,6 +69,7 @@ class UserAttendanceController extends Controller
     {
         $response = new AttendanceService();
         $attendances = $response->getDetailAttendance($id);
+
         return $attendances;
     }
 

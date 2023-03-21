@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Rules\IsNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AssetIndexRequest extends FormRequest

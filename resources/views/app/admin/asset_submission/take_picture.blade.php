@@ -9,71 +9,43 @@
                     Ambil Gambar
                 </h1>
             </div>
-            <div id="results" class="col-12 d-inline result_ss d-none text-center"></div>
-            <div class="col-12 text-center cam_wrapper d-inline-block">
-                <video id="webcam" autoplay playsinline maxwidth="640" maxheight="480" style="max-width: 100%;
-                max-height: 100%; object-fit: content;"></video>
-                <canvas id="canvas" class="d-none"></canvas>
-                <audio id="snapSound" src="{{ asset('audio_snap.wav') }}" preload="auto"></audio>
+
+            <div id="results" class="col-12 d-inline result_ss text-center">
+                <img id="preview-selected-image" class="img-thumbnail" width="640" height="480" />
             </div>
 
             <div class="col-12 text-center p-2">
-                <button onclick="reTake()">Ulang Ambil Gambar</button>
-                <button onclick="screenShoot()" id="btn-take-picture">Take Picture</button>
-            </div>
-
-            <div class="col-12 text-center p-2">
+                @include('layouts.form_validation')
                 <form
                     action="{{ route('admin.asset_submission.save_take_picture', ['asset_submission' => $assetSubmission->id]) }}"
                     class="form" method="POST">
                     @csrf
                     <input type="hidden" name="action" value="{{ $status }}">
-                    <input type="hidden" name="photo" id="photo" value="">
-                    <button type="submit">Simpan Foto</button>
+                    <input type="hidden" name="photo" id="image-file">
+                    <div class="row">
+                        <div class="col-6 text-end">
+                            <label for="image_upload" class="btn btn-primary">Ambil Gambar</label>
+                            <input type="file" capture="user" accept="image/png, image/gif, image/jpeg"
+                                id="image_upload" class="d-none">
+                        </div>
+                        <div class="col-6 text-start">
+                            <button type="submit" class="btn btn-primary">Simpan Foto</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <script>
-    const webcamElement = document.getElementById('webcam');
-    const canvasElement = document.getElementById('canvas');
-    const snapSoundElement = document.getElementById('snapSound');
-    const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
-
-    $(document).ready(function () {
-        webcam.start()
-        .then(result =>{
-            console.log("webcam started");
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    $('#image_upload').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            console.log(e.target.result);
+            $('#preview-selected-image').attr('src', e.target.result);
+            $("input#image-file").val(e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
     });
-
-    function screenShoot(){
-        var picture = webcam.snap();
-        console.log('Pictute Taked');
-        webcam.stop();
-
-        $("div.result_ss").removeClass("d-none");
-        $("div.cam_wrapper").addClass("d-none");
-        $("button#btn-take-picture").addClass("d-none");
-        document.getElementById('results').innerHTML ='<img maxwidth="640" maxheight="480" src="'+picture+'"/>';
-        $("input#photo").val(picture);
-    }
-
-    function reTake(){
-        $("div.result_ss").addClass("d-none");
-        $("div.cam_wrapper").removeClass("d-none");
-        $("button#btn-take-picture").removeClass("d-none");
-        webcam.start()
-        .then(result =>{
-            console.log("webcam started");
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }
 </script>
 @endsection

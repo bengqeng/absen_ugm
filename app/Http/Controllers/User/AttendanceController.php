@@ -68,6 +68,7 @@ class AttendanceController extends Controller
     {
         $response = new AttendanceService();
         $attendances = $response->getDetailAttendance($id);
+
         return $attendances;
     }
 

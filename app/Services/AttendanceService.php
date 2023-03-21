@@ -34,6 +34,7 @@ class AttendanceService extends AbstractService
     public function getDetailAttendance($id)
     {
         $attendances = Attendance::with('user')->find($id);
+
         return $attendances;
     }
 

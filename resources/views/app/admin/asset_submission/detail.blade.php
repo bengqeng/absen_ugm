@@ -43,8 +43,8 @@
                             <th class="align-top fw-semibold col-2">Foto Pengambilan</th>
                             <td>
                                 @if (isset($assetSubmission->photo_taking_asset))
-                                <img class="img-fluid"" src=" {!! $assetSubmission->photo_taking_asset !!}" height="480"
-                                width="600">
+                                <img src=" {!! $assetSubmission->photo_taking_asset !!}" class="img-thumbnail"
+                                    height="480" width="640">
                                 @endif
                             </td>
                         </tr>
@@ -52,9 +52,8 @@
                             <th class="align-top fw-semibold col-2">Foto Pengambilan</th>
                             <td>
                                 @if (isset($assetSubmission->photo_returning_asset))
-                                <img class="img-fluid"" src=" {!! $assetSubmission->photo_returning_asset !!}"
-                                height="480"
-                                width="600">
+                                <img src=" {!! $assetSubmission->photo_returning_asset !!}" class="img-thumbnail"
+                                    height="480" width="640">
                                 @endif
                             </td>
                         </tr>
