@@ -5,3 +5,4 @@ window.Swal = Swal;
 
 import Webcam from 'webcam-easy';
 window.Webcam = Webcam;
+

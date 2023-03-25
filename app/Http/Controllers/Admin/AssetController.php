@@ -34,6 +34,7 @@ class AssetController extends Controller
             ->when($qAssetCategory, function ($query, $qAssetCategory) {
                 return $query->where('asset_category_id', $qAssetCategory);
             })
+            ->latest()
             ->get();
 
         return view('app.admin.asset.index', [
@@ -117,7 +118,9 @@ class AssetController extends Controller
             flash()->error($response[1]);
         }
 
-        return redirect()->route('admin.asset.edit', $asset->id);
+        //  back to edit form
+        // return redirect()->route('admin.asset.edit', $asset->id);
+        return redirect()->route('admin.asset.index');
     }
 
     /**

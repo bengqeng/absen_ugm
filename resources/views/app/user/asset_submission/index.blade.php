@@ -31,12 +31,12 @@
 
 <div class="container">
     <div class="row">
-        @forelse ($onProgressSubmissions as $onProgress)
         <div class="col-12">
             <h2 class="fs-6">
                 Status Pengajuan Peminjaman
             </h2>
         </div>
+        @forelse ($onProgressSubmissions as $onProgress)
         <div class="col-sm-6 mb-3">
             <div class="card border-0 shadow-sm p-4">
                 <div class="row">
@@ -67,6 +67,11 @@
 
         </div>
         @endforelse
+        <div class="col mb-3">
+            <a href="{{route('admin.asset_submission.on_progress_submission_index')}}"
+                class="btn btn-sm btn-warning float-end">Lebih
+                Lengkap</a>
+        </div>
     </div>
 </div>
 

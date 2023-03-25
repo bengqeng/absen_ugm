@@ -69,7 +69,7 @@
                         <th class="fw-semibold col-1">No</th>
                         <th class="fw-semibold col-4">Nama Aset</th>
                         <th class="fw-semibold col-4">Kategori</th>
-                        <th class="fw-semibold col-4">Type</th>
+                        <th class="fw-semibold col-4">Jenis</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>
                 </thead>

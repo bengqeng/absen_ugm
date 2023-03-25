@@ -6,11 +6,21 @@
     <div class="row">
         <div class="col my-4">
             <div class="d-grid gap-2 d-flex justify-content-center">
-                <a class="btn btn-lg btn-outline-success px-4" @if (!$isAlreadyAbsentCheckIn)
-                    href="{{ route('staff.checkin.create') }}" @else style="pointer-events: none;" @endif>Check
+                @if (!$isAlreadyAbsentCheckIn)
+                <a class="btn btn-lg btn-outline-success px-4" href="{{ route('staff.checkin.create') }}">Check
                     In</a>
+                @else
+                <a class="btn btn-lg btn-outline-default px-4 disabled" style="pointer-events: none;">Checked
+                    In<br><small>{{$recent_hours_checkin}}</small></a>
+                @endif
+
+                @if (!$isAlreadyAbsentCheckOut)
                 <a class="btn btn-lg btn-success btn-tropmed px-4" href="{{ route('staff.checkout.create') }}">Check
                     Out</a>
+                @else
+                <a class="btn btn-lg btn-outline-default px-4 disabled" style="pointer-events: none;">Checked
+                    Out<br><small>{{$recent_hours_checkout}}</small></a>
+                @endif
             </div>
         </div>
     </div>
@@ -47,6 +57,12 @@
                     @endforelse
 
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed" href="#">Lihat
+                                Semua</a></th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -82,6 +98,13 @@
                     </tr>
                     @endforelse
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed"
+                                href="{{route('staff.asset_submission.index',['user'=>auth()->user()->id])}}">Lihat
+                                Semua</a></th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

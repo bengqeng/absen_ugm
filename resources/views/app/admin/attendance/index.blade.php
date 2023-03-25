@@ -16,9 +16,9 @@
             <form action="{{ route('admin.attendance.index') }}" method="get">
                 @csrf
                 <div class="form-floating mb-2">
-                    <select class="form-select" required="true" name="user_id" id="floatingSelect"
+                    <select class="form-select" required="true" name="user_id" id="floatingSelectStaff"
                         aria-label="Floating label select example">
-                        <option value="">-- Silahkan Pilih User --</option>
+                        <option value="">-- Silahkan Pilih Staf --</option>
 
                         @forelse($users as $user)
                         <option {{ Request::input('user_id')==$user->id ? 'selected' : '' }} value="{{ $user->id }}">{{

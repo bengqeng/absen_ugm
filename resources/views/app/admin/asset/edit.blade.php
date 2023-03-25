@@ -61,7 +61,7 @@
                     <div class="d-grid gap-2 d-flex justify-content-end mt-3">
                         <a class="btn btn-outline-success px-4" type="button"
                             href="{{ route('admin.asset_submission.index') }}">Batal</a>
-                        <button class="btn btn-success btn-tropmed px-4" type="submit">Tambahkan</button>
+                        <button class="btn btn-success btn-tropmed px-4" type="submit">Simpan</button>
                     </div>
                 </div>
             </form>

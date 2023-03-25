@@ -21,6 +21,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@jarstone/dselect": "^1.0.4",
         "jquery": "^3.6.3",
         "sweetalert2": "^11.6.15",
         "webcam-easy": "^1.0.5"

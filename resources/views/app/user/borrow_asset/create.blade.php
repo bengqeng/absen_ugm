@@ -53,7 +53,7 @@
                         <a class="btn btn-outline-success px-4" type="button"
                             href="{{ route('staff.borrow_asset.index', ['user', $user->id]) }}">Kembali</a>
                         @if ($asset->canBorrowed())
-                        <button class="btn btn-success btn-tropmed px-4" type="submit">Tambahkan</button>
+                        <button class="btn btn-success btn-tropmed px-4" type="submit">Pinjam</button>
                         @endif
                     </div>
                 </div>

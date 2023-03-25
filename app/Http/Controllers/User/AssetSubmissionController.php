@@ -23,6 +23,13 @@ class AssetSubmissionController extends Controller
         ]);
     }
 
+    public function on_progress_submission_index()
+    {
+        return view('app.user.asset_submission.on_progress_submission_index', [
+            'onProgressSubmissions' => AssetSubmission::with('owner')->with('asset')->StatusOnly(['pending', 'approved'])->where('user_id', auth()->user()->id)->latest()->get(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

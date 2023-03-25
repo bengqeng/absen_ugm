@@ -49,7 +49,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class="align-top fw-semibold col-2">Foto Pengambilan</th>
+                            <th class="align-top fw-semibold col-2">Foto Pengembalian</th>
                             <td>
                                 @if (isset($assetSubmission->photo_returning_asset))
                                 <img src=" {!! $assetSubmission->photo_returning_asset !!}" class="img-thumbnail"

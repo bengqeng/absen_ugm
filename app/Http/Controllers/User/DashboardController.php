@@ -16,11 +16,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $isAlreadyAbsent = Attendance::where('user_id', auth()->user()->id)->whereDate('created_at', now())->first();
+        $isAlreadyAbsentCheckIn = Attendance::where('user_id', auth()->user()->id)->whereDate('created_at', now())->first();
+        $isAlreadyAbsentCheckOut = Attendance::where('user_id', auth()->user()->id)->whereNotNull('check_out')->whereDate('created_at', now())->first();
+
+        // dd($isAlreadyAbsentCheckOut);
 
         return view('app.user.dashboard.index', [
             'attendances' => Attendance::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
-            'isAlreadyAbsentCheckIn' => $isAlreadyAbsent !== null,
+            'isAlreadyAbsentCheckIn' => $isAlreadyAbsentCheckIn !== null,
+            'isAlreadyAbsentCheckOut' => $isAlreadyAbsentCheckOut !== null,
+            'recent_hours_checkin' => $isAlreadyAbsentCheckIn->hours_checkin,
+            'recent_hours_checkout' => $isAlreadyAbsentCheckIn->hours_checkout,
             'assetSubmission' => AssetSubmission::with('asset')->where('user_id', auth()->user()->id)->latest()->take(5)->get(),
         ]);
     }

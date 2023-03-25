@@ -23,3 +23,5 @@ window.attendanceDetails = function (id) {
         }
     });
 }
+
+

@@ -108,6 +108,7 @@ Route::group(['prefix' => 'staff', 'middleware' => ['auth', 'staff']], function 
         'show' => 'staff.attendance.show',
     ]);
     Route::scopeBindings()->group(function () {
+        Route::get('/asset_submission/on_progress_submission_index', [App\Http\Controllers\User\AssetSubmissionController::class, 'on_progress_submission_index'])->name('admin.asset_submission.on_progress_submission_index');
         Route::resource('user.asset_submission', App\Http\Controllers\User\AssetSubmissionController::class)->names([
             'index' => 'staff.asset_submission.index',
             'show' => 'staff.asset_submission.show',
