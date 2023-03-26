@@ -10,12 +10,13 @@
             </h1>
         </div>
         <div class="col-12 mb-4">
-            <h2 class="fs-6">
+            <h2 class="fs-6 fw-bolder">
                 Filter Presensi
             </h2>
             <form action="{{ route('admin.attendance.index') }}" method="get">
                 @csrf
-                <div class="form-floating mb-2">
+                <div class="mb-2">
+                    <label for="floatingSelect">Pilih Staf</label>
                     <select class="form-select" required="true" name="user_id" id="floatingSelectStaff"
                         aria-label="Floating label select example">
                         <option value="">-- Silahkan Pilih Staf --</option>
@@ -27,7 +28,6 @@
                         <option value="">No Data Found</option>
                         @endforelse
                     </select>
-                    <label for="floatingSelect">Pilih Staf</label>
                 </div>
                 <div class="form-floating mb-2">
                     <select class="form-select" required="true" id="floatingSelectmonth" name="month"
@@ -121,4 +121,11 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+    $(document).ready(function() {
+            $('#floatingSelectStaff').select2();
+        });
+</script>
+@endpush
 @endsection

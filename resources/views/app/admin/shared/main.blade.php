@@ -30,6 +30,7 @@
     @include('app.admin.shared.footer')
 
     @include('app.admin.shared.modal')
+    @stack('scripts')
 </body>
 
 </html>
