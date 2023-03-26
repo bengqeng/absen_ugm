@@ -94,7 +94,7 @@ class AssetSubmissionController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asset $asset)
+    public function destroy(Assets $asset)
     {
         //
     }

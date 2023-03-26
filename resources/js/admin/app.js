@@ -5,7 +5,6 @@ window.attendanceDetails = function (id) {
         dataType: "json",
         success: function (data) {
             // handle the response data
-            console.log(data);
             const attendanceDetailsModal = $('#attendanceDetailsModal');
             attendanceDetailsModal.on('show.bs.modal', event => {
                 var full_name = attendanceDetailsModal.find('.modal-body table').find('tr:nth-child(1)').find('td:last-child').text(data.user.name);

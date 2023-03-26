@@ -60,7 +60,7 @@ class AttendanceService extends AbstractService
         $arrayExport = [];
         foreach ($attendances as  $item) {
             $arrayExport[] = [
-                $item['date']->format('Y/m/d'),
+                $item['date']->format('d/m/Y'),
                 (isset($item['attendance']['hours_checkin'])) ? $item['attendance']['hours_checkin'] : '-',
                 (isset($item['attendance']['hours_checkout'])) ? $item['attendance']['hours_checkin'] : '-',
                 (isset($item['attendance']['status_in'])) ? $item['attendance']['status_in'] : '-',
