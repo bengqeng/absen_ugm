@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\AttendanceExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserAttendanceIndexRequest;
 use App\Models\User;
 use App\Services\AttendanceService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserAttendanceController extends Controller
 {
@@ -28,6 +30,11 @@ class UserAttendanceController extends Controller
 
             $response = new AttendanceService();
             $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth, $request->input('user_id'));
+
+            if ($request->input('print') === 'print') {
+                $export = $response->exportAttendance($attendances);
+                return Excel::download($export, 'Absensi-' . User::find($request->input('user_id'))->name . '-bulan-' .  $request->input('month') . '-tahun-' .  $request->input('year') . '.xlsx');
+            }
         }
 
         return view('app.admin.attendance.index', [
