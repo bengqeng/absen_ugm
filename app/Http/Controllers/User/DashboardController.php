@@ -25,8 +25,8 @@ class DashboardController extends Controller
             'attendances' => Attendance::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
             'isAlreadyAbsentCheckIn' => $isAlreadyAbsentCheckIn !== null,
             'isAlreadyAbsentCheckOut' => $isAlreadyAbsentCheckOut !== null,
-            'recent_hours_checkin' => $isAlreadyAbsentCheckIn->hours_checkin,
-            'recent_hours_checkout' => $isAlreadyAbsentCheckIn->hours_checkout,
+            'recent_hours_checkin' => (isset($isAlreadyAbsentCheckIn->hours_checkin)) ? $isAlreadyAbsentCheckIn->hours_checkin : '-',
+            'recent_hours_checkout' => (isset($isAlreadyAbsentCheckIn->hours_checkout)) ? $isAlreadyAbsentCheckIn->hours_checkout : '-',
             'assetSubmission' => AssetSubmission::with('asset')->where('user_id', auth()->user()->id)->latest()->take(5)->get(),
         ]);
     }
