@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,7 +30,7 @@ class Attendance extends Model
      *
      * @var array
      */
-    protected $appends = ['hours_checkin', 'hours_checkout'];
+    protected $appends = ['hours_checkin', 'hours_checkout', 'total_work_time'];
 
     /**
      * Get owner of attendance.
@@ -61,5 +62,18 @@ class Attendance extends Model
         } else {
             return '-';
         }
+    }
+
+    public function getTotalWorkTimeAttribute()
+    {
+        if ($this->check_in === null || $this->check_out === null) {
+            return '-';
+        }
+
+        $start = new DateTime($this->check_in);
+        $end = new DateTime($this->check_out);
+        $diff = $start->diff($end);
+
+        return $diff->format('%h Jam %i Menit');
     }
 }

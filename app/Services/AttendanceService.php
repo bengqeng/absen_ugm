@@ -4,10 +4,8 @@ namespace App\Services;
 
 use App\Exports\AttendanceExport;
 use App\Models\Attendance;
-use App\Models\User;
 use App\Services\AbstractServices as AbstractService;
 use Illuminate\Support\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceService extends AbstractService
 {
@@ -67,11 +65,13 @@ class AttendanceService extends AbstractService
                 (isset($item['attendance']['status_out'])) ? $item['attendance']['status_out'] : '-',
                 (isset($item['attendance']['note_in'])) ? $item['attendance']['note_in'] : '-',
                 (isset($item['attendance']['note_out'])) ? $item['attendance']['note_out'] : '-',
+                $item['attendance']['total_work_time'] ?? '-',
             ];
         }
         $export = new AttendanceExport([
-            $arrayExport
+            $arrayExport,
         ]);
+
         return $export;
     }
 }

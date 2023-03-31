@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\AttendanceExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserAttendanceIndexRequest;
 use App\Models\User;
@@ -33,7 +32,8 @@ class UserAttendanceController extends Controller
 
             if ($request->input('print') === 'print') {
                 $export = $response->exportAttendance($attendances);
-                return Excel::download($export, 'Absensi-' . User::find($request->input('user_id'))->name . '-bulan-' .  $request->input('month') . '-tahun-' .  $request->input('year') . '.xlsx');
+
+                return Excel::download($export, 'Absensi-' . User::find($request->input('user_id'))->name . '-bulan-' . $request->input('month') . '-tahun-' . $request->input('year') . '.xlsx');
             }
         }
 

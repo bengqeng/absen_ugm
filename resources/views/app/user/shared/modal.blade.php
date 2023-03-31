@@ -90,6 +90,10 @@
                                 <th class="align-top fw-semibold">Catatan Selesai</th>
                                 <td></td>
                             </tr>
+                            <tr>
+                                <th class="align-top fw-semibold">Total Jam Kerja</th>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
