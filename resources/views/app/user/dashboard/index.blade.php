@@ -59,7 +59,8 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed" href="#">Lihat
+                        <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed"
+                                href="{{route('staff.attendance.index')}}">Lihat
                                 Semua</a></th>
                     </tr>
                 </tfoot>
