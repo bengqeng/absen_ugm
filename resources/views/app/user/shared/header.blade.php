@@ -18,7 +18,8 @@
             </div>
         </div>
         <div class="image-header my-3">
-            <img loading="lazy" src="https://i.pravatar.cc/100" class="mx-auto d-block rounded-circle" alt="...">
+            <img loading="lazy" src="{{ asset('images/avatar.jpg') }}" style="width: 100px"
+                class="mx-auto d-block rounded-circle" alt="...">
         </div>
         <div class="row">
             <div class="col text-center mb-4">
