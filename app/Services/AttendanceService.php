@@ -66,6 +66,7 @@ class AttendanceService extends AbstractService
                 (isset($item['attendance']['note_in'])) ? $item['attendance']['note_in'] : '-',
                 (isset($item['attendance']['note_out'])) ? $item['attendance']['note_out'] : '-',
                 $item['attendance']['total_work_time'] ?? '-',
+                (isset($item['attendance']['overtime'])) ? $item['attendance']['overtime'] : '-',
             ];
         }
         $export = new AttendanceExport([

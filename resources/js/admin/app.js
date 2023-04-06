@@ -14,6 +14,7 @@ window.attendanceDetails = function (id) {
                 var note_in = attendanceDetailsModal.find('.modal-body table').find('tr:nth-child(5)').find('td:last-child').text(data.note_in);
                 var note_out = attendanceDetailsModal.find('.modal-body table').find('tr:nth-child(6)').find('td:last-child').text(data.note_out);
                 var totalWorkHours = attendanceDetailsModal.find('.modal-body table').find('tr:nth-child(7)').find('td:last-child').text(data.total_work_time);
+                var overtime = attendanceDetailsModal.find('.modal-body table').find('tr:nth-child(8)').find('td:last-child').text(data.overtime);
             });
             attendanceDetailsModal.modal("show");
         },
@@ -23,6 +24,3 @@ window.attendanceDetails = function (id) {
         }
     });
 }
-
-
-

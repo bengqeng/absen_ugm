@@ -81,4 +81,16 @@ class Attendance extends Model
     {
         return Carbon::parse($this->created_at)->format('d/m/Y');
     }
+
+    public function getOvertimeAttribute($data)
+    {
+        if ($data < 1) {
+            return '-';
+        }
+        $format = '%02d jam, %02d menit';
+        $hours = floor($data / 60);
+        $minutes = ($data % 60);
+        $result = sprintf($format, $hours, $minutes);
+        return $result;
+    }
 }

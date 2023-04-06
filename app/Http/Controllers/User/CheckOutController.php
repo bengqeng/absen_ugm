@@ -41,7 +41,7 @@ class CheckOutController extends Controller
     {
         $validated = $request->validate([
             'note_out' => 'nullable|max:255',
-            'overtime' => 'nullable|numeric|min:1|max:8'
+            'overtime' => 'nullable|numeric|min:1|max:9999'
         ]);
 
         $call = new AbsentService(auth()->user());

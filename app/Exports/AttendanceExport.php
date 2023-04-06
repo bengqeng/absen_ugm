@@ -30,6 +30,7 @@ class AttendanceExport implements FromArray, WithHeadings
             'Catatan Check In',
             'Catatan Check Out',
             'Total Jam Kerja',
+            'Lembur',
         ];
     }
 }

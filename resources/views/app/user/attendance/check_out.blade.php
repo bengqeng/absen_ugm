@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-floating mb-2 bg-white">
                         <input class="form-control" name="overtime" type="number" placeholder="Lembur:">
-                        <label for="floatingTextarea2">Lembur: (dalam satuan jam)</label>
+                        <label for="floatingTextarea2">Lembur: (dalam satuan menit)</label>
                     </div>
                     <button class="btn btn-success btn-tropmed w-100" type="submit">Kirim</button>
                 </div>
