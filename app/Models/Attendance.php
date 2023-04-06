@@ -22,7 +22,7 @@ class Attendance extends Model
     protected array $enumStatus = self::STATUS;
 
     protected $fillable = [
-        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out',
+        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out', 'overtime'
     ];
 
     /**
@@ -30,7 +30,7 @@ class Attendance extends Model
      *
      * @var array
      */
-    protected $appends = ['hours_checkin', 'hours_checkout', 'total_work_time'];
+    protected $appends = ['hours_checkin', 'hours_checkout', 'total_work_time', 'date_attendance'];
 
     /**
      * Get owner of attendance.
@@ -75,5 +75,10 @@ class Attendance extends Model
         $diff = $start->diff($end);
 
         return $diff->format('%h Jam %i Menit');
+    }
+
+    public function getDateAttendanceAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d/m/Y');
     }
 }

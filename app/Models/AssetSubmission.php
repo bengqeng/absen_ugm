@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -60,5 +61,15 @@ class AssetSubmission extends Model
     public function scopeStatusOnly($query, $status = [])
     {
         return $query->whereIn('status', $status);
+    }
+
+    public function getDateBorrowAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y');
+    }
+
+    public function getDateReturnAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y');
     }
 }

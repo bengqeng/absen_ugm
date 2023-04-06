@@ -58,7 +58,7 @@
                 <tbody class="text-center">
                     @forelse ($logAttendances as $attendance)
                     <tr>
-                        <td>{{ $attendance->created_at->format('Y/m/d') }}</td>
+                        <td>{{ $attendance->date_attendance }}</td>
                         <td>{{ $attendance->user->name }}</td>
                         <td>{{ $attendance->hours_checkin }}</td>
                         <td>{{ $attendance->hours_checkout }}</td>

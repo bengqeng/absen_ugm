@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Services\IpService;
 use App\Services\User\AbsentService;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class CheckOutController extends Controller
      */
     public function create()
     {
-        return view('app.user.attendance.check_out');
+        $status = new IpService();
+        return view('app.user.attendance.check_out', ['statusIp' => $status->getUserStatusIp()]);
     }
 
     /**

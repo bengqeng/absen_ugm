@@ -46,7 +46,7 @@
                 <tbody class="text-center">
                     @forelse ($attendances as $attendance)
                     <tr>
-                        <td>{{ $attendance->created_at }}</td>
+                        <td>{{ $attendance->date_attendance }}</td>
                         <td>{{ isset($attendance->check_in) ? $attendance->hours_checkin : '-' }}</td>
                         <td>{{ isset($attendance->check_out) ? $attendance->hours_checkout : '-' }}</td>
                     </tr>
