@@ -22,11 +22,14 @@ class BorrowAssetController extends Controller
     public function index(Request $request)
     {
         $asset_category_id = $request->input('asset_category_id');
-        $assets = Assets::with('status')
-            ->when($asset_category_id, function ($query, $asset_category_id) {
-                return $query->where('asset_category_id', $asset_category_id);
-            })
-            ->get();
+        if ($asset_category_id) {
+            $assets = Assets::with('status')
+                ->when($asset_category_id, function ($query, $asset_category_id) {
+                    return $query->where('asset_category_id', $asset_category_id);
+                })->paginate(10);
+        } else {
+            $assets = Assets::with('status')->paginate(10);
+        }
 
         return view('app.user.borrow_asset.index', [
             'assets' => $assets,

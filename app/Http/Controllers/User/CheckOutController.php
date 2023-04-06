@@ -40,7 +40,8 @@ class CheckOutController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'note_out' => 'max:255',
+            'note_out' => 'nullable|max:255',
+            'overtime' => 'nullable|numeric|min:1|max:8'
         ]);
 
         $call = new AbsentService(auth()->user());

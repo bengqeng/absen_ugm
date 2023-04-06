@@ -11,6 +11,15 @@
                 class="badge text-uppercase rounded-pill text-bg-{{$statusIp === 'out office' ? 'secondary' : 'success'}}">{{$statusIp}}</span>
         </div>
         <div class="col-12">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{ route('staff.checkin.store') }}" method="POST">
                 @csrf
                 <label class="mx-2 fw-semibold mb-2" for="">Silahkan masukan deskripsi,

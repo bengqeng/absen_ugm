@@ -11,13 +11,22 @@
                 class="badge text-uppercase rounded-pill text-bg-{{$statusIp === 'out office' ? 'secondary' : 'success'}}">{{$statusIp}}</span>
         </div>
         <div class=" col-12">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form action="{{ route('staff.checkout.store') }}" method="POST">
                 @csrf
                 <label class="fw-semibold mb-2" for="">Silahkan masukan deskripsi,
                     jika Anda sedang WFH atau tugas dinas</label>
                 <div class="mx-2">
                     <div class="form-floating mb-2 bg-white">
-                        <textarea class="form-control" name="note_in" placeholder="Deskripsi:" id="floatingTextarea2"
+                        <textarea class="form-control" name="note_out" placeholder="Deskripsi:" id="floatingTextarea2"
                             style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Deskripsi:</label>
                     </div>
@@ -26,7 +35,7 @@
                     </div>
                     <div class="form-floating mb-2 bg-white">
                         <input class="form-control" name="overtime" type="number" placeholder="Lembur:">
-                        <label for="floatingTextarea2">Lembur: (dalam jam)</label>
+                        <label for="floatingTextarea2">Lembur: (dalam satuan jam)</label>
                     </div>
                     <button class="btn btn-success btn-tropmed w-100" type="submit">Kirim</button>
                 </div>

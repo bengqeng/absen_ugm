@@ -15,9 +15,10 @@
             <form action="{{ route('staff.borrow_asset.index', ['user' => auth()->user()->id]) }}" method="get">
                 @csrf
                 <div class="form-floating mb-2">
-                    <select class="form-select" required name="asset_category_id" id="floatingSelect"
+                    <select class="form-select" name="asset_category_id" id="floatingSelect"
                         aria-label="Floating label select example">
                         <option value="">Silahkan Pilih Kategori Asset</option>
+                        <option value="">Semua Kategori</option>
                         @forelse ($categories as $category)
                         <option {{ Request::input('asset_category_id')==$category->id ? 'selected' : '' }} value="{{
                             $category->id }}">{{ $category->name }}</option>
@@ -73,6 +74,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {!! $assets->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </div>
