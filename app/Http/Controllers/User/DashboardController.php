@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\AssetSubmission;
 use App\Models\Attendance;
+use App\Services\IpService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,8 +19,8 @@ class DashboardController extends Controller
     {
         $isAlreadyAbsentCheckIn = Attendance::where('user_id', auth()->user()->id)->whereDate('created_at', now())->first();
         $isAlreadyAbsentCheckOut = Attendance::where('user_id', auth()->user()->id)->whereNotNull('check_out')->whereDate('created_at', now())->first();
-
-        // dd($isAlreadyAbsentCheckOut);
+        $ipService = new IpService;
+        $statusIp = $ipService->getUserStatusIp();
 
         return view('app.user.dashboard.index', [
             'attendances' => Attendance::where('user_id', auth()->user()->id)->latest()->take(5)->get(),
@@ -28,6 +29,7 @@ class DashboardController extends Controller
             'recent_hours_checkin' => (isset($isAlreadyAbsentCheckIn->hours_checkin)) ? $isAlreadyAbsentCheckIn->hours_checkin : '-',
             'recent_hours_checkout' => (isset($isAlreadyAbsentCheckIn->hours_checkout)) ? $isAlreadyAbsentCheckIn->hours_checkout : '-',
             'assetSubmission' => AssetSubmission::with('asset')->where('user_id', auth()->user()->id)->latest()->take(5)->get(),
+            'statusIp' => $statusIp,
         ]);
     }
 
