@@ -120,14 +120,14 @@
                 <div class="modal-body text-center">
                     @if ($statusIp === 'office')
                     <p class="alert alert-success">
-                        <b>Anda telah terhubung</b> dengan<br>
-                        Jaringan Internet<br>
+                        <b>Anda telah terhubung</b><br>
+                        dengan Koneksi Internet<br>
                         Pusat Kedokteran Tropis FK-KMK UGM
                     </p>
                     @else
                     <p class="alert alert-danger">
-                        <b>Anda tidak terhubung</b> dengan<br>
-                        Jaringan Internet<br>
+                        <b>Anda tidak terhubung</b><br>
+                        dengan Koneksi Internet<br>
                         Pusat Kedokteran Tropis FK-KMK UGM
                     </p>
                     <button class="btn btn-small btn-secondary mb-2" onclick='window.location.reload(true);'><small>Muat
@@ -166,14 +166,14 @@
 <script>
     function showTime() {
                 var date = new Date(),
-                utc = new Date(Date.UTC(
-                date.getFullYear(),
-                date.getMonth(),
-                date.getDate(),
-                date.getHours(),
-                date.getMinutes(),
-                date.getSeconds()
-                ));
+                utc = new Date(
+                    date.getFullYear(),
+                    date.getMonth(),
+                    date.getDate(),
+                    date.getHours(),
+                    date.getMinutes(),
+                    date.getSeconds()
+                );
                 
                 document.getElementById('time').innerHTML = utc.toLocaleTimeString('en-GB');
             }

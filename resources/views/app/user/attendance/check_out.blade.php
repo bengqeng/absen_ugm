@@ -48,14 +48,14 @@
 <script>
     function showTime() {
                     var date = new Date(),
-                    utc = new Date(Date.UTC(
+                    utc = new Date(
                     date.getFullYear(),
                     date.getMonth(),
                     date.getDate(),
                     date.getHours(),
                     date.getMinutes(),
                     date.getSeconds()
-                    ));
+                    );
                     
                     document.getElementById('time').innerHTML = utc.toLocaleTimeString('en-GB');
                 }
