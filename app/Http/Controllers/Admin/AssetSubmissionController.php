@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\TakePictureRequest;
 use App\Models\Assets;
 use App\Models\AssetSubmission;
 use App\Services\Admin\AssetSubmissionService;
+use App\Services\GetNameUserService;
 use Illuminate\Http\Request;
 
 class AssetSubmissionController extends Controller
@@ -26,6 +27,7 @@ class AssetSubmissionController extends Controller
             'borrowingAssets' => $borrowingAssets,
             'returningAssets' => $returningAssets,
             'historyAssets' => $historyAssets,
+            'firstName' => app(GetNameUserService::class),
         ]);
     }
 

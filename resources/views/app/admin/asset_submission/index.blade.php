@@ -38,18 +38,18 @@
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
+                    <tr>
                         <th class="fw-semibold col-4">Tanggal</th>
                         <th class="fw-semibold col-4">Staf</th>
                         <th class="fw-semibold col-4">Aset</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($borrowingAssets as $asset)
                     <tr>
-                        <td>{{ $asset->date_borrow }}</td>
-                        <td>{{ $asset->owner->name }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat('d/m/Y', $asset->date_borrow)->format('d M') }}</td>
+                        <td>{{ $firstName->execute($asset->owner->name) }}</td>
                         <td>{{ $asset->asset->name }}</td>
                         <td>
                             <a class="btn text-success p-1 m-0"
@@ -91,18 +91,18 @@
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
+                    <tr>
                         <th class="fw-semibold col-4">Tanggal</th>
                         <th class="fw-semibold col-4">Staf</th>
                         <th class="fw-semibold col-4">Aset</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($returningAssets as $asset)
                     <tr>
-                        <td>{{ $asset->date_borrow }}</td>
-                        <td>{{ $asset->owner->name }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat('d/m/Y', $asset->date_borrow)->format('d M') }}</td>
+                        <td>{{ $firstName->execute($asset->owner->name) }}</td>
                         <td>{{ $asset->asset->name }}</td>
                         <td>
                             <a class="btn text-success p-1 m-0"
@@ -146,18 +146,18 @@
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
+                    <tr>
                         <th class="fw-semibold col-4">Tanggal</th>
                         <th class="fw-semibold col-4">Staf</th>
                         <th class="fw-semibold col-4">Aset</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($historyAssets as $asset)
                     <tr>
-                        <td>{{ $asset->date_borrow }}</td>
-                        <td>{{ $asset->owner->name }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat('d/m/Y', $asset->date_borrow)->format('d M') }}</td>
+                        <td>{{ $firstName->execute($asset->owner->name) }}</td>
                         <td>{{ $asset->asset->name }}</td>
                         <td>
                             <a class="btn text-success p-1 m-0"

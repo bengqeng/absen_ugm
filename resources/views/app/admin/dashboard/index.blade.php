@@ -48,18 +48,19 @@
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
+                    <tr>
                         <th class="fw-semibold col-3">Tanggal</th>
                         <th class="fw-semibold col-3">Nama</th>
-                        <th class="fw-semibold col-3">Check In</th>
-                        <th class="fw-semibold col-3">Check Out</th>
+                        <th class="fw-semibold col-3">In</th>
+                        <th class="fw-semibold col-3">Out</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($logAttendances as $attendance)
                     <tr>
-                        <td>{{ $attendance->date_attendance }}</td>
-                        <td>{{ $attendance->user->name }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat('d/m/Y', $attendance->date_attendance)->format('d M') }}
+                        </td>
+                        <td>{{ $firstName->execute($attendance->user->name) }}</td>
                         <td>{{ $attendance->hours_checkin }}</td>
                         <td>{{ $attendance->hours_checkout }}</td>
                     </tr>
@@ -85,7 +86,7 @@
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
+                    <tr>
                         <th class="fw-semibold col-3">Tanggal</th>
                         <th class="fw-semibold col-3">Nama</th>
                         <th class="fw-semibold col-3">Aset</th>
@@ -93,11 +94,11 @@
                         <th class="fw-semibold col-1">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($assetSubmission as $as)
                     <tr>
-                        <td>{{ $as->date_borrow }}</td>
-                        <td>{{ $as->owner->name }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat('d/m/Y', $as->date_borrow)->format('d M') }}</td>
+                        <td>{{ $firstName->execute($as->owner->name) }}</td>
                         <td>{{ $as->asset->name }}</td>
                         <td>{{ $as->status }}</td>
                         <td>

@@ -8,6 +8,7 @@ use App\Models\AssetSubmission;
 use App\Models\Attendance;
 use App\Models\Project;
 use App\Models\User;
+use App\Services\GetNameUserService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -25,6 +26,7 @@ class DashboardController extends Controller
             'totalProject' => Project::all()->count(),
             'logAttendances' => Attendance::with('user')->latest()->take(5)->get(),
             'assetSubmission' => AssetSubmission::with('asset')->with('owner')->latest()->take(5)->get(),
+            'firstName' => app(GetNameUserService::class),
         ]);
     }
 

@@ -80,15 +80,15 @@
                 <thead>
                     <tr class="text-center">
                         <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Masuk</th>
-                        <th class="fw-semibold col-4">Selesai</th>
+                        <th class="fw-semibold col-4">In</th>
+                        <th class="fw-semibold col-4">Out</th>
                         <th class="fw-semibold col-4">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     @forelse($attendances as $attendance)
                     <tr class="{{ $attendance['isWeekend'] ? 'bg-danger text-light' : '' }}">
-                        <td>{{ $attendance['date']->format('d/m/Y') }}</td>
+                        <td>{{ $attendance['date']->format('d') }}</td>
                         @if (isset($attendance['attendance']))
                         <td>{{$attendance['attendance']['hours_checkin']}}</td>
                         <td>{{ isset($attendance['attendance']['check_out']) ?
@@ -97,7 +97,7 @@
                         <td>
                             <button class="btn btn-tropmed btn-primary py-0"
                                 onclick="attendanceDetails({{$attendance['attendance']['id']}})">
-                                Lihat
+                                Detail
                             </button>
                         </td>
                         @else
