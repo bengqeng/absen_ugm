@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col my-4">
-            <div class="d-grid gap-2 d-flex d-md-block justify-content-center">
+            <div class="d-grid gap-2 d-flex justify-content-center">
                 <a href="{{ route('admin.settings.ip.create') }}" class="btn btn-succes btn-tropmed py-3 px-4"
                     type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -31,18 +31,18 @@
         <div class="col-12">
             <table class="table bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
-                        <th class="fw-semibold col-4">Ip Address</th>
-                        <th class="fw-semibold col-4">Nama Ip</th>
-                        <th class="fw-semibold col-4">Aksi</th>
+                    <tr>
+                        <th class="fw-semibold col">Ip Address</th>
+                        <th class="fw-semibold col">Nama Ip</th>
+                        <th class="fw-semibold col text-end">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($listIp as $item)
                     <tr>
                         <td>{{ $item->properties }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>
+                        <td class="text-end">
                             <a href="{{ route('admin.settings.ip.edit', $item->id) }}" class="btn text-tropmed">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">

@@ -65,22 +65,22 @@
             </div>
             <table class="table table-hover bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
-                        <th class="fw-semibold col-1">No</th>
-                        <th class="fw-semibold col-4">Nama Aset</th>
-                        <th class="fw-semibold col-4">Kategori</th>
-                        <th class="fw-semibold col-4">Jenis</th>
-                        <th class="fw-semibold col-4">Aksi</th>
+                    <tr>
+                        <th class="fw-semibold col">No</th>
+                        <th class="fw-semibold col">Nama</th>
+                        <th class="fw-semibold col">Kategori</th>
+                        <th class="fw-semibold col">Jenis</th>
+                        <th class="fw-semibold col text-end">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($assets as $asset)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $asset->name }}</td>
                         <td>{{ $asset->asset_category->name }}</td>
                         <td>{{ $asset->type }}</td>
-                        <td>
+                        <td class="text-end">
                             <a class="btn text-success p-1 m-0" href="{{ route('admin.asset.edit', $asset->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">

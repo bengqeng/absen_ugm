@@ -14,7 +14,7 @@
     <title>Dashboard | Tropmed</title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
     @include('app.admin.shared.header')
 
     <!-- navbar -->

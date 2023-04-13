@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col my-4">
-            <div class="d-grid gap-2 d-flex d-md-block justify-content-center">
+            <div class="d-grid gap-2 d-flex justify-content-center">
                 <a href="{{ route('admin.user.create') }}" class="btn btn-succes btn-tropmed py-3 px-4" type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-person-add" viewBox="0 0 16 16">
@@ -13,7 +13,7 @@
                         <path
                             d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z" />
                     </svg><br>
-                    Tambah Karyawan
+                    Tambah Staf
                 </a>
             </div>
         </div>
@@ -24,28 +24,26 @@
     <div class="row">
         <div class="col-12">
             <h2 class="fs-6">
-                Daftar Karyawan
+                Daftar Staf
             </h2>
         </div>
         <div class="col-12">
-            <table class="table table-hover bg-white shadow-sm rounded">
+            <table class="table table-responsive table-hover bg-white shadow-sm rounded">
                 <thead>
-                    <tr class="text-center">
-                        <th class="fw-semibold col-1">No</th>
-                        <th class="fw-semibold col-4">Nama</th>
-                        <th class="fw-semibold col-4">Email</th>
-                        <th class="fw-semibold col-4">Role</th>
-                        <th class="fw-semibold col-4">Aksi</th>
+                    <tr>
+                        <th class="fw-semibold col">No</th>
+                        <th class="fw-semibold col">Nama</th>
+                        <th class="fw-semibold col">Role</th>
+                        <th class="fw-semibold col text-end">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody>
                     @forelse ($users as $user)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->role_names }}</td>
-                        <td>
+                        <td class="col">{{ $loop->iteration }}</td>
+                        <td class="col">{{ $user->name }}</td>
+                        <td class="col">{{ $user->role_names }}</td>
+                        <td class="col text-end">
                             <a class="btn text-tropmed" href="{{ route('admin.user.edit', $user->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-pencil-square" viewBox="0 0 16 16">
