@@ -31,7 +31,7 @@ class UserAttendanceController extends Controller
             $attendances = $response->getListAttendance($request->input('month'), $request->input('year'), $yearMonth, $request->input('user_id'));
 
             if ($request->input('print') === 'print') {
-                $export = $response->exportAttendance($attendances);
+                $export = $response->exportAttendance($request->input('month'), $request->input('year'), $yearMonth, $request->input('user_id'));
 
                 return Excel::download($export, 'Absensi-' . User::find($request->input('user_id'))->name . '-bulan-' . $request->input('month') . '-tahun-' . $request->input('year') . '.xlsx');
             }
