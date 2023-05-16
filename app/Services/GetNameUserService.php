@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-
 class GetNameUserService
 {
     public function execute(string $fullName): string
     {
         $nameParts = explode(' ', trim($fullName));
         $firstName = $nameParts[0];
-
 
         $alternateNames = ['Muhammad', 'Ahmad', 'M.', 'Muh'];
 

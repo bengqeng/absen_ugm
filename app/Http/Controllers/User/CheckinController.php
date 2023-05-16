@@ -28,6 +28,7 @@ class CheckinController extends Controller
     public function create()
     {
         $status = new IpService();
+
         return view('app.user.attendance.check_in', ['statusIp' => $status->getUserStatusIp()]);
     }
 

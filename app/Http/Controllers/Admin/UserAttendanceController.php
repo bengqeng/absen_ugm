@@ -33,7 +33,7 @@ class UserAttendanceController extends Controller
             if ($request->input('print') === 'print') {
                 $export = $response->exportAttendance($request->input('month'), $request->input('year'), $yearMonth, $request->input('user_id'));
 
-                return Excel::download($export, 'Absensi-' . User::find($request->input('user_id'))->name . '-bulan-' . $request->input('month') . '-tahun-' . $request->input('year') . '.xlsx');
+                return Excel::download($export, 'Absensi-'.User::find($request->input('user_id'))->name.'-bulan-'.$request->input('month').'-tahun-'.$request->input('year').'.xlsx');
             }
         }
 

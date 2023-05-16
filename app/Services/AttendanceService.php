@@ -75,7 +75,7 @@ class AttendanceService extends AbstractService
             ];
         }
         $export = new AttendanceExport([
-            $arrayExport
+            $arrayExport,
         ], $month, $year, $user_id);
 
         return $export;

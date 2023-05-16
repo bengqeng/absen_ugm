@@ -28,6 +28,7 @@ class CheckOutController extends Controller
     public function create()
     {
         $status = new IpService();
+
         return view('app.user.attendance.check_out', ['statusIp' => $status->getUserStatusIp()]);
     }
 
@@ -41,7 +42,8 @@ class CheckOutController extends Controller
     {
         $validated = $request->validate([
             'note_out' => 'nullable|max:255',
-            'overtime' => 'nullable|numeric|min:1|max:9999'
+            'overtime' => 'nullable|numeric|min:1|max:9999',
+            'note_overtime' => 'nullable|max:255',
         ]);
 
         $call = new AbsentService(auth()->user());

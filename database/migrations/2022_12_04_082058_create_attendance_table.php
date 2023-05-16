@@ -29,7 +29,6 @@ return new class extends Migration
             $table->enum('status_out', $enumStatus)->nullable(true);
             $table->longText('note_in')->nullable();
             $table->longText('note_out')->nullable();
-            $table->integer('overtime')->nullable();
             $table->timestamps();
         });
     }

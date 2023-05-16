@@ -98,6 +98,10 @@
                                 <th class="align-top fw-semibold">Lembur</th>
                                 <td></td>
                             </tr>
+                            <tr>
+                                <th class="align-top fw-semibold">Catatan Lembur</th>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

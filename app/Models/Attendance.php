@@ -22,7 +22,7 @@ class Attendance extends Model
     protected array $enumStatus = self::STATUS;
 
     protected $fillable = [
-        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out', 'overtime'
+        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out', 'overtime', 'note_overtime'
     ];
 
     /**
@@ -87,10 +87,7 @@ class Attendance extends Model
         if ($data < 1) {
             return '-';
         }
-        $format = '%02d jam, %02d menit';
-        $hours = floor($data / 60);
-        $minutes = ($data % 60);
-        $result = sprintf($format, $hours, $minutes);
-        return $result;
+
+        return "{$data} menit";
     }
 }

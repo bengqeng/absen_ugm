@@ -8,14 +8,16 @@ use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\AfterSheet;
-use Maatwebsite\Excel\Events\BeforeExport;
 use Maatwebsite\Excel\Events\BeforeSheet;
 
 class AttendanceExport implements FromArray, WithHeadings, WithEvents
 {
     protected $invoices;
+
     protected static $month;
+
     protected static $year;
+
     protected static $user;
 
     use RegistersEventListeners;
@@ -23,9 +25,9 @@ class AttendanceExport implements FromArray, WithHeadings, WithEvents
     public function __construct(array $invoices, string $month, string $year, int $user)
     {
         $this->invoices = $invoices;
-        self::$month    = $month;
-        self::$year     = $year;
-        self::$user     = $user;
+        self::$month = $month;
+        self::$year = $year;
+        self::$user = $user;
     }
 
     public function array(): array
@@ -53,27 +55,27 @@ class AttendanceExport implements FromArray, WithHeadings, WithEvents
     public static function beforeSheet(BeforeSheet $event)
     {
         $user_detail = User::find(self::$user);
-        $event->sheet->appendRows(array(
-            array('PRESENSI KEHADIRAN STAF NON DOSEN BULAN ' . self::$month . ' ' . self::$year),
-            array('PUSAT KEDOKTERAN, TROPIS FAKULTAS KEDOKTERAN, KESEHATAN MASYARAKAT DAN KEPERAWATAN UGM'),
-            array(''),
-            array('Nama', ':', $user_detail->name),
-            array('Project', ':', ''),
-            array(''),
-        ), $event);
+        $event->sheet->appendRows([
+            ['PRESENSI KEHADIRAN STAF NON DOSEN BULAN '.self::$month.' '.self::$year],
+            ['PUSAT KEDOKTERAN, TROPIS FAKULTAS KEDOKTERAN, KESEHATAN MASYARAKAT DAN KEPERAWATAN UGM'],
+            [''],
+            ['Nama', ':', $user_detail->name],
+            ['Project', ':', ''],
+            [''],
+        ], $event);
     }
 
     public static function afterSheet(AfterSheet $event)
     {
-        $event->sheet->appendRows(array(
-            array(''),
-            array('Yogyakarta'),
-            array('Mengetahui,'),
-            array(''),
-            array(''),
-            array(''),
-            array('dr. Riris Andono Ahmad, MPH, PhD'),
-        ), $event);
+        $event->sheet->appendRows([
+            [''],
+            ['Yogyakarta'],
+            ['Mengetahui,'],
+            [''],
+            [''],
+            [''],
+            ['dr. Riris Andono Ahmad, MPH, PhD'],
+        ], $event);
         // $event->getSheet()->getDelegate()->getStyle('A1:K1')->getFont()->setName('Calibri')->setSize(13);
         // $event->getSheet()->getDelegate()->getStyle('A2:K2')->getFont()->setName('Calibri')->setSize(13);
         // $event->getSheet()->getDelegate()->getStyle('A4:K4')->getFont()->setName('Calibri')->setSize(13);
