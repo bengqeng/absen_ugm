@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AssetActionController;
 use App\Http\Controllers\Admin\AssetCategoryController;
 use App\Http\Controllers\Admin\AssetSubmissionController;
 use App\Http\Controllers\Admin\Settings\IpController;
+use App\Http\Controllers\Admin\Settings\ReportController;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,14 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
             'store' => 'admin.settings.ip.store',
             'edit' => 'admin.settings.ip.edit',
             'update' => 'admin.settings.ip.update',
+        ]);
+
+        Route::resource('report', ReportController::class)->names([
+            'index' => 'admin.settings.report.index',
+            'create' => 'admin.settings.report.create',
+            'store' => 'admin.settings.report.store',
+            'edit' => 'admin.settings.report.edit',
+            'update' => 'admin.settings.report.update',
         ]);
     });
     Route::get('/asset_submission/{asset_submission}/approve', [AssetSubmissionController::class, 'approve'])->name('admin.asset_submission.approve');
