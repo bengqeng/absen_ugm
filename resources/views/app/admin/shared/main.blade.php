@@ -14,14 +14,14 @@
     <title>Dashboard | Tropmed</title>
 </head>
 
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light">
     @include('app.admin.shared.header')
 
     <!-- navbar -->
     @include('app.admin.shared.navbar')
 
     <!-- content -->
-    <section>
+    <section class="">
         @include('app.admin.shared.flash_message')
         @yield('content')
     </section>

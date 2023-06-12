@@ -38,10 +38,10 @@
 </div>
 
 <!-- table absensi -->
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-12">
-            <h2 class="fs-6 fw-semibold">
+            <h2 class="fs-2 fw-bold">
                 Absensi Terakhir
             </h2>
         </div>
@@ -79,7 +79,7 @@
 <div class="container mt-2">
     <div class="row">
         <div class="col-12">
-            <h2 class="fs-6 fw-semibold">
+            <h2 class="fs-2 fw-bold">
                 Riwayat Peminjaman Asset
             </h2>
         </div>
@@ -91,7 +91,7 @@
                         <th class="fw-semibold col-3">Nama</th>
                         <th class="fw-semibold col-3">Aset</th>
                         <th class="fw-semibold col-2">Status</th>
-                        <th class="fw-semibold col-1">Aksi</th>
+                        {{-- <th class="fw-semibold col-1">Aksi</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -101,7 +101,7 @@
                         <td>{{ $firstName->execute($as->owner->name) }}</td>
                         <td>{{ $as->asset->name }}</td>
                         <td>{{ $as->status }}</td>
-                        <td>
+                        {{-- <td>
                             <a href="{{ route('admin.asset_submission.show', $as->id) }}" class="btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-eye" viewBox="0 0 16 16">
@@ -111,7 +111,7 @@
                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                 </svg>
                             </a>
-                        </td>
+                        </td> --}}
                     </tr>
                     @empty
                     <tr>
