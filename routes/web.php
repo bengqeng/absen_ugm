@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\Settings\IpController;
 use App\Http\Controllers\Admin\Settings\ReportController;
 use App\Http\Controllers\Auth\ShowController;
 use App\Http\Controllers\Auth\VerifyAuthController;
+use App\Mail\SendBulkDownloadAttendanceMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 // Root path will redirect to login if needed
 Route::redirect('/', '/login', 302);
+Route::get('/a', function () {
+    Mail::to('testreceiver@gmail.com’')->send(new SendBulkDownloadAttendanceMail());
+});
 Route::group(['prefix' => 'login', 'middleware' => ['checkLogin']], function () {
     Route::get('/', [ShowController::class, 'index'])->name('auth.show');
 });

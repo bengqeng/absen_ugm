@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Models\Report;
-use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller

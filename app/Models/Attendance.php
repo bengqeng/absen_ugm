@@ -22,7 +22,7 @@ class Attendance extends Model
     protected array $enumStatus = self::STATUS;
 
     protected $fillable = [
-        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out', 'overtime', 'note_overtime'
+        'check_out_ip', 'check_in_ip', 'user_id', 'check_in', 'check_out', 'status_in', 'status_out', 'note_in', 'note_out', 'overtime', 'note_overtime',
     ];
 
     /**

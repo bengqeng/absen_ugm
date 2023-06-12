@@ -96,6 +96,18 @@ class User extends Authenticatable
         return $query->with('roles');
     }
 
+    //# SCOPE QUERY with ROLE
+    public function scopeListByRole($query, $role = [])
+    {
+        if (! is_array($role)) {
+            return null;
+        }
+
+        return $query->whereHas('roles', function (Builder $query) use ($role) {
+            $query->whereIn('name', $role);
+        });
+    }
+
     /**
      * Get the comments for the blog post.
      */
