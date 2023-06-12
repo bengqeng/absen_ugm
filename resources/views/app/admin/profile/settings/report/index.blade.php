@@ -1,7 +1,7 @@
 @extends('app.admin.shared.main')
 
 @section('content')
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="row">
         <div class="col my-4">
             <div class="d-grid gap-2 d-flex justify-content-center">
@@ -19,13 +19,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- table peminjaman Aset -->
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="fs-6">
-                Daftar Email
+            <h2 class="fs-6 text-center mt-3">
+                Daftar Email Penerima Report
             </h2>
         </div>
         <div class="col-12">

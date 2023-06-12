@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
             'edit' => 'admin.settings.ip.edit',
             'update' => 'admin.settings.ip.update',
         ]);
-
+        Route::get('report.filter-download', [ReportController::class, 'filterDownload'])->name('admin.settings.report.filterDownload');
         Route::resource('report', ReportController::class)->names([
             'index' => 'admin.settings.report.index',
             'create' => 'admin.settings.report.create',

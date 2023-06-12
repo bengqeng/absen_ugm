@@ -88,4 +88,17 @@ class ReportController extends Controller
     {
         //
     }
+
+    public function filterDownload()
+    {
+        return view('app.admin.profile.settings.report.download', [
+            'months' => $this->getMonthInYear(now()),
+            'years' => $this->getYearViceVersa(now(), 3),
+        ]);
+    }
+
+    public function download()
+    {
+        // this function used to download report 
+    }
 }
