@@ -71,7 +71,7 @@ class ProjectController extends Controller
     {
         return view('app.admin.project.edit', [
             'project' => $project,
-            'years' => $this->getYearViceVersa(now(), 3),
+            'years' => $this->getYearViceVersa(now(), 10),
         ]);
     }
 
