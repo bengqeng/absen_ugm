@@ -49,11 +49,12 @@ class AttendanceBulkDownload extends AbstractServices
                     ->cc(['ccc@mail.com', 'lala@mail.com'])
                     ->send(new SendBulkDownloadAttendanceMail("${fileName}"));
 
-                self::deleteFile($fileName);
             } catch (\Exception $e) {
                 // TODO ROLLBAR HERE
                 echo $e;
             }
+
+            self::deleteFile($fileName); // Make Sure File Deleted if somethind happen
         }
 
         return true;
