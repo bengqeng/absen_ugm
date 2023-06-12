@@ -14,13 +14,13 @@
                 @csrf
                 <div class="mx-2">
                     <div class="form-floating mb-3">
-                        <input type="text" name="name" required class="form-control" id="floatingItemName"
-                            placeholder="Nama Barang">
+                        <input type="text" name="name" value="{{old('name')}}" required class="form-control"
+                            id="floatingItemName" placeholder="Nama Barang">
                         <label for="floatingItemName">Nama Aset</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" name="type" required class="form-control disabled" id="floatingItemType"
-                            placeholder="Jenis Aset">
+                        <input type="text" name="type" value="{{old('type')}}" required class="form-control disabled"
+                            id="floatingItemType" placeholder="Jenis Aset">
                         <label for="floatingItemType">Jenis Aset (cth. Kamera, Laptop, dll)</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -28,7 +28,8 @@
                             placeholder="Kategori">
                             <option value="">-- Silahkan Pilih Kategori Asset --</option>
                             @forelse ($assetCategories as $assetCategory)
-                            <option value="{{ $assetCategory->id }}">{{ $assetCategory->name }}</option>
+                            <option value="{{ $assetCategory->id }}" @if (old('asset_category_id')==$assetCategory->id)
+                                selected="selected" @endif>{{ $assetCategory->name }}</option>
                             @empty
                             <option value="">No Data Found</option>
                             @endforelse

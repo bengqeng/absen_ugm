@@ -15,14 +15,24 @@
             </h2>
             <form action="" method="GET">
                 @csrf
-                <select name="search_category" class="form-select mb-3" id="floatingCategory" placeholder="Kategori">
-                    <option value="user_name">Nama Staf</option>
-                    <option value="asset_name">Nama Aset</option>
-                    <option value="date">Tanggal Peminjaman</option>
+                <select name="search_category" class="form-select mb-3" id="search_category" placeholder="Kategori">
+                    <option @if (Request::get('search_category')=='user_name' ) selected="selected" @endif
+                        value="user_name">Nama
+                        Staf</option>
+                    <option @if (Request::get('search_category')=='asset_name' ) selected="selected" @endif
+                        value="asset_name">
+                        Nama Aset</option>
+                    <option @if (Request::get('search_category')=='date' ) selected="selected" @endif value="date">
+                        Tanggal
+                        Peminjaman</option>
                 </select>
-                <input type="text" name="search" class="form-control mb-3" id="floatingItemType" placeholder=""
+                <input type="text" name="search" class="form-control mb-3" id="search" placeholder=""
                     value="{{ Request::get('search') }}">
                 <div class="d-grid gap-2 d-flex justify-content-end">
+                    <a class="btn btn-sm btn-secondary float-end px-5"
+                        href="{{route('admin.asset_action.index_borrow')}}" type="button">
+                        Reset
+                    </a>
                     <button class="btn btn-sm btn-success btn-tropmed float-end px-5" type="submit">
                         Filter
                     </button>
@@ -81,4 +91,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    // JavaScript code here
+    const inputTypeSelect = document.getElementById('search_category');
+    const textInput = document.getElementById('search');
+    
+    inputTypeSelect.addEventListener('change', function() {
+    const selectedOption = inputTypeSelect.value;
+    
+    if (selectedOption === 'date') {
+    textInput.type = 'date';
+    } else {
+    textInput.type = 'text';
+    }
+    });
+
+    // Check initial value on document ready
+    if (inputTypeSelect.value === 'date') {
+    textInput.type = 'date';
+    } else {
+    textInput.type = 'text';
+    }
+</script>
 @endsection

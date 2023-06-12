@@ -29,12 +29,12 @@ class AssetActionController extends Controller
         if ($searchCategory === 'user_name') {
             // Search by the user's name
             $query->whereHas('owner', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'asset_name') {
             // Search by the asset's name
             $query->whereHas('asset', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
@@ -61,12 +61,12 @@ class AssetActionController extends Controller
         if ($searchCategory === 'user_name') {
             // Search by the user's name
             $query->whereHas('owner', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'asset_name') {
             // Search by the asset's name
             $query->whereHas('asset', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
@@ -85,23 +85,25 @@ class AssetActionController extends Controller
     {
         $searchCategory = $request->input('search_category');
         $searchQuery = $request->input('search');
-
         // Create a base query for the AssetSubmission model
         $query = AssetSubmission::query();
         // Apply the condition based on the selected option
         if ($searchCategory === 'user_name') {
             // Search by the user's name
             $query->whereHas('owner', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'asset_name') {
             // Search by the asset's name
             $query->whereHas('asset', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
             $query->whereDate('date_borrow', $searchQuery);
+        } elseif ($searchCategory === 'status') {
+            // Search by the status
+            $query->where('status', $searchQuery);
         }
 
         // Retrieve the filtered results
