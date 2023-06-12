@@ -2,10 +2,9 @@
 
 namespace App\Console;
 
-use App\Jobs\ProcessAttendanceBulkDownload;
+use App\Jobs\ProcessAttendanceBulkDownloadMonthly;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -18,10 +17,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->call(function () {
-            ProcessAttendanceBulkDownload::dispatch();
-        })->cron('* * * * *');
+            ProcessAttendanceBulkDownloadMonthly::dispatch();
+        })->monthly();
 
-        $schedule->command('queue:work --stop-when-empty')
+        $schedule->command('queue:work --tries=3 --stop-when-empty')
             ->everyMinute()
             ->withoutOverlapping();
     }

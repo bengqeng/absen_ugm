@@ -43,7 +43,6 @@ class AssetSubmissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -78,7 +77,6 @@ class AssetSubmissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */

@@ -51,7 +51,6 @@ class AssetCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\AssetCategory  $assetCategory
      * @return \Illuminate\Http\Response
      */
     public function show(AssetCategory $assetCategory)
@@ -62,7 +61,6 @@ class AssetCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\AssetCategory  $assetCategory
      * @return \Illuminate\Http\Response
      */
     public function edit(AssetCategory $assetCategory)
@@ -76,7 +74,6 @@ class AssetCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AssetCategory  $assetCategory
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateAssetCategoryRequest $request, AssetCategory $assetCategory)
@@ -93,7 +90,6 @@ class AssetCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\AssetCategory  $assetCategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(AssetCategory $assetCategory)

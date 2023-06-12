@@ -58,7 +58,7 @@ class AttendanceService extends AbstractService
         $attendances = $this->getListAttendance($month, $year, $selectedDate, $user_id);
         $arrayExport = [];
         $number = 0;
-        foreach ($attendances as  $item) {
+        foreach ($attendances as $item) {
             $number++;
             $arrayExport[] = [
                 $number,

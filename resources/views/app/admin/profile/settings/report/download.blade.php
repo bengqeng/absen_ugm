@@ -11,7 +11,7 @@
         <div class="col-12">
             @include('layouts.form_validation')
             <!-- Nanti ta pasangin input mask -->
-            <form action="{{ route('admin.settings.report.store') }}" method="POST">
+            <form action="{{ route('admin.settings.report.Download') }}" method="POST">
                 @csrf
                 <div class="mx-2">
                     <div class="form-floating mb-2">

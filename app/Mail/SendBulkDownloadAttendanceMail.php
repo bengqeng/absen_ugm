@@ -30,7 +30,7 @@ class SendBulkDownloadAttendanceMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Send Bulk Download Attendance Mail',
+            subject: 'Bulk Download Attendance Notification',
         );
     }
 

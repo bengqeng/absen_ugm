@@ -23,7 +23,7 @@ class AttendanceBulkDownload extends AbstractServices
         $userIds = User::orderBy('name', 'asc')
             ->listByRole(['staff'])
             ->pluck('id')
-            ->chunk(1); // << To do update dynamically
+            ->chunk(20); // << To do update dynamically
 
         if (count($userIds) <= 0) {
             return false;
@@ -44,7 +44,11 @@ class AttendanceBulkDownload extends AbstractServices
             try {
                 $fileName = now()->format('YmdHs').'_'.self::$fileName;
                 (new BulkDownloadAttendanceExport($bulkUserId, $this->date))->store("${fileName}");
-                Mail::to('asd@mail.com')->send(new SendBulkDownloadAttendanceMail("${fileName}"));
+
+                Mail::to('asd@mail.com')
+                    ->cc(['ccc@mail.com', 'lala@mail.com'])
+                    ->send(new SendBulkDownloadAttendanceMail("${fileName}"));
+
                 self::deleteFile($fileName);
             } catch (\Exception $e) {
                 // TODO ROLLBAR HERE
@@ -62,5 +66,7 @@ class AttendanceBulkDownload extends AbstractServices
         } else {
             // Rollbar here
         }
+
+        return true;
     }
 }

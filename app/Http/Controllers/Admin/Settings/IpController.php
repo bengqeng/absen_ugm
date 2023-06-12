@@ -52,7 +52,6 @@ class IpController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\settings  $settings
      * @return \Illuminate\Http\Response
      */
     public function show(Settings $settings)
@@ -88,7 +87,6 @@ class IpController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\settings  $settings
      * @return \Illuminate\Http\Response
      */
     public function destroy(Settings $settings)

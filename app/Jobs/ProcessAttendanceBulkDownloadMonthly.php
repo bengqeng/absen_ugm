@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ProcessAttendanceBulkDownload implements ShouldQueue
+class ProcessAttendanceBulkDownloadMonthly implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -31,10 +31,9 @@ class ProcessAttendanceBulkDownload implements ShouldQueue
     public function handle()
     {
         try {
-            (new AttendanceBulkDownload(now()))->call();
+            (new AttendanceBulkDownload(now()->subMonth()))->call();
         } catch (\Exception $e) {
             // Throw to Rollbar
-            dd($e);
         }
     }
 }

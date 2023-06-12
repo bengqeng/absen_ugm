@@ -74,7 +74,6 @@ class BorrowAssetController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, User $user, Assets $assets)
@@ -85,7 +84,6 @@ class BorrowAssetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
     public function edit(Assets $assets)
@@ -96,8 +94,6 @@ class BorrowAssetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Assets $assets)
@@ -108,7 +104,6 @@ class BorrowAssetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Assets  $assets
      * @return \Illuminate\Http\Response
      */
     public function destroy(Assets $assets)

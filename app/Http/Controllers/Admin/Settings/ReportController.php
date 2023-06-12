@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ProcessAttendanceCustomBulkDownload;
 use App\Models\Report;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,6 @@ class ReportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -68,7 +68,6 @@ class ReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -96,8 +95,15 @@ class ReportController extends Controller
         ]);
     }
 
-    public function download()
+    public function download(Request $request)
     {
-        // this function used to download report 
+        $validated = $request->validate([
+            'month' => 'required|',
+            'year' => 'required|integer',
+        ]);
+        ProcessAttendanceCustomBulkDownload::dispatch($validated['year'], $validated['month']);
+        flash()->success('Berhasil download data! system akan otomatis mengirimkan ke alamat email yang dituju.');
+
+        return redirect()->route('admin.settings.report.filterDownload');
     }
 }

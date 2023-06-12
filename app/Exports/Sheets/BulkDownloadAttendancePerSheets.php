@@ -29,10 +29,10 @@ class BulkDownloadAttendancePerSheets implements FromArray, WithTitle
             [''],
         ];
 
-       $arrayExport[] = [ 'No', 'Hari', 'Tanggal', 'Jam Masuk', 'Catatan Masuk', 'Jam Keluar', 'Catatan Keluar', 'Status Masuk', 'Status Keluar', 'Total Jam Kerja', 'Waktu Lembur' ];
+        $arrayExport[] = ['No', 'Hari', 'Tanggal', 'Jam Masuk', 'Catatan Masuk', 'Jam Keluar', 'Catatan Keluar', 'Status Masuk', 'Status Keluar', 'Total Jam Kerja', 'Waktu Lembur', 'Keterangan Lembur'];
 
         $number = 0;
-        foreach ($attendances as  $item) {
+        foreach ($attendances as $item) {
             $number++;
             $arrayExport[] = [
                 $number,
@@ -46,10 +46,11 @@ class BulkDownloadAttendancePerSheets implements FromArray, WithTitle
                 (isset($item['attendance']['status_out'])) ? $item['attendance']['status_out'] : '-',
                 $item['attendance']['total_work_time'] ?? '-',
                 (isset($item['attendance']['overtime'])) ? $item['attendance']['overtime'] : '-',
+                (isset($item['attendance']['note_overtime'])) ? $item['attendance']['note_overtime'] : '-',
             ];
         }
 
-        $arrayExport[] = [ [''], ['Jumlah Hari', 'Libur', 'Cuti'], [$number] ];
+        $arrayExport[] = [[''], ['Jumlah Hari', 'Libur', 'Cuti'], [$number]];
         $arrayExport[] = [
             [''],
             ['Yogyakarta'],
@@ -63,9 +64,6 @@ class BulkDownloadAttendancePerSheets implements FromArray, WithTitle
         return $arrayExport;
     }
 
-    /**
-     * @return string
-     */
     public function title(): string
     {
         return $this->user->email;
