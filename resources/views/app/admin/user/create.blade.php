@@ -14,22 +14,26 @@
                 @csrf
                 <div class="mx-2">
                     <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" name="name" placeholder="Nama Lengkap">
+                        <input type="text" required class="form-control" value="{{ old('name') }}" name="name"
+                            placeholder="Nama Lengkap">
                         <label for="floatingItemName">Nama Lengkap</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" required class="form-control disabled" name="email" placeholder="Email">
+                        <input type="email" required class="form-control disabled" value="{{ old('email') }}"
+                            name="email" placeholder="Email">
                         <label for="floatingItemType">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" required class="form-control" name="phone_number" placeholder="Phone Number">
+                        <input type="text" required class="form-control" value="{{ old('phone_number') }}"
+                            name="phone_number" placeholder="Phone Number">
                         <label for="floatingItemName">Nomor Telepon</label>
                     </div>
                     <div class="form-floating mb-3">
                         <select name="role" required class="form-select" placeholder="Role user">
                             <option value="">-- Silahkan Pilih Role User</option>
                             @forelse ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option value="{{ $role->id }}" @if (old('role')==$role->id) selected="selected"
+                                @endif>{{ $role->name }}</option>
                             @empty
                             <option value="">No Data Found</option>
                             @endforelse
@@ -40,7 +44,8 @@
                         <select name="gender" required class="form-select" placeholder="Gender user">
                             <option value="">-- Silahkan Pilih Gender User</option>
                             @forelse (array_keys($genders) as $gender)
-                            <option value="{{ $gender }}">{{ $genders[$gender] }}</option>
+                            <option value="{{ $gender }}" @if (old('gender')==$gender) selected="selected" @endif>{{
+                                $genders[$gender] }}</option>
                             @empty
                             <option value="">No Data Found</option>
                             @endforelse
@@ -51,7 +56,8 @@
                         <select name="project_id" required class="form-select" placeholder="Project user">
                             <option value="">-- Silahkan Pilih Project User</option>
                             @forelse ($projects as $project)
-                            <option value="{{ $project->id }}">{{ $project->name }}</option>
+                            <option value="{{ $project->id }}" @if (old('project_id')==$project->id)
+                                selected="selected" @endif>{{ $project->name }}</option>
                             @empty
                             <option value="">No Data Found</option>
                             @endforelse
