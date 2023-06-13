@@ -12,9 +12,11 @@ class ValidStatusReport implements Rule
      *
      * @return void
      */
-    public function __construct()
+
+    protected $id;
+    public function __construct($id = null)
     {
-        //
+        $this->id = $id;
     }
 
     /**
@@ -26,11 +28,25 @@ class ValidStatusReport implements Rule
      */
     public function passes($attribute, $value)
     {
-        $exists = Report::where('status', $value)
-            ->exists();
-        if ($exists) {
-            return false;
+        if ($this->id != null && $value == 'primary') {
+            $exists = Report::where('status', $value)->whereNotIn('id', [$this->id])
+                ->exists();
+            if ($exists) {
+                return false;
+            }
+
+            return true;
         }
+
+        if ($value == 'primary') {
+            $exists = Report::where('status', $value)
+                ->exists();
+            if ($exists) {
+                return false;
+            }
+            return true;
+        }
+
         return true;
     }
 

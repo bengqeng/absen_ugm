@@ -12,14 +12,15 @@
             @include('layouts.form_validation')
             <form action="{{ route('admin.settings.report.update', $report->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="mx-2">
                     <div class="form-floating mb-3">
-                        <input type="text" required name="text" class="form-control" id="floatingItemName"
+                        <input type="text" required name="name" class="form-control" id="floatingItemName"
                             placeholder="Nama Penerima" value="{{$report->name}}">
                         <label for="floatingItemName">Nama Penerima</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input required name="name" type="email" class="form-control" id="floatingItemEmail"
+                        <input required name="email" type="email" class="form-control" id="floatingItemEmail"
                             placeholder="Alamat Email" value="{{$report->email}}">
                         <label for="floatingItemEmail">Alamat Email</label>
                     </div>

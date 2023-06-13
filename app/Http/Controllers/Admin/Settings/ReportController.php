@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreReportRequest;
+use App\Http\Requests\Admin\UpdateReportRequest;
 use App\Jobs\ProcessAttendanceCustomBulkDownload;
 use App\Models\Report;
 use App\Models\Settings;
@@ -40,12 +41,12 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        $ipAttribute = [
+        $report = [
             'name' => $request->validated('name'),
             'email' => $request->validated('email'),
             'status' => $request->validated('status')
         ];
-        if (Report::Create($ipAttribute)) {
+        if (Report::Create($report)) {
             flash()->success('Berhasil menambahkan email');
         } else {
             flash()->error('Gagal menambahkan email');
@@ -86,7 +87,17 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $updateRequest = new UpdateReportRequest($id);
+
+        $validatedData = $request->validate($updateRequest->rules());
+
+        if (Report::find($id)->update($validatedData)) {
+            flash()->success('Berhasil memperbarui email');
+        } else {
+            flash()->error('Gagal memperbarui email');
+        }
+        return redirect()->route('admin.settings.report.index');
     }
 
     /**
@@ -122,11 +133,12 @@ class ReportController extends Controller
         return redirect()->route('admin.settings.report.filterDownload');
     }
 
-    public function editMonthlyDownload(Request $request){
+    public function editMonthlyDownload(Request $request)
+    {
         $settings = Settings::where('key', SETTINGS::FEATURES['automate_download_monthly'])->first();
         $settings->properties = ($request->input('status') === 'true' ? true : false);
         $settings->save();
 
-        return json_encode( [ 'status' => 'success' ]);
+        return json_encode(['status' => 'success']);
     }
 }

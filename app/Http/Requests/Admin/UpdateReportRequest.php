@@ -7,6 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateReportRequest extends FormRequest
 {
+    protected $id;
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,8 +32,8 @@ class UpdateReportRequest extends FormRequest
     {
         return [
             'name'   => ['required', 'max:25'],
-            'email'  => ['required', 'unique:reports,email'],
-            'status' => ['required', new ValidStatusReport()],
+            'email'  => ['required', 'unique:reports,email,' . $this->id . ',id'],
+            'status' => ['required', new ValidStatusReport($this->id)],
         ];
     }
 }
