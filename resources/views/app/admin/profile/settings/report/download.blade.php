@@ -9,6 +9,11 @@
             </h1>
         </div>
         <div class="col-12">
+            <div class="col-12">
+                <h2 class="fs-6 fw-bold">
+                    Download Manual
+                </h2>
+            </div>
             @include('layouts.form_validation')
             <!-- Nanti ta pasangin input mask -->
             <form action="{{ route('admin.settings.report.Download') }}" method="POST">
@@ -47,6 +52,22 @@
                     </div>
                 </div>
             </form>
+
+            <div class="col-12">
+                <h2 class="fs-6 fw-bold">
+                    Download Otomatis
+                </h2>
+            </div>
+            <form action="" method="POST">
+                @csrf
+                <div class="mx-2">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                            checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Download Ototmatis Aktif</label>
+                    </div>
+                </div>
+            </form>
             <div class="container mt-3">
                 <div class="bg-secondary p-2 rounded-2 text-light">
                     <p><b>Catatan:</b> Report presensi akan dikirimkan ke email yang telah diatur pada menu Lainnya >
@@ -57,4 +78,5 @@
         </div>
     </div>
 </div>
+
 @endsection

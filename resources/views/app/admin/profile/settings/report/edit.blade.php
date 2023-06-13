@@ -10,7 +10,6 @@
         </div>
         <div class="col-12">
             @include('layouts.form_validation')
-            <!-- Nanti ta pasangin input mask -->
             <form action="{{ route('admin.settings.report.update', $report->id) }}" method="POST">
                 @csrf
                 <div class="mx-2">
@@ -23,6 +22,15 @@
                         <input required name="name" type="email" class="form-control" id="floatingItemEmail"
                             placeholder="Alamat Email" value="{{$report->email}}">
                         <label for="floatingItemEmail">Alamat Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" name="status" id="status">
+                            <option value="primary" @if ($report->status=='primary' ) selected="selected" @endif>
+                                Primary</option>
+                            <option value="cc" @if ($report->status=='cc' ) selected="selected" @endif>CC
+                            </option>
+                        </select>
+                        <label for="floatingItemStatus">Status</label>
                     </div>
                     <div class="d-grid gap-2 d-flex justify-content-end mt-3">
                         <a class="btn btn-outline-success px-4" type="button"

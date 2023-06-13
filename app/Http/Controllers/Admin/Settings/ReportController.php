@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreReportRequest;
 use App\Jobs\ProcessAttendanceCustomBulkDownload;
 use App\Models\Report;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.admin.profile.settings.report.create');
     }
 
     /**
@@ -36,9 +37,20 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReportRequest $request)
     {
-        //
+        $ipAttribute = [
+            'name' => $request->validated('name'),
+            'email' => $request->validated('email'),
+            'status' => $request->validated('status')
+        ];
+        if (Report::Create($ipAttribute)) {
+            flash()->success('Berhasil menambahkan email');
+        } else {
+            flash()->error('Gagal menambahkan email');
+        }
+
+        return redirect()->route('admin.settings.report.index');
     }
 
     /**

@@ -1,12 +1,12 @@
 @extends('app.admin.shared.main')
 
 @section('content')
-{{-- <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
         <div class="col my-4">
             <div class="d-grid gap-2 d-flex justify-content-center">
-                <a href="{{ route('admin.settings.report.create') }}"
-                    class="btn btn-succes btn-tropmed py-3 px-4 disabled" type="button" disabled>
+                <a href="{{ route('admin.settings.report.create') }}" class="btn btn-succes btn-tropmed py-3 px-4"
+                    type="button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-person-add" viewBox="0 0 16 16">
                         <path
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 <!-- table peminjaman Aset -->
 <div class="container">
     <div class="row">
@@ -34,6 +34,7 @@
                     <tr>
                         <th class="fw-semibold col">Nama</th>
                         <th class="fw-semibold col">Email</th>
+                        <th class="fw-semibold col">Status</th>
                         <th class="fw-semibold col text-end"></th>
                     </tr>
                 </thead>
@@ -42,6 +43,13 @@
                     <tr>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
+                        <td>
+                            @if ($item->status == 'primary')
+                            <span class="bg-success text-light p-1">{{ $item->status }}</span>
+                            @else
+                            <span class="bg-warning text-light p-1">{{ $item->status }}</span>
+                            @endif
+                        </td>
                         <td class="text-end">
                             <a href="{{ route('admin.settings.report.edit', $item->id) }}" class="btn text-tropmed">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

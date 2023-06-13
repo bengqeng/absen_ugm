@@ -107,4 +107,25 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="downloadReport" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="loadingMessage">
+                        <div class="d-flex align-items-center">
+                            <strong>Loading...</strong>
+                            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end border-0">
+                    <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
