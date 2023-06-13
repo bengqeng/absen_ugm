@@ -29,12 +29,12 @@ class AssetActionController extends Controller
         if ($searchCategory === 'user_name') {
             // Search by the user's name
             $query->whereHas('owner', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'asset_name') {
             // Search by the asset's name
             $query->whereHas('asset', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
@@ -42,9 +42,9 @@ class AssetActionController extends Controller
         }
 
         // Retrieve the filtered results
-        $results = $query->with('owner')->StatusOnly(['pending', 'approved'])->latest()->take(10)->get();
+        $results = $query->with('owner')->StatusOnly(['pending', 'approved'])->latest()->paginate(10);
 
-        // $borrowingAssets = AssetSubmission::with('asset')->with('owner')->where('status', 'pending')->latest()->take(10)->get();
+        // $borrowingAssets = AssetSubmission::with('asset')->with('owner')->where('status', 'pending')->latest()->paginate(10);
         return view('app.admin.asset_action.index_borrow', [
             'borrowingAssets' => $results,
         ]);
@@ -61,12 +61,12 @@ class AssetActionController extends Controller
         if ($searchCategory === 'user_name') {
             // Search by the user's name
             $query->whereHas('owner', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'asset_name') {
             // Search by the asset's name
             $query->whereHas('asset', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
@@ -74,7 +74,7 @@ class AssetActionController extends Controller
         }
 
         // Retrieve the filtered results
-        $results = $query->with('owner')->where('status', ['borrowed'])->latest()->take(10)->get();
+        $results = $query->with('owner')->where('status', ['borrowed'])->latest()->paginate(10);
 
         return view('app.admin.asset_action.index_return', [
             'returningAssets' => $results,
@@ -91,12 +91,12 @@ class AssetActionController extends Controller
         if ($searchCategory === 'user_name') {
             // Search by the user's name
             $query->whereHas('owner', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'asset_name') {
             // Search by the asset's name
             $query->whereHas('asset', function ($q) use ($searchQuery) {
-                $q->where('name', 'LIKE', '%'.$searchQuery.'%');
+                $q->where('name', 'LIKE', '%' . $searchQuery . '%');
             });
         } elseif ($searchCategory === 'date') {
             // Search by the date
@@ -107,7 +107,7 @@ class AssetActionController extends Controller
         }
 
         // Retrieve the filtered results
-        $results = $query->with('owner')->where('status', ['done', 'rejected'])->latest()->take(10)->get();
+        $results = $query->with('owner')->where('status', ['done', 'rejected'])->latest()->paginate(10);
 
         return view('app.admin.asset_action.index_history', [
             'historyAssets' => $results,

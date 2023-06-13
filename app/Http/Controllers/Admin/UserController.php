@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         return view('app.admin.user.index', [
-            'users' => User::ListByActorRole()->get(),
+            'users' => User::ListByActorRole()->paginate(15),
         ]);
     }
 
@@ -102,7 +102,7 @@ class UserController extends Controller
         }
 
         if ($user->update(Arr::except($attr, ['role']))) {
-            if (! in_array($request->validated('role'), $user->roles()->pluck('id')->toArray())) {
+            if (!in_array($request->validated('role'), $user->roles()->pluck('id')->toArray())) {
                 $oldRole = $user->getRoleNames()->first();
                 if ($oldRole !== null) {
                     $user->removeRole($oldRole);

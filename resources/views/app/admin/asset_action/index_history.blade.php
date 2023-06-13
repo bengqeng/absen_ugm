@@ -89,6 +89,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $historyAssets->links() }}
         </div>
     </div>
 </div>

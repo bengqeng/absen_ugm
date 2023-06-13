@@ -88,6 +88,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $borrowingAssets->links() }}
         </div>
     </div>
 </div>

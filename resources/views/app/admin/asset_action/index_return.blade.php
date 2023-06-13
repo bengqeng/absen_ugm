@@ -88,6 +88,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $returningAssets->links() }}
         </div>
     </div>
 </div>

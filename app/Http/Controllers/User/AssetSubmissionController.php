@@ -18,7 +18,7 @@ class AssetSubmissionController extends Controller
     public function index()
     {
         return view('app.user.asset_submission.index', [
-            'onProgressSubmissions' => AssetSubmission::with('owner')->with('asset')->StatusOnly(['pending', 'approved'])->where('user_id', auth()->user()->id)->latest()->take(5)->get(),
+            'onProgressSubmissions' => AssetSubmission::with('owner')->with('asset')->StatusOnly(['pending', 'borrowed', 'approved'])->where('user_id', auth()->user()->id)->latest()->take(5)->get(),
             'finishedSubmissions' => AssetSubmission::with('asset')->where('user_id', auth()->user()->id)->StatusOnly(['done', 'rejected'])->latest()->take(10)->get(),
         ]);
     }
@@ -26,7 +26,7 @@ class AssetSubmissionController extends Controller
     public function on_progress_submission_index()
     {
         return view('app.user.asset_submission.on_progress_submission_index', [
-            'onProgressSubmissions' => AssetSubmission::with('owner')->with('asset')->StatusOnly(['pending', 'approved'])->where('user_id', auth()->user()->id)->latest()->get(),
+            'onProgressSubmissions' => AssetSubmission::with('owner')->with('asset')->StatusOnly(['pending', 'borrowed', 'approved'])->where('user_id', auth()->user()->id)->latest()->get(),
         ]);
     }
 
