@@ -72,14 +72,14 @@ class AttendanceBulkDownload extends AbstractServices
                 $list['primary'] = $email->email;
                 $valid = true;
             } else {
-                $list['cc'] = $email->email;
+                $list['cc'][] =  $email->email;
             }
         }
 
         return [$valid, $list];
     }
 
-    private function sendToUser(string $path, string $primary, ?string $cc = ''){
+    private function sendToUser(string $path, string $primary, array $cc){
         try {
             Mail::to($primary)
                 ->cc($cc)
