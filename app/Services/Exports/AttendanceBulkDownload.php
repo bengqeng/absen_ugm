@@ -4,6 +4,7 @@ namespace App\Services\Exports;
 
 use App\Exports\BulkDownloadAttendanceExport;
 use App\Mail\SendBulkDownloadAttendanceMail;
+use App\Models\Report;
 use App\Models\User;
 use App\Services\AbstractServices;
 use Illuminate\Support\Facades\Mail;
@@ -40,32 +41,62 @@ class AttendanceBulkDownload extends AbstractServices
 
     private function executeBatchDownload($userIds)
     {
+        $listEmail = self::getListEmailedUser();
+        if ($listEmail[0] === false) {
+            return true;
+        }
+
         foreach ($userIds as $key => $bulkUserId) {
             try {
                 $fileName = now()->format('YmdHs').'_'.self::$fileName;
                 (new BulkDownloadAttendanceExport($bulkUserId, $this->date))->store("${fileName}");
-
-                Mail::to('asd@mail.com')
-                    ->cc(['ccc@mail.com', 'lala@mail.com'])
-                    ->send(new SendBulkDownloadAttendanceMail("${fileName}"));
-
+                self::sendToUser($fileName, $listEmail[1]['primary'], $listEmail[1]['cc']);
             } catch (\Exception $e) {
-                // TODO ROLLBAR HERE
-                echo $e;
+                if( !(env('APP_ENV') == 'production')){
+                    echo $e;
+                }
             }
-
-            self::deleteFile($fileName); // Make Sure File Deleted if somethind happen
         }
 
         return true;
+    }
+
+    private function getListEmailedUser()
+    {
+        $list = [];
+        $valid = false;
+        $emails = Report::all();
+
+        foreach ($emails as $email){
+            if($email->status == 'primary'){
+                $list['primary'] = $email->email;
+                $valid = true;
+            } else {
+                $list['cc'] = $email->email;
+            }
+        }
+
+        return [$valid, $list];
+    }
+
+    private function sendToUser(string $path, string $primary, ?string $cc = ''){
+        try {
+            Mail::to($primary)
+                ->cc($cc)
+                ->send(new SendBulkDownloadAttendanceMail("${path}"));
+        } catch (\Exception $e) {
+            if( !(env('APP_ENV') == 'production')){
+                echo $e;
+            }
+        }
+
+        self::deleteFile($path);
     }
 
     private function deleteFile($path)
     {
         if (Storage::exists("${path}")) {
             Storage::delete("${path}");
-        } else {
-            // Rollbar here
         }
 
         return true;

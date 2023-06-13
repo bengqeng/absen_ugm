@@ -58,16 +58,15 @@
                     Download Otomatis
                 </h2>
             </div>
-            <form action="" method="POST">
-                @csrf
-                <div class="mx-2">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                            checked>
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Download Ototmatis Aktif</label>
-                    </div>
+
+            <div class="mx-2">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" id="checkbox_automated_download" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                        checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Download Otomatis Aktif</label>
                 </div>
-            </form>
+            </div>
+
             <div class="container mt-3">
                 <div class="bg-secondary p-2 rounded-2 text-light">
                     <p><b>Catatan:</b> Report presensi akan dikirimkan ke email yang telah diatur pada menu Lainnya >
@@ -79,4 +78,31 @@
     </div>
 </div>
 
+<script !src="">
+    $( document ).ready(function() {
+        if("{{$status_download}}" == 'active'){
+            $('#checkbox_automated_download').prop('checked', true);
+        } else {
+            $('#checkbox_automated_download').prop('checked', false);
+        }
+    });
+    $('#checkbox_automated_download').change(function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('admin.settings.report.editMonthlyDownload') }}",
+            data: {
+                status: $(this).is(':checked'),
+                "_token": "{{ csrf_token() }}",
+            },
+            dataType: 'json'
+        }).done(function() {
+            alert( "Berhasil update status!" );
+        })
+        .fail(function() {
+            alert( "error" );
+        });
+    });
+</script>
 @endsection

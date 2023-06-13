@@ -14,10 +14,12 @@ class IpSettingSeeder extends Seeder
      */
     public function run()
     {
-        Settings::Create([
-            'key' => Settings::FEATURES['ip'],
-            'name' => 'example',
-            'properties' => '127.0.0.1',
-        ]);
+        Settings::where('key', Settings::FEATURES['ip'])->firstOr( function () {
+            Settings::Create([
+                'key' => Settings::FEATURES['ip'],
+                'name' => 'example',
+                'properties' => '127.0.0.1',
+            ]);
+        });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Settings;
 use App\Services\Exports\AttendanceBulkDownload;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -30,6 +31,11 @@ class ProcessAttendanceBulkDownloadMonthly implements ShouldQueue
      */
     public function handle()
     {
+        $settings = Settings::where('key', SETTINGS::FEATURES['automate_download_monthly'])->first();
+        if (!$settings->properties) {
+            return;
+        }
+
         try {
             (new AttendanceBulkDownload(now()->subMonth()))->call();
         } catch (\Exception $e) {

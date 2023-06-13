@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
         ]);
         Route::get('report.filter-download', [ReportController::class, 'filterDownload'])->name('admin.settings.report.filterDownload');
         Route::post('report.custom-download', [ReportController::class, 'download'])->name('admin.settings.report.Download');
+        Route::post('report.custom-download.edit', [ReportController::class, 'editMonthlyDownload'])->name('admin.settings.report.editMonthlyDownload');
         Route::resource('report', ReportController::class)->names([
             'index' => 'admin.settings.report.index',
             'create' => 'admin.settings.report.create',

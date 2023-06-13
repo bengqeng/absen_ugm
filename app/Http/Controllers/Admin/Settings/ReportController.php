@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreReportRequest;
 use App\Jobs\ProcessAttendanceCustomBulkDownload;
 use App\Models\Report;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -101,9 +102,11 @@ class ReportController extends Controller
 
     public function filterDownload()
     {
+        $status = Settings::where('key', SETTINGS::FEATURES['automate_download_monthly'])->first()->properties;
         return view('app.admin.profile.settings.report.download', [
             'months' => $this->getMonthInYear(now()),
             'years' => $this->getYearViceVersa(now(), 3),
+            'status_download' => ($status == '0' ? 'disabled' : 'active')
         ]);
     }
 
@@ -117,5 +120,13 @@ class ReportController extends Controller
         flash()->success('Berhasil download data! system akan otomatis mengirimkan ke alamat email yang dituju.');
 
         return redirect()->route('admin.settings.report.filterDownload');
+    }
+
+    public function editMonthlyDownload(Request $request){
+        $settings = Settings::where('key', SETTINGS::FEATURES['automate_download_monthly'])->first();
+        $settings->properties = ($request->input('status') === 'true' ? true : false);
+        $settings->save();
+
+        return json_encode( [ 'status' => 'success' ]);
     }
 }

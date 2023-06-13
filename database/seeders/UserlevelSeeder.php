@@ -14,15 +14,17 @@ class UserlevelSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::Create([
-            'name' => 'user',
-            'email' => 'user@mail.com',
-            'password' => bcrypt('12345678'),
-            'status_type' => User::STATUSTYPE['active'],
-            'project_id' => null,
-            'gender' => 'F',
-        ]);
+        User::where('email', 'user@mail.com')->firstOr(function () {
+            $user = User::Create([
+                'name' => 'user',
+                'email' => 'user@mail.com',
+                'password' => bcrypt('12345678'),
+                'status_type' => User::STATUSTYPE['active'],
+                'project_id' => null,
+                'gender' => 'F',
+            ]);
 
-        $user->assignRole('staff');
+            $user->assignRole('staff');
+        });
     }
 }

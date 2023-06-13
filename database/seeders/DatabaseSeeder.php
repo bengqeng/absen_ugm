@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserRoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(SettingsAutomateBulkDownloadMonthlySeeder::class);
 
         // Note
         // Please add inside here if seeder is only for development purpose

@@ -13,6 +13,7 @@ class Settings extends Model
 
     public const FEATURES = [
         'ip' => 'ip',
+        'automate_download_monthly' => 'automate_download_monthly'
     ];
 
     protected array $enumFeatures = self::FEATURES;

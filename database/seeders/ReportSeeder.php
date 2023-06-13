@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Report;
+use App\Models\Settings;
 use Illuminate\Database\Seeder;
 
 class ReportSeeder extends Seeder
@@ -14,9 +15,11 @@ class ReportSeeder extends Seeder
      */
     public function run()
     {
-        Report::Create([
-            'name' => 'Bitind Technology',
-            'email' => 'bitind@mail.com',
-        ]);
+        Report::where('name', 'Bitind Technology')->firstOr(function () {
+            Report::Create([
+                'name' => 'Bitind Technology',
+                'email' => 'bitind@mail.com',
+            ]);
+        });
     }
 }
