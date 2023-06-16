@@ -1,112 +1,171 @@
 @extends('app.user.shared.main')
 
 @section('content')
-<!-- button check in check out -->
-<div class="container">
-    <div class="row">
-        <div class="col my-4">
-            <div class="d-grid gap-2 d-flex justify-content-center">
-                @if (!$isAlreadyAbsentCheckIn)
-                <a class="btn btn-lg btn-outline-success px-4" href="{{ route('staff.checkin.create') }}">Check
-                    In</a>
-                @else
-                <a class="btn btn-lg btn-outline-default px-4 disabled" style="pointer-events: none;">Checked
-                    In<br><small>{{$recent_hours_checkin}}</small></a>
-                @endif
+<div class="container-fluid bg-profile mb-5" style="border-radius: 0 0 4em 4em; padding: 1em 1em 1em 1em;">
 
-                @if (!$isAlreadyAbsentCheckOut)
-                <a class="btn btn-lg btn-success btn-tropmed px-4" href="{{ route('staff.checkout.create') }}">Check
-                    Out</a>
-                @else
-                <a class="btn btn-lg btn-outline-default px-4 disabled" style="pointer-events: none;">Checked
-                    Out<br><small>{{$recent_hours_checkout}}</small></a>
-                @endif
+    <div class="container-fluid bg-white" style="border-radius: 3em; padding: 1em;">
+        <div class="image-header mb-4">
+            <img src="{{ asset('images/logo_tropmed.png') }}" class="mx-auto d-block" alt="...">
+        </div>
+        <table class="w-100 mt-5">
+            <tbody>
+                <tr>
+                    <td>Tanggal</td>
+                    <td class="float-end fw-semibold">{{now()->format('d M Y')}}</td>
+                </tr>
+                <tr>
+                    <td>Absen Masuk</td>
+                    <td class="float-end fw-semibold">{{$recent_hours_checkin}}</td>
+                </tr>
+                <tr>
+                    <td>Absen Pulang</td>
+                    <td class="float-end fw-semibold">{{$recent_hours_checkout}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col mt-4">
+                <div class="d-grid gap-2 d-flex justify-content-center">
+                    @if (!$isAlreadyAbsentCheckIn)
+                    <a class="btn btn-lg text-light px-4 rounded-3 border border-2"
+                        style="background-image: linear-gradient( 109.6deg,  rgba(61,131,97,1) 11.2%, rgba(28,103,88,1) 91.1% );"
+                        href="{{ route('staff.checkin.create') }}"><span style="">Check
+                            In</span></a>
+                    @else
+                    <a class="btn btn-lg btn-outline-default px-4 rounded-3 border border-2 disabled"
+                        style="pointer-events: none;"><span style="">Check
+                            In</span></a>
+                    @endif
+
+                    @if (!$isAlreadyAbsentCheckOut)
+                    <a class="btn btn-lg text-light px-4 rounded-3 border border-2"
+                        style="background-image: linear-gradient( 109.6deg,  rgba(61,131,97,1) 11.2%, rgba(28,103,88,1) 91.1% );"
+                        href="{{ route('staff.checkout.create') }}"><span class="" style="">Check
+                            Out</span></a>
+                    @else
+                    <a class="btn btn-lg btn-outline-default px-4 rounded-3 border border-2 disabled"
+                        style="pointer-events: none;"><span style="">Check
+                            Out</span></a>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- table absensi -->
-<div class="container">
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <h2 class="fs-6">
-                Absensi Terakhir
-            </h2>
-        </div>
-        <div class="col-12">
-            <table class="table bg-white shadow-sm rounded">
-                <thead>
-                    <tr class="text-center">
-                        <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Check In</th>
-                        <th class="fw-semibold col-4">Check Out</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
+        <!-- table absensi -->
+        <div class="col-sm-6 col-12 mb-4">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="fs-4 fw-bold">
+                        Absensi Terakhir
+                    </h2>
+                </div>
+                <div class="col-6">
+                    <a class="fs-6 text-decoration-none fw-bold text-success text-tropmed float-end"
+                        href="{{route('staff.attendance.index')}}">Lihat
+                        Semua</a>
+                </div>
+                <div class="col-12">
                     @forelse ($attendances as $attendance)
-                    <tr>
-                        <td>{{ $attendance->date_attendance }}</td>
-                        <td>{{ isset($attendance->check_in) ? $attendance->hours_checkin : '-' }}</td>
-                        <td>{{ isset($attendance->check_out) ? $attendance->hours_checkout : '-' }}</td>
-                    </tr>
+                    <div class="col-sm-12 mb-2">
+                        <div class="card border-0 text-light p-4" onclick="attendanceDetails({{$attendance->id}})"
+                            style='border-radius: 0.5rem; background-color:rgb(68, 144, 129)'>
+                            <div class="row">
+                                <div class="col-8">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                        class="bi bi-calendar-check d-inline-block" viewBox="0 0 25 25">
+                                        <path
+                                            d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        <path
+                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                    </svg>
+                                    <h3 class="fs-4 m-0 fw-bold d-inline-block">{{ $attendance->date_attendance }}</h3>
+                                </div>
+                                <div class="col-4 d-flex flex-column">
+                                    <div class="loan-date small">
+                                        <span>In : {{ isset($attendance->check_in) ?
+                                            $attendance->hours_checkin : '-'
+                                            }}</span><br>
+                                        <span>Out : {{ isset($attendance->check_out) ?
+                                            $attendance->hours_checkout : '-'
+                                            }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @empty
-                    <tr>
-                        <td colspan="3">No Data Found</td>
-                    </tr>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card border-0 text-light p-4" style='background-color: #0b5d81;
+                                background-image: linear-gradient(0deg, #0b5d81 0%, #359582 100%);'>
+                            <div class="row">
+                                <div class="col-8">
+                                    <h3 class="fs-4 m-0 fw-bold">Data Not Found</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @endforelse
-
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed"
-                                href="{{route('staff.attendance.index')}}">Lihat
-                                Semua</a></th>
-                    </tr>
-                </tfoot>
-            </table>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- table riwayat peminjaman alat -->
-<div class="container mt-2">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="fs-6">
-                Riwayat Peminjaman Alat
-            </h2>
-        </div>
-        <div class="col-12">
-            <table class="table bg-white shadow-sm rounded">
-                <thead>
-                    <tr class="text-center">
-                        <th class="fw-semibold col-4">Tanggal</th>
-                        <th class="fw-semibold col-4">Alat</th>
-                        <th class="fw-semibold col-4">Status</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center">
-                    @forelse ($assetSubmission as $as)
-                    <tr>
-                        <td>{{ $as->date_borrow }}</td>
-                        <td>{{ $as->asset->name }}</td>
-                        <td>{{ $as->status }}</td>
-                    </tr>
+        <!-- table riwayat peminjaman alat -->
+        <div class="col-sm-6 col-12">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="fs-4 fw-bold">
+                        Peminjaman Alat
+                    </h2>
+                </div>
+                <div class="col-6">
+                    <a class="fs-6 text-decoration-none fw-bold text-success text-tropmed float-end"
+                        href="{{route('staff.asset_submission.index',['user'=>auth()->user()->id])}}">Lihat
+                        Semua</a>
+                </div>
+                <div class="col-12">
+                    @forelse ($assetSubmission as $item)
+                    <div class="col-sm-12 mb-2">
+                        <div class="card border border-3 text-dark p-4"
+                            style='border-radius: 0.5rem; border-color:rgb(68, 144, 129) !important;'>
+                            <div class="row">
+                                <div class="col-8">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                        class="bi bi-motherboard" viewBox="0 0 25 25">
+                                        <path
+                                            d="M11.5 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Zm2 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5Zm-10 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6Zm0 2a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6ZM5 3a1 1 0 0 0-1 1h-.5a.5.5 0 0 0 0 1H4v1h-.5a.5.5 0 0 0 0 1H4a1 1 0 0 0 1 1v.5a.5.5 0 0 0 1 0V8h1v.5a.5.5 0 0 0 1 0V8a1 1 0 0 0 1-1h.5a.5.5 0 0 0 0-1H9V5h.5a.5.5 0 0 0 0-1H9a1 1 0 0 0-1-1v-.5a.5.5 0 0 0-1 0V3H6v-.5a.5.5 0 0 0-1 0V3Zm0 1h3v3H5V4Zm6.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2Z" />
+                                        <path
+                                            d="M1 2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-2H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 9H1V8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6H1V5H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 2H1Zm1 11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11Z" />
+                                    </svg>
+                                    <h3 class="fs-4 m-0 fw-bold d-inline-block">{{ $item->date_borrow }}</h3>
+                                </div>
+                                <div class="col-4 d-flex flex-column">
+                                    <div class="loan-date small">
+                                        <span>Alat : {{ $item->asset->name }}</span><br>
+                                        <span>Status : {{ $item->status }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @empty
-                    <tr>
-                        <td colspan="3">No Data Found</td>
-                    </tr>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card border-0 text-light p-4" style='background-color: #0b5d81;
+                                            background-image: linear-gradient(0deg, #0b5d81 0%, #359582 100%);'>
+                            <div class="row">
+                                <div class="col-8">
+                                    <h3 class="fs-4 m-0 fw-bold">Data Not Found</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @endforelse
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="4" class="text-center"><a class="text-decoration-none text-tropmed"
-                                href="{{route('staff.asset_submission.index',['user'=>auth()->user()->id])}}">Lihat
-                                Semua</a></th>
-                    </tr>
-                </tfoot>
-            </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

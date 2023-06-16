@@ -5,7 +5,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col-12 mb-3">
-            <h1 class="fs-4">
+            <h1 class="fs-4 fw-bold">
                 Riwayat Presensi
             </h1>
         </div>

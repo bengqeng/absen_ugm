@@ -7,7 +7,7 @@
         <div class="col my-4">
             <div class="d-grid gap-2">
                 <div class="profile-asset mb-3">
-                    <h2 class="fs-6 fw-bold">Profile</h2>
+                    <h2 class="fs-4 fw-bold">Profile</h2>
                     <ul class="list-group no-markers">
                         <li>
                             <div class="list-group-item bg-transparent border-0 border-bottom">

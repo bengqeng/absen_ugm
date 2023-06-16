@@ -12,7 +12,7 @@
     <title>Dashboard | Tropmed</title>
 </head>
 
-<body class="bg-light">
+<body class="bg-white">
 
     @include('app.user.shared.header')
     <!-- content -->
