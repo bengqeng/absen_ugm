@@ -28,8 +28,11 @@ class CheckOutController extends Controller
     public function create()
     {
         $status = new IpService();
-
-        return view('app.user.attendance.check_out', ['statusIp' => $status->getUserStatusIp()]);
+        $isAlreadyAbsentCheckIn = Attendance::where('user_id', auth()->user()->id)->whereDate('created_at', now())->first();
+        return view('app.user.attendance.check_out', [
+            'statusIp' => $status->getUserStatusIp(),
+            'recent_hours_checkin' => (isset($isAlreadyAbsentCheckIn->hours_checkin)) ? $isAlreadyAbsentCheckIn->hours_checkin : '-',
+        ]);
     }
 
     /**
