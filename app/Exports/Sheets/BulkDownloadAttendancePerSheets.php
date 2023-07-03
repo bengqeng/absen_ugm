@@ -21,7 +21,7 @@ class BulkDownloadAttendancePerSheets implements FromArray, WithTitle
         $attendances = (new AttendanceService())->getListAttendance($this->date->month, $this->date->year, $this->date, $this->userId);
 
         $arrayExport = [
-            ['PRESENSI KEHADIRAN STAF NON DOSEN BULAN '.$this->date->month.' '.$this->date->year],
+            ['PRESENSI KEHADIRAN STAF NON DOSEN BULAN ' . $this->date->month . ' ' . $this->date->year],
             ['PUSAT KEDOKTERAN, TROPIS FAKULTAS KEDOKTERAN, KESEHATAN MASYARAKAT DAN KEPERAWATAN UGM'],
             [''],
             ['Nama', ':', $this->user->name],
@@ -40,7 +40,7 @@ class BulkDownloadAttendancePerSheets implements FromArray, WithTitle
                 $item['date']->format('d F Y'),
                 (isset($item['attendance']['hours_checkin'])) ? $item['attendance']['hours_checkin'] : '-',
                 (isset($item['attendance']['note_in'])) ? $item['attendance']['note_in'] : '-',
-                (isset($item['attendance']['hours_checkout'])) ? $item['attendance']['hours_checkin'] : '-',
+                (isset($item['attendance']['hours_checkout'])) ? $item['attendance']['hours_checkout'] : '-',
                 (isset($item['attendance']['note_out'])) ? $item['attendance']['note_out'] : '-',
                 (isset($item['attendance']['status_in'])) ? $item['attendance']['status_in'] : '-',
                 (isset($item['attendance']['status_out'])) ? $item['attendance']['status_out'] : '-',

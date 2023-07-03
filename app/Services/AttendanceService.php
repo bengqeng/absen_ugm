@@ -66,7 +66,7 @@ class AttendanceService extends AbstractService
                 $item['date']->format('d F Y'),
                 (isset($item['attendance']['hours_checkin'])) ? $item['attendance']['hours_checkin'] : '-',
                 (isset($item['attendance']['note_in'])) ? $item['attendance']['note_in'] : '-',
-                (isset($item['attendance']['hours_checkout'])) ? $item['attendance']['hours_checkin'] : '-',
+                (isset($item['attendance']['hours_checkout'])) ? $item['attendance']['hours_checkout'] : '-',
                 (isset($item['attendance']['note_out'])) ? $item['attendance']['note_out'] : '-',
                 (isset($item['attendance']['status_in'])) ? $item['attendance']['status_in'] : '-',
                 (isset($item['attendance']['status_out'])) ? $item['attendance']['status_out'] : '-',
